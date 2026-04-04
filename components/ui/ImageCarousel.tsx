@@ -43,14 +43,12 @@ export default function ImageCarousel({
   const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total])
   const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total])
 
-  // Auto-scroll
   useEffect(() => {
     if (paused || total <= 1) return
     const timer = setInterval(next, autoScrollInterval)
     return () => clearInterval(timer)
   }, [paused, next, autoScrollInterval, total])
 
-  // Scroll active thumbnail into view
   useEffect(() => {
     if (!showThumbnails || !thumbRef.current) return
     const activeThumb = thumbRef.current.children[current] as HTMLElement
@@ -59,7 +57,6 @@ export default function ImageCarousel({
     }
   }, [current, showThumbnails])
 
-  // Keyboard navigation when focused
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
@@ -80,6 +77,16 @@ export default function ImageCarousel({
     }
   }
 
+  // Only render current and adjacent slides to reduce DOM and network load
+  const shouldRender = (i: number) => {
+    if (i === current) return true
+    if (i === (current + 1) % total) return true
+    if (i === (current - 1 + total) % total) return true
+    return false
+  }
+
+  const bgColor = background === 'bg-[#F8F4EF]' ? '#F8F4EF' : '#ffffff'
+
   return (
     <section className={`${background} py-12 md:py-20`}>
       <div className="max-w-[1200px] mx-auto px-6">
@@ -97,38 +104,44 @@ export default function ImageCarousel({
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
         >
-          {/* Main image area */}
+          {/* Main image area - fixed aspect ratio prevents layout shift */}
           <div
             className="relative overflow-hidden rounded-lg bg-[#F8F4EF]"
             style={{ aspectRatio }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            <div
-              className="flex h-full transition-transform duration-400 ease-out"
-              style={{ transform: `translateX(-${current * 100}%)`, transitionDuration: '0.4s' }}
-            >
-              {images.map((img, i) => (
-                <div key={i} className="w-full h-full flex-shrink-0 cursor-pointer" onClick={() => setLightboxOpen(true)}>
+            {images.map((img, i) => (
+              <div
+                key={i}
+                className="absolute inset-0 w-full h-full cursor-pointer"
+                style={{
+                  opacity: i === current ? 1 : 0,
+                  transition: 'opacity 0.4s ease',
+                  zIndex: i === current ? 1 : 0,
+                }}
+                onClick={() => setLightboxOpen(true)}
+              >
+                {shouldRender(i) && (
                   <img
                     src={img.url}
                     alt={img.alt}
-                    loading={Math.abs(i - current) <= 1 ? 'eager' : 'lazy'}
+                    loading={i === 0 ? 'eager' : 'lazy'}
                     className="w-full h-full object-cover"
                   />
-                </div>
-              ))}
-            </div>
+                )}
+              </div>
+            ))}
 
             {/* Category label overlay */}
             {images[current]?.label && (
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-4 pointer-events-none">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-4 pointer-events-none z-[2]">
                 <span className="font-sans text-sm text-white">{images[current].label}</span>
               </div>
             )}
 
             {/* Image counter */}
-            <div className="absolute top-3 right-3">
+            <div className="absolute top-3 right-3 z-[2]">
               <span className="font-sans text-xs text-white bg-black/50 px-3 py-1.5 rounded-full">
                 {current + 1} / {total}
               </span>
@@ -139,14 +152,14 @@ export default function ImageCarousel({
               <>
                 <button
                   onClick={(e) => { e.stopPropagation(); prev() }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#CD0E12] group transition-colors z-10"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#CD0E12] group transition-colors z-[3]"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={18} className="text-[#CD0E12] group-hover:text-white transition-colors" />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); next() }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#CD0E12] group transition-colors z-10"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#CD0E12] group transition-colors z-[3]"
                   aria-label="Next image"
                 >
                   <ChevronRight size={18} className="text-[#CD0E12] group-hover:text-white transition-colors" />
@@ -156,7 +169,7 @@ export default function ImageCarousel({
 
             {/* Dots */}
             {total > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-[2]">
                 {images.map((_, i) => (
                   <button
                     key={i}
@@ -172,11 +185,11 @@ export default function ImageCarousel({
           {/* Thumbnails */}
           {showThumbnails && total > 1 && (
             <div className="relative mt-3">
-              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" style={{ background: `linear-gradient(to right, var(--tw-gradient-from, ${background === 'bg-[#F8F4EF]' ? '#F8F4EF' : '#ffffff'}), transparent)` }} />
-              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" style={{ background: `linear-gradient(to left, var(--tw-gradient-from, ${background === 'bg-[#F8F4EF]' ? '#F8F4EF' : '#ffffff'}), transparent)` }} />
+              <div className="absolute left-0 top-0 bottom-0 w-8 z-10 pointer-events-none" style={{ background: `linear-gradient(to right, ${bgColor}, transparent)` }} />
+              <div className="absolute right-0 top-0 bottom-0 w-8 z-10 pointer-events-none" style={{ background: `linear-gradient(to left, ${bgColor}, transparent)` }} />
               <div
                 ref={thumbRef}
-                className="flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
+                className="flex gap-2 overflow-x-auto py-1 px-1"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {images.map((img, i) => (

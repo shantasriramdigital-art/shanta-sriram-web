@@ -52,17 +52,26 @@ export default function ProjectGallery({
       {/* HERO IMAGE CAROUSEL */}
       <section className="relative overflow-hidden bg-[#1A1A2E]">
         <div className="relative h-[50vh] md:h-[70vh]">
-          {heroImages.map((img, i) => (
-            <img
-              key={i}
-              src={img.url}
-              alt={img.alt}
-              loading={i === 0 ? 'eager' : 'lazy'}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === heroIndex ? 'opacity-100' : 'opacity-0'}`}
-              onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
-              style={{ cursor: 'pointer' }}
-            />
-          ))}
+          {heroImages.map((img, i) => {
+            const isNear = i === heroIndex || i === (heroIndex + 1) % heroImages.length || i === (heroIndex - 1 + heroImages.length) % heroImages.length
+            return (
+              <div
+                key={i}
+                className="absolute inset-0 w-full h-full cursor-pointer"
+                style={{ opacity: i === heroIndex ? 1 : 0, transition: 'opacity 0.7s ease', zIndex: i === heroIndex ? 1 : 0 }}
+                onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
+              >
+                {isNear && (
+                  <img
+                    src={img.url}
+                    alt={img.alt}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            )
+          })}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
             <div className="max-w-[1200px] mx-auto flex items-end justify-between gap-4">
