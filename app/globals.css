@@ -19,9 +19,11 @@
   --color-success: #2E7D32;
   --color-amber-brand: #F59E0B;
 
-  /* Typography */
+  /* Typography mapping */
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
-  --font-serif: var(--font-display), Georgia, serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-label: var(--font-tenor), system-ui, sans-serif;
 
   /* Radius */
   --radius: 0.25rem;
@@ -57,14 +59,73 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-white text-[#4A4A5A] font-sans antialiased;
-    font-size: 16px;
+    @apply bg-white text-[#4A4A5A] antialiased;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 15px;
     line-height: 1.7;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-[#1A1A2E];
+    font-family: var(--font-serif);
+    color: #1A1A2E;
     font-weight: 500;
+    line-height: 1.2;
   }
+  p, li, td, th {
+    font-family: var(--font-sans);
+  }
+  input, textarea, select {
+    font-family: var(--font-sans);
+  }
+  button {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Hero display headings - Cormorant */
+.hero-heading {
+  font-family: var(--font-display) !important;
+  font-weight: 300;
+  font-size: clamp(48px, 7vw, 96px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* Stat numbers - Cormorant */
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Quote text - Cormorant italic */
+.quote-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.5;
+}
+
+/* Section label - Tenor Sans */
+.section-label {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #CD0E12;
+}
+
+/* Navigation links - Tenor Sans */
+.nav-link {
+  font-family: var(--font-label);
+  font-size: 14px;
+  letter-spacing: 0.04em;
 }
 
 /* Fluid typography */
@@ -89,14 +150,9 @@
   font-weight: 500;
 }
 
-/* Section label */
-.section-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #CD0E12;
+/* Cream texture */
+.bg-cream-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
 /* Smooth scroll */

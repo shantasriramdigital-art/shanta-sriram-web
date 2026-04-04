@@ -85,7 +85,7 @@ export default function Navbar() {
   const isBuyerActive = pathname.startsWith('/nri') || pathname.startsWith('/payment-plans') || pathname.startsWith('/site-visit')
 
   const linkClass = (href: string) =>
-    `text-sm font-sans font-medium transition-colors duration-150 relative ${isActive(href) ? 'text-[#CD0E12]' : 'text-[#4A4A5A] hover:text-[#1A1A2E]'}`
+    `nav-link font-medium transition-colors duration-150 relative ${isActive(href) ? 'text-[#CD0E12]' : 'text-[#4A4A5A] hover:text-[#1A1A2E]'}`
 
   return (
     <>

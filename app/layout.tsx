@@ -1,18 +1,32 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
+import { Cormorant, Playfair_Display, DM_Sans, Tenor_Sans } from 'next/font/google'
 import './globals.css'
+
+const cormorant = Cormorant({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-cormorant',
+  display: 'swap',
+})
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-display',
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
   display: 'swap',
 })
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
   weight: ['300', '400', '500'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
+const tenorSans = Tenor_Sans({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-tenor',
   display: 'swap',
 })
 
@@ -34,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable} ${tenorSans.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

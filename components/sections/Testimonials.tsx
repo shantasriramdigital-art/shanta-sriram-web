@@ -18,7 +18,7 @@ export default function Testimonials() {
           {top3.map((t, i) => (
             <div key={i} className="bg-white rounded-md p-6 flex flex-col">
               <div className="font-serif text-[#CD0E12] text-5xl leading-none mb-4 select-none">&ldquo;</div>
-              <p className="font-sans text-[#4A4A5A] text-sm leading-relaxed flex-1 mb-5">
+              <p className="quote-text text-[#4A4A5A] flex-1 mb-5" style={{ fontSize: '14px' }}>
                 {t.text}
               </p>
               <div className="flex items-center gap-1 mb-4 text-[#CD0E12] text-sm">

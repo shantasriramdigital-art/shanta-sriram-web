@@ -83,7 +83,7 @@ export default function AboutStrip() {
                   <p className="font-sans text-[#CD0E12] text-xs uppercase tracking-[0.08em] mb-3">{founder.title}</p>
                   <div>
                     <span className="font-serif text-[#CD0E12] text-3xl leading-none select-none">&ldquo;</span>
-                    <p className="font-sans text-white/75 text-[13px] leading-relaxed italic -mt-3 ml-1">
+                    <p className="quote-text text-white/75 -mt-3 ml-1" style={{ fontSize: '13px' }}>
                       {founder.quote}
                     </p>
                   </div>

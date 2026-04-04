@@ -7,8 +7,21 @@ interface SectionLabelProps {
 
 export default function SectionLabel({ children, className = '' }: SectionLabelProps) {
   return (
-    <p className={`text-xs font-sans font-semibold uppercase tracking-widest text-primary mb-2 ${className}`}>
-      {children}
-    </p>
+    <div className={`flex items-center gap-3 mb-4 ${className}`}>
+      <span className="block h-px w-6 flex-shrink-0" style={{ backgroundColor: '#CD0E12' }} />
+      <span
+        className="section-label"
+        style={{
+          color: '#CD0E12',
+          fontFamily: 'var(--font-label)',
+          fontSize: '11px',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+        }}
+      >
+        {children}
+      </span>
+      <span className="block h-px w-6 flex-shrink-0" style={{ backgroundColor: '#CD0E12' }} />
+    </div>
   )
 }

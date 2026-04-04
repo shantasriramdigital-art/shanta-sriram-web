@@ -22,10 +22,7 @@ export default function StatsCounter() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {STATS.map((stat, i) => (
             <div key={i} className="text-center">
-              <div
-                className="font-serif text-white mb-2"
-                style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1.1 }}
-              >
+              <div className="stat-number text-white mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <p className="font-sans text-white/70 text-sm font-medium mb-1">{stat.label}</p>

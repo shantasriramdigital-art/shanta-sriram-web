@@ -41,7 +41,7 @@ export default function HeroCarousel() {
                   {project.status}
                 </span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#1A1A2E] mb-3 text-balance">
+              <h1 className="hero-heading text-[#1A1A2E] mb-3 text-balance">
                 {project.name}
               </h1>
               <div className="flex items-center gap-2 text-[#4A4A5A] mb-6">
