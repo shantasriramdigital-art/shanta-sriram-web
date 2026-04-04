@@ -16,23 +16,32 @@ export default function AnimatedCounter({ value, suffix = '', prefix = '', durat
   const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    // Start animation on mount
-    setHasStarted(true)
+    const el = ref.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
     if (!hasStarted) return
     const startTime = Date.now()
-    const startValue = 0
-    const endValue = value
 
     const tick = () => {
       const elapsed = Date.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
-      const current = startValue + (endValue - startValue) * eased
-      setCount(current)
+      setCount(value * eased)
       if (progress < 1) requestAnimationFrame(tick)
     }
     requestAnimationFrame(tick)
