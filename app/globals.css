@@ -189,10 +189,9 @@
   height: 100%;
 }
 
-/* Prevent images from causing layout shift */
-img {
+/* Prevent content images from causing layout shift - scoped to avoid breaking logos/icons */
+main img:not([data-logo]) {
   max-width: 100%;
-  height: auto;
 }
 
 /* Smooth scroll */

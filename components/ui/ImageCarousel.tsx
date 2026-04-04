@@ -196,6 +196,7 @@ export default function ImageCarousel({
                     alt={img.alt}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     onLoad={() => handleImageLoad(i)}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 ${loadedImages.has(i) ? 'opacity-100' : 'opacity-0'}`}
                     style={{ zIndex: 1, cursor: 'pointer', transitionDuration: '0.4s' }}
                     onClick={() => setLightboxOpen(true)}

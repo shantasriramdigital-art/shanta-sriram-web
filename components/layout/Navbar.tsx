@@ -121,7 +121,8 @@ export default function Navbar() {
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
               alt="Shanta Sriram Constructions"
-              className="h-11 w-auto"
+              data-logo=""
+              style={{ height: '44px', width: 'auto', maxWidth: 'none', display: 'block' }}
             />
           </Link>
 
@@ -260,7 +261,8 @@ export default function Navbar() {
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
               alt="Shanta Sriram Constructions"
-              className="h-9 w-auto"
+              data-logo=""
+              style={{ height: '36px', width: 'auto', maxWidth: 'none', display: 'block' }}
             />
             <button onClick={() => setMobileOpen(false)} aria-label="Close navigation">
               <X size={22} className="text-white" />

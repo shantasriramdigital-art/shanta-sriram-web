@@ -121,6 +121,7 @@ export default function ProjectGallery({
                 loading={i === 0 ? 'eager' : 'lazy'}
                 fetchPriority={i === 0 ? 'high' : undefined}
                 onLoad={() => handleHeroLoad(i)}
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity ${heroLoaded.has(i) ? 'opacity-100' : 'opacity-0'}`}
                 style={{ zIndex: 1, cursor: 'pointer', transitionDuration: '0.4s' }}
                 onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}

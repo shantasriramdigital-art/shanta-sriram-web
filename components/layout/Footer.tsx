@@ -38,7 +38,8 @@ export default function Footer() {
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
               alt="Shanta Sriram Constructions"
-              className="h-14 w-auto mb-4"
+              data-logo=""
+              style={{ height: '56px', width: 'auto', maxWidth: 'none', display: 'block', marginBottom: '16px' }}
             />
             <p className="font-serif text-white/60 italic text-base mb-5">{BRAND.tagline}</p>
             <Link
