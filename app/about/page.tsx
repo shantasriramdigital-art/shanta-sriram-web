@@ -91,31 +91,35 @@ export default function AboutPage() {
                 <div
                   key={founder.name}
                   className="bg-white overflow-hidden"
-                  style={{ borderRadius: '12px', border: '0.5px solid rgba(0,0,0,0.08)' }}
+                  style={{ borderRadius: '2px', border: '0.5px solid rgba(0,0,0,0.08)' }}
                 >
-                  {/* Photo */}
-                  <div className="h-[260px] md:h-[320px] border-b-[3px] border-[#CD0E12]">
+                  {/* Photo with name overlay */}
+                  <div className="h-[240px] md:h-[320px] relative overflow-hidden" style={{ backgroundColor: '#0f0f1e' }}>
                     <img
                       src={founder.photo}
                       alt={founder.name}
                       width={600}
                       height={400}
                       loading="lazy"
-                      className="w-full h-full object-cover object-top"
-                      style={{ filter: 'contrast(1.08) brightness(1.04) saturate(1.12)' }}
+                      data-logo=""
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 15%', filter: 'contrast(1.05) brightness(1.02) saturate(1.05)' }}
                     />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '48px 24px 20px', background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)' }}>
+                      <p style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '22px', fontWeight: 500, color: 'white', margin: 0 }}>{founder.name}</p>
+                      <p style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '10px', color: '#C9A96E', textTransform: 'uppercase', letterSpacing: '0.15em', marginTop: '4px' }}>{founder.title}</p>
+                    </div>
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '3px', backgroundColor: '#CD0E12' }} />
                   </div>
 
                   {/* Text */}
                   <div className="p-6">
-                    <p className="font-serif text-[#1A1A2E] text-[22px] font-medium">{founder.name}</p>
-                    <p className="font-sans text-[#CD0E12] text-xs uppercase tracking-[0.1em] mb-4">{founder.title}</p>
                     <p className="font-sans text-[#444] text-sm leading-[1.7] mb-5">
                       {founder.bio}
                     </p>
-                    <div className="border-t border-[#E8ECF0] pt-4">
+                    <div style={{ borderLeft: '3px solid #CD0E12', paddingLeft: '16px' }}>
                       <span className="font-serif text-[#CD0E12] text-2xl leading-none select-none">&ldquo;</span>
-                      <p className="font-sans text-[#666] text-sm italic leading-relaxed -mt-2 ml-1">
+                      <p className="font-sans text-[#666] text-sm italic leading-relaxed -mt-2">
                         {founder.quote}
                       </p>
                     </div>
