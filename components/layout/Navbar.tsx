@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/#projects-grid' },
+  { label: 'Legacy', href: '/legacy' },
   { label: 'Markets', href: '/markets' },
   { label: 'Trust', href: '/trust' },
   {

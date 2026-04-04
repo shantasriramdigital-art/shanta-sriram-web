@@ -11,6 +11,7 @@ const FOOTER_LINKS = {
   ],
   explore: [
     { label: 'Markets', href: '/markets' },
+    { label: 'Legacy Projects', href: '/legacy' },
     { label: 'Trust', href: '/trust' },
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' },
