@@ -86,13 +86,35 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
         {/* Info Strip - for projects without gallery hero, show full hero; for projects with gallery, show compact strip */}
         {!p.heroImages && (
-          <div style={{ position: 'relative', width: '100%', height: 'clamp(280px, 50vh, 500px)', overflow: 'hidden', backgroundColor: '#1A1A2E' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A2E 0%, #2d2d4e 100%)' }} />
+          <div style={{ position: 'relative', width: '100%', height: 'clamp(400px, 60vh, 700px)', overflow: 'hidden', backgroundColor: '#1A1A2E' }}>
+            {/* Background image from cardImage */}
+            {p.cardImage && (
+              <img src={p.cardImage} alt={project.name} loading="eager" fetchPriority="high" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            )}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.75) 100%)' }} />
+            {/* RERA badge */}
+            {project.rera && (
+              <div style={{ position: 'absolute', top: '20px', right: '20px', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '4px', zIndex: 2 }}>
+                <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '8px', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '2px' }}>RERA</div>
+                <div style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: 'white' }}>{project.rera}</div>
+              </div>
+            )}
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(24px, 4vw, 48px)' }}>
               <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                <span style={{ display: 'inline-block', background: '#CD0E12', color: 'white', padding: '4px 12px', borderRadius: '100px', fontSize: '10px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '12px' }}>{project.status}</span>
-                <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 400, color: 'white', lineHeight: 1.1, margin: '0 0 8px 0' }}>{project.name}</h1>
-                <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.8)', margin: 0 }}>{project.location}</p>
+                <span style={{ display: 'inline-block', background: project.status === 'Ready to Move' ? '#2D7A4F' : '#CD0E12', color: 'white', padding: '4px 14px', borderRadius: '100px', fontSize: '10px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '12px' }}>{project.status}</span>
+                <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 400, color: 'white', lineHeight: 1.1, margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>{project.name}</h1>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '20px' }}>
+                  <span style={{ color: '#CD0E12', fontSize: '14px' }}>&#9673;</span>
+                  <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.85)' }}>{project.location}</span>
+                </div>
+                <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap', rowGap: '8px' }}>
+                  {[project.units && { label: 'Units', value: project.units }, p.configuration && { label: 'Config', value: p.configuration }, { label: 'Price', value: project.priceRange }].filter(Boolean).map((stat: any, i: number, arr: any[]) => (
+                    <div key={i} style={{ paddingRight: '20px', marginRight: '20px', borderRight: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.25)' : 'none' }}>
+                      <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '9px', color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '3px' }}>{stat.label}</div>
+                      <div style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', color: 'white', fontWeight: 500 }}>{stat.value}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

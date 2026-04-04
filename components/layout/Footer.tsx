@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
+              src="/placeholder-logo.svg"
               alt="Shanta Sriram Constructions"
               data-logo=""
               style={{ height: '56px', width: 'auto', maxWidth: 'none', display: 'block', marginBottom: '16px' }}

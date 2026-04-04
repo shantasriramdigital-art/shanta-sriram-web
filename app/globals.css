@@ -204,10 +204,13 @@ main img:not([data-logo]) {
 }
 
 /* Project page responsive */
+@media (max-width: 1024px) {
+  .project-content-grid { grid-template-columns: 1fr !important; }
+}
 @media (max-width: 768px) {
   .project-info-strip { grid-template-columns: 1fr 1fr !important; }
-  .project-content-grid { grid-template-columns: 1fr !important; }
   .project-sidebar { position: static !important; }
+  .info-strip-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* Smooth scroll */

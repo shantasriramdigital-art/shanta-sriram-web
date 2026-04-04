@@ -119,10 +119,10 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
+              src="/placeholder-logo.svg"
               alt="Shanta Sriram Constructions"
               data-logo=""
-              style={{ height: '44px', width: 'auto', maxWidth: 'none', display: 'block' }}
+              style={{ height: '48px', width: 'auto', maxWidth: '220px', display: 'block', objectFit: 'contain' }}
             />
           </Link>
 
@@ -259,10 +259,10 @@ export default function Navbar() {
           className="fixed inset-0 z-[60] bg-[#1A1A2E] flex flex-col">
           <div className="flex items-center justify-between px-6 h-[60px] border-b border-white/10">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
+              src="/placeholder-logo.svg"
               alt="Shanta Sriram Constructions"
               data-logo=""
-              style={{ height: '36px', width: 'auto', maxWidth: 'none', display: 'block' }}
+              style={{ height: '40px', width: 'auto', maxWidth: '180px', display: 'block', objectFit: 'contain' }}
             />
             <button onClick={() => setMobileOpen(false)} aria-label="Close navigation">
               <X size={22} className="text-white" />
