@@ -90,12 +90,9 @@ function catColor(cat: string) {
 }
 
 export default function MarketsPage() {
-  const [activeTab, setActiveTab] = useState(0)
   const [newsOffset, setNewsOffset] = useState(0)
   const newsHovered = useRef(false)
   const newsTimer = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const corridor = CORRIDORS[activeTab]
 
   // News auto-scroll
   const stopNews = useCallback(() => { if (newsTimer.current) { clearInterval(newsTimer.current); newsTimer.current = null } }, [])
@@ -144,80 +141,72 @@ export default function MarketsPage() {
         </div>
       </section>
 
-      {/* Corridor Tabs */}
-      <section style={{ backgroundColor: '#F8F4EF', padding: '80px 0' }}>
+      {/* Section header */}
+      <section style={{ backgroundColor: '#F8F4EF', padding: '60px 0 40px', textAlign: 'center' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-          {/* Tabs */}
-          <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid #E8ECF0', marginBottom: '48px' }}>
-            {CORRIDORS.map((c, i) => (
-              <button
-                key={c.id}
-                onClick={() => setActiveTab(i)}
-                style={{
-                  fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '14px', fontWeight: 500,
-                  color: i === activeTab ? '#1A1A2E' : '#999',
-                  borderBottom: i === activeTab ? '3px solid #CD0E12' : '3px solid transparent',
-                  padding: '12px 0', background: 'none', border: 'none', cursor: 'pointer',
-                  transition: 'all 0.2s ease', letterSpacing: '0.02em',
-                }}
-              >
-                {c.tab}
-              </button>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', marginBottom: '16px' }}>
+            <span style={{ height: '1px', width: '24px', backgroundColor: '#CD0E12', display: 'block' }} />
+            <span style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#CD0E12' }}>Strategic Growth Corridors</span>
+            <span style={{ height: '1px', width: '24px', backgroundColor: '#CD0E12', display: 'block' }} />
           </div>
+          <h2 style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, color: '#1A1A2E', marginBottom: '16px' }}>We Build Where Hyderabad Is Growing Next</h2>
+          <div style={{ width: '60px', height: '2px', backgroundColor: '#C9A96E', margin: '0 auto' }} />
+        </div>
+      </section>
 
-          {/* Content */}
-          <div className="corridor-grid" style={{ display: 'grid', gridTemplateColumns: '55% 45%', gap: '40px', alignItems: 'start' }}>
-            {/* Map */}
-            <div>
-              <iframe
-                src={corridor.mapSrc}
-                width="100%"
-                className="corridor-map"
-                style={{ height: '420px', border: 0, borderRadius: '8px' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={corridor.label}
-              />
-            </div>
+      {/* Stacked Corridors */}
+      {CORRIDORS.map((c, idx) => {
+        const bg = idx % 2 === 0 ? '#F8F4EF' : '#ffffff'
+        const reversed = idx === 1
+        const num = String(idx + 1).padStart(2, '0')
 
-            {/* Data */}
-            <div>
+        const mapBlock = (
+          <div style={{ overflow: 'hidden', borderRadius: '8px', border: '0.5px solid rgba(0,0,0,0.1)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+            <iframe src={c.mapSrc} width="100%" className="corridor-map" style={{ height: '420px', border: 0, display: 'block' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={c.label} />
+          </div>
+        )
+
+        const dataBlock = (
+          <div style={{ position: 'relative' }}>
+            {/* Decorative number */}
+            <span style={{ position: 'absolute', top: '-10px', left: 0, fontFamily: 'var(--font-playfair, serif)', fontSize: '100px', fontWeight: 300, color: 'rgba(205,14,18,0.06)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>{num}</span>
+
+            <div style={{ position: 'relative', zIndex: 1 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
                 <span style={{ height: '1px', width: '24px', backgroundColor: '#CD0E12', display: 'block' }} />
-                <span style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#CD0E12' }}>{corridor.label}</span>
+                <span style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#CD0E12' }}>{c.label}</span>
               </div>
-              <h2 style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 500, color: '#1A1A2E', marginBottom: '24px' }}>{corridor.heading}</h2>
+              <h2 style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 500, color: '#1A1A2E', marginBottom: '16px' }}>{c.heading}</h2>
+              <div style={{ width: '40px', height: '2px', backgroundColor: '#C9A96E', marginBottom: '24px' }} />
 
-              {/* Stats grid */}
+              {/* Stats */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
-                {corridor.stats.map((s) => (
-                  <div key={s.label} style={{ backgroundColor: 'white', border: '0.5px solid #E8ECF0', borderRadius: '4px', padding: '16px' }}>
-                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '10px', color: '#999', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>{s.label}</div>
-                    <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '18px', fontWeight: 500, color: '#1A1A2E' }}>{s.value}</div>
+                {c.stats.map((s) => (
+                  <div key={s.label} style={{ backgroundColor: bg === '#F8F4EF' ? 'white' : '#F8F4EF', border: '0.5px solid #E8ECF0', borderRadius: '4px', padding: '16px' }}>
+                    <div style={{ fontFamily: 'var(--font-tenor, sans-serif)', fontSize: '10px', color: '#CD0E12', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>{s.label}</div>
+                    <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '22px', fontWeight: 500, color: '#1A1A2E' }}>{s.value}</div>
                   </div>
                 ))}
               </div>
 
               {/* Points */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
-                {corridor.points.map((p, i) => (
+                {c.points.map((p, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#CD0E12', flexShrink: 0, marginTop: '7px' }} />
-                    <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '13px', color: '#4A4A5A', lineHeight: 1.6 }}>{p}</span>
+                    <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '14px', color: '#4A4A5A', lineHeight: 1.8 }}>{p}</span>
                   </div>
                 ))}
               </div>
 
               {/* Project card */}
-              {corridor.project && (
-                <Link href={corridor.project.href}>
-                  <div style={{ backgroundColor: 'white', border: '1px solid #E8ECF0', borderLeft: '3px solid #CD0E12', borderRadius: '4px', padding: '16px', cursor: 'pointer', transition: 'box-shadow 0.2s ease' }}>
-                    <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E', marginBottom: '4px' }}>{corridor.project.name}</div>
-                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '12px', color: '#888', marginBottom: '8px' }}>{corridor.project.location}</div>
+              {c.project && (
+                <Link href={c.project.href}>
+                  <div style={{ backgroundColor: bg === '#F8F4EF' ? 'white' : '#F8F4EF', border: '1px solid #E8ECF0', borderLeft: '3px solid #CD0E12', borderRadius: '4px', padding: '16px', cursor: 'pointer', transition: 'box-shadow 0.2s ease' }}>
+                    <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E', marginBottom: '4px' }}>{c.project.name}</div>
+                    <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '12px', color: '#888', marginBottom: '8px' }}>{c.project.location}</div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#CD0E12' }}>{corridor.project.price}</span>
+                      <span style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#CD0E12' }}>{c.project.price}</span>
                       <span style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '12px', color: '#CD0E12', fontWeight: 500 }}>View Project &rarr;</span>
                     </div>
                   </div>
@@ -225,8 +214,19 @@ export default function MarketsPage() {
               )}
             </div>
           </div>
-        </div>
-      </section>
+        )
+
+        return (
+          <div key={c.id}>
+            <section style={{ backgroundColor: bg, padding: '80px 0' }}>
+              <div className="corridor-grid" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '55% 45%', gap: '48px', alignItems: 'center' }}>
+                {reversed ? <>{dataBlock}{mapBlock}</> : <>{mapBlock}{dataBlock}</>}
+              </div>
+            </section>
+            {idx < CORRIDORS.length - 1 && <div style={{ height: '1px', backgroundColor: 'rgba(0,0,0,0.06)' }} />}
+          </div>
+        )
+      })}
 
       {/* News Carousel */}
       <section style={{ backgroundColor: 'white', padding: '80px 0' }}>
