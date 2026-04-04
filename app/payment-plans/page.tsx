@@ -72,6 +72,24 @@ export default function PaymentPlansPage() {
         </div>
       </section>
 
+      {/* Bodhivriksha Pricing Reference */}
+      <section className="bg-[#F8F4EF] py-16 md:py-20">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="bg-white border border-[#E8ECF0] rounded-md p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] mb-2">Featured Project</p>
+              <h3 className="font-serif text-[#1A1A2E] text-2xl font-bold mb-1">The Bodhivriksha</h3>
+              <p className="font-sans text-[#4A4A5A] text-sm">Bandlaguda Jagir, near TSPA Junction</p>
+              <p className="font-serif text-[#CD0E12] text-2xl font-bold mt-3">Rs. 7,500 per sq. ft.</p>
+              <p className="font-sans text-[10px] text-[#6B6B6B] mt-1">RERA: P02400003070</p>
+            </div>
+            <Link href="/projects/bodhivriksha" className="inline-block font-sans text-sm font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors whitespace-nowrap">
+              View Full Pricing
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Bank Partners */}
       <section className="bg-[#F4F7FC] py-20 md:py-24">
         <div className="max-w-[1200px] mx-auto px-6">

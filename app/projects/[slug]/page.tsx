@@ -272,8 +272,102 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </div>
         </section>
 
-        {/* Pricing Notes */}
-        {p.pricingNotes && p.pricingNotes.length > 0 && (
+        {/* Pricing Structure (Bodhivriksha) */}
+        {p.basicPrice && p.additionalCharges && (
+          <section className="bg-white py-20 md:py-24">
+            <div className="max-w-[1200px] mx-auto px-6">
+              <SectionLabel className="mb-4">PRICING</SectionLabel>
+              <h2 className="text-h2 font-serif text-[#1A1A2E] mb-4">{project.name} Pricing Structure</h2>
+              <div className="mb-10">
+                <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] mb-2">Basic Price</p>
+                <p className="font-serif text-[#CD0E12] text-3xl md:text-4xl font-bold">{p.basicPrice}</p>
+              </div>
+              <h3 className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] mb-4">Additional Charges</h3>
+              <div className="bg-[#F8F4EF] border border-[#E8ECF0] rounded-md overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-[#E8ECF0] bg-[#F8F4EF]">
+                        <th className="text-left font-sans text-[10px] uppercase tracking-[0.12em] text-[#6B6B6B] px-6 py-4">Item</th>
+                        <th className="text-right font-sans text-[10px] uppercase tracking-[0.12em] text-[#6B6B6B] px-6 py-4">Rate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {p.additionalCharges.map((charge: { item: string; rate: string }, i: number) => (
+                        <tr key={i} className={`border-b border-[#E8ECF0] last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F8F4EF]/40'}`}>
+                          <td className="font-sans text-sm text-[#4A4A5A] px-6 py-4">{charge.item}</td>
+                          <td className="font-sans text-sm font-medium text-[#1A1A2E] px-6 py-4 text-right whitespace-nowrap">{charge.rate}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p className="font-sans text-[10px] text-[#6B6B6B] mt-4 leading-relaxed">
+                All prices are subject to change without prior notice. Contact our sales team for current pricing.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {/* Payment Schedule (Bodhivriksha) */}
+        {p.paymentSchedule && (
+          <section className="bg-[#F4F7FC] py-20 md:py-24">
+            <div className="max-w-[1200px] mx-auto px-6">
+              <SectionLabel className="mb-4">PAYMENT SCHEDULE</SectionLabel>
+              <h2 className="text-h2 font-serif text-[#1A1A2E] mb-10">Construction Linked Payment Plan</h2>
+              <div className="bg-white border border-[#E8ECF0] rounded-md overflow-hidden max-w-3xl">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-[#E8ECF0] bg-[#F8F4EF]">
+                        <th className="text-left font-sans text-[10px] uppercase tracking-[0.12em] text-[#6B6B6B] px-6 py-4 w-10">#</th>
+                        <th className="text-left font-sans text-[10px] uppercase tracking-[0.12em] text-[#6B6B6B] px-6 py-4">Stage</th>
+                        <th className="text-right font-sans text-[10px] uppercase tracking-[0.12em] text-[#6B6B6B] px-6 py-4">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {p.paymentSchedule.map((row: { stage: string; amount: string }, i: number) => (
+                        <tr key={i} className={`border-b border-[#E8ECF0] last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F8F4EF]/40'}`}>
+                          <td className="font-sans text-xs text-[#6B6B6B] px-6 py-4">{String(i + 1).padStart(2, '0')}</td>
+                          <td className="font-sans text-sm text-[#4A4A5A] px-6 py-4">{row.stage}</td>
+                          <td className="font-sans text-sm font-medium text-[#1A1A2E] px-6 py-4 text-right whitespace-nowrap">{row.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Notes */}
+              {p.pricingNotes && p.pricingNotes.length > 0 && (
+                <div className="mt-8 max-w-3xl">
+                  <h3 className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] mb-4">Important Notes</h3>
+                  <div className="flex flex-col gap-2">
+                    {p.pricingNotes.map((note: string, i: number) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] flex-shrink-0 mt-2" />
+                        <p className="font-sans text-xs text-[#4A4A5A] leading-relaxed">{note}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link href="/contact" className="inline-block font-sans text-sm font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors">
+                  Get a Detailed Cost Sheet
+                </Link>
+                {p.contactForPricing && (
+                  <p className="font-sans text-sm text-[#6B6B6B]">For more details: <span className="text-[#1A1A2E] font-medium">{p.contactForPricing}</span></p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Pricing Notes (Kalpavriksha and others without paymentSchedule) */}
+        {p.pricingNotes && p.pricingNotes.length > 0 && !p.paymentSchedule && (
           <section className="bg-[#F8F4EF] py-20 md:py-24">
             <div className="max-w-[1200px] mx-auto px-6">
               <SectionLabel className="mb-4">PRICING INFORMATION</SectionLabel>
