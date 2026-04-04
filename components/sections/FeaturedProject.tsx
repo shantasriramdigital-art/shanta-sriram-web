@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
 import BrochureGateModal from '@/components/ui/BrochureGateModal'
-import { MapPin, Shield, Home } from 'lucide-react'
+import { MapPin, Shield } from 'lucide-react'
 
 export default function FeaturedProject() {
   const [brochureOpen, setBrochureOpen] = useState(false)
@@ -14,15 +14,17 @@ export default function FeaturedProject() {
       <div className="max-w-[1200px] mx-auto px-6">
         <SectionLabel className="mb-4">FEATURED PROJECT</SectionLabel>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-          {/* Left: image placeholder (60%) */}
+          {/* Left: project image (60%) */}
           <div className="lg:col-span-3">
-            <div className="aspect-[16/10] bg-gradient-to-br from-[#CD0E12]/20 to-[#1A1A2E]/20 rounded-md flex items-center justify-center relative overflow-hidden">
-              <div className="text-center">
-                <Home size={48} className="text-[#1A1A2E]/15 mx-auto mb-3" />
-                <p className="font-serif text-[#1A1A2E]/20 text-xl">The Bodhivriksha</p>
-              </div>
+            <div className="aspect-[16/10] rounded-md relative overflow-hidden">
+              <img
+                src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/SGAppaJnLandscape04WithoutLS01%20twilight%201.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIHR3aWxpZ2h0IDEuanBnIiwiaWF0IjoxNzc1MzMxODA5LCJleHAiOjg4MTc1MzMxODA5fQ.RAiW1VHWwbsCWYVChi6G6xHfiVrBDYhde75bjIiBmVM"
+                alt="The Bodhivriksha - Twilight View"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#F59E0B]/10 text-amber-800 border border-[#F59E0B]/20">
+                <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#F59E0B]/10 text-amber-800 border border-[#F59E0B]/20 backdrop-blur-sm">
                   Under Construction
                 </span>
               </div>

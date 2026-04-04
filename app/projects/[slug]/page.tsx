@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import BrochureButton from '@/components/ui/BrochureButton';
+import ProjectGallery from '@/components/ui/ProjectGallery';
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -62,8 +63,22 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     <>
       <Navbar />
       <main className="min-h-screen bg-[#F8F4EF]">
+        {/* Image Gallery (Bodhivriksha) */}
+        {p.heroImages && p.aerialImages && p.landscapeImages && p.amenityImages && p.elevationImages && (
+          <ProjectGallery
+            heroImages={p.heroImages}
+            aerialImages={p.aerialImages}
+            landscapeImages={p.landscapeImages}
+            amenityImages={p.amenityImages}
+            elevationImages={p.elevationImages}
+            projectName={project.name}
+            location={project.location}
+            rera={project.rera}
+          />
+        )}
+
         {/* Hero */}
-        <section className="bg-gradient-to-br from-[#F8F4EF] to-[#F4F7FC] py-20 md:py-28 border-b border-[#E8ECF0]">
+        <section className={`${p.heroImages ? 'bg-white' : 'bg-gradient-to-br from-[#F8F4EF] to-[#F4F7FC]'} py-20 md:py-28 border-b border-[#E8ECF0]`}>
           <div className="max-w-[1200px] mx-auto px-6">
             <nav className="mb-8" aria-label="Breadcrumb">
               <ol className="flex items-center gap-2 font-sans text-xs text-[#6B6B6B]">

@@ -134,12 +134,23 @@ export default function HeroCarousel() {
           {/* Right: Visual Card */}
           <div className="hidden lg:flex items-center justify-center">
             <div className="w-full max-w-md">
-              {/* Project Image Placeholder */}
-              <div className="bg-gradient-to-br from-[#CD0E12] to-[#1A1A2E] rounded-lg overflow-hidden shadow-xl mb-6 aspect-[4/3] flex items-center justify-center">
-                <div className="text-center px-6">
-                  <Home size={48} className="text-white/30 mx-auto mb-3" />
-                  <p className="font-serif text-white/40 text-lg">{project.name}</p>
-                </div>
+              {/* Project Image */}
+              <div className="rounded-lg overflow-hidden shadow-xl mb-6 aspect-[4/3] relative">
+                {(project as any).heroImages?.[0] ? (
+                  <img
+                    src={(project as any).heroImages[0].url}
+                    alt={(project as any).heroImages[0].alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="bg-gradient-to-br from-[#CD0E12] to-[#1A1A2E] w-full h-full flex items-center justify-center">
+                    <div className="text-center px-6">
+                      <Home size={48} className="text-white/30 mx-auto mb-3" />
+                      <p className="font-serif text-white/40 text-lg">{project.name}</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Quick Stats */}
