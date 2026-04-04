@@ -6,6 +6,7 @@ import { MapPin, Shield, Home } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
+import BrochureButton from '@/components/ui/BrochureButton';
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -110,6 +111,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                   <Link href="/site-visit" className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors">
                     Book Site Visit
                   </Link>
+                  {slug === 'bodhivriksha' && (
+                    <BrochureButton />
+                  )}
                   <Link href="/payment-plans" className="text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#CD0E12] transition-colors py-3">
                     View Payment Plans
                   </Link>

@@ -1,8 +1,14 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
+import BrochureGateModal from '@/components/ui/BrochureGateModal'
 import { MapPin, Shield, Home } from 'lucide-react'
 
 export default function FeaturedProject() {
+  const [brochureOpen, setBrochureOpen] = useState(false)
+
   return (
     <section className="bg-[#F8F4EF] py-20 md:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -62,16 +68,18 @@ export default function FeaturedProject() {
               >
                 View Full Details
               </Link>
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setBrochureOpen(true)}
                 className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors"
               >
                 Download Brochure
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <BrochureGateModal open={brochureOpen} onClose={() => setBrochureOpen(false)} />
     </section>
   )
 }
