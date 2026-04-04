@@ -9,11 +9,16 @@ const FOOTER_LINKS = {
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
   ],
-  properties: [
+  explore: [
     { label: 'Markets', href: '/markets' },
     { label: 'Trust', href: '/trust' },
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' },
+  ],
+  buyers: [
+    { label: 'NRI Buyers Guide', href: '/nri' },
+    { label: 'Payment Plans', href: '/payment-plans' },
+    { label: 'Book Site Visit', href: '/site-visit' },
   ],
 }
 
@@ -21,7 +26,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0F1A2E]">
       <div className="max-w-[1200px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand column */}
           <div className="lg:col-span-1">
             <div className="mb-4">
@@ -44,37 +49,35 @@ export default function Footer() {
 
           {/* Company links */}
           <div>
-            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">
-              Company
-            </h3>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Company</h3>
             <ul className="flex flex-col gap-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150"
-                  >
-                    {link.label}
-                  </Link>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Properties & Markets */}
+          {/* Explore */}
           <div>
-            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">
-              Explore
-            </h3>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Explore</h3>
             <ul className="flex flex-col gap-3">
-              {FOOTER_LINKS.properties.map((link) => (
+              {FOOTER_LINKS.explore.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150"
-                  >
-                    {link.label}
-                  </Link>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Buyer Resources */}
+          <div>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Buyer Resources</h3>
+            <ul className="flex flex-col gap-3">
+              {FOOTER_LINKS.buyers.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -82,9 +85,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">
-              Contact
-            </h3>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Contact</h3>
             <div className="flex flex-col gap-3 font-sans text-sm text-white/60">
               <p className="leading-relaxed">{BRAND.address}</p>
               <p>{BRAND.phone}</p>

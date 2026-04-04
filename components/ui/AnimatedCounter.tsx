@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 interface AnimatedCounterProps {
   value: number
@@ -12,8 +12,23 @@ interface AnimatedCounterProps {
 
 export default function AnimatedCounter({ value, suffix = '', prefix = '', duration = 2000, className = '' }: AnimatedCounterProps) {
   const [count, setCount] = useState(0)
-  const [hasStarted, setHasStarted] = useState(false)
   const ref = useRef<HTMLSpanElement>(null)
+  const hasAnimated = useRef(false)
+
+  const animate = useCallback(() => {
+    if (hasAnimated.current) return
+    hasAnimated.current = true
+    const startTime = performance.now()
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(value * eased)
+      if (progress < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [value, duration])
 
   useEffect(() => {
     const el = ref.current
@@ -21,31 +36,17 @@ export default function AnimatedCounter({ value, suffix = '', prefix = '', durat
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true)
+        if (entry.isIntersecting && !hasAnimated.current) {
+          animate()
           observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.3, rootMargin: '0px' }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!hasStarted) return
-    const startTime = Date.now()
-
-    const tick = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(value * eased)
-      if (progress < 1) requestAnimationFrame(tick)
-    }
-    requestAnimationFrame(tick)
-  }, [hasStarted, value, duration])
+  }, [animate])
 
   const display = value < 10 ? count.toFixed(1) : Math.round(count).toLocaleString('en-IN')
 

@@ -24,9 +24,9 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 export default function ProjectCard({ project, featured = false }: ProjectCardProps) {
+  const p = project as any
   return (
     <div className="bg-white border border-[#E8ECF0] rounded-md overflow-hidden hover:border-[#CD0E12]/30 transition-colors duration-200 flex flex-col hover:shadow-md">
-      {/* Image placeholder */}
       <div className="aspect-[4/3] bg-[#F8F4EF] flex items-center justify-center relative overflow-hidden">
         <span className="font-serif text-[#1A1A2E]/15 text-lg text-center px-4">{project.name}</span>
         <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -42,7 +42,6 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-serif text-[#1A1A2E] text-xl font-medium mb-1">{project.name}</h3>
         <p className="font-sans text-[#6B6B6B] text-sm mb-0.5">{project.location}</p>
@@ -51,6 +50,15 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
         <p className="font-sans text-[#4A4A5A] text-sm line-clamp-2 leading-relaxed flex-1 mb-4">
           {project.description}
         </p>
+
+        {/* Price */}
+        <div className="mb-3">
+          <p className="font-serif text-[#CD0E12] text-lg font-medium">{project.priceRange}</p>
+          {p.priceDisclaimer && (
+            <p className="font-sans text-[9px] text-[#6B6B6B] mt-0.5">{p.priceDisclaimer}</p>
+          )}
+        </div>
+
         <div className="flex items-center justify-between pt-3 border-t border-[#E8ECF0]">
           <span className="font-sans text-xs text-[#6B6B6B]">Possession: {project.possession}</span>
           <Link

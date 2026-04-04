@@ -9,18 +9,19 @@ import { BRAND } from '@/lib/data/brand'
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  {
-    label: 'Projects',
-    href: '/projects',
-    children: [
-      { label: 'Residential', href: '/residential' },
-      { label: 'Commercial', href: '/commercial' },
-    ],
-  },
+  { label: 'Projects', href: '/#projects-grid' },
   { label: 'Markets', href: '/markets' },
   { label: 'Trust', href: '/trust' },
+  {
+    label: 'Buyers',
+    href: '/nri',
+    children: [
+      { label: 'NRI Guide', href: '/nri' },
+      { label: 'Payment Plans', href: '/payment-plans' },
+      { label: 'Book Site Visit', href: '/site-visit' },
+    ],
+  },
   { label: 'Insights', href: '/insights' },
-  { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -81,7 +82,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) =>
               link.children ? (
                 <div key={link.label} className="relative" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
-                  <button className={`flex items-center gap-1 text-sm font-sans font-medium transition-colors duration-150 ${pathname.startsWith('/residential') || pathname.startsWith('/commercial') ? 'text-[#CD0E12]' : 'text-[#4A4A5A] hover:text-[#1A1A2E]'}`}>
+                  <button className={`flex items-center gap-1 text-sm font-sans font-medium transition-colors duration-150 ${pathname.startsWith('/nri') || pathname.startsWith('/payment-plans') || pathname.startsWith('/site-visit') ? 'text-[#CD0E12]' : 'text-[#4A4A5A] hover:text-[#1A1A2E]'}`}>
                     {link.label}
                     <ChevronDown size={14} />
                   </button>
@@ -120,7 +121,7 @@ export default function Navbar() {
               Enquiry Now
             </Link>
             <Link
-              href="/contact#site-visit"
+              href="/site-visit"
               className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-5 py-2.5 rounded hover:bg-[#b50d10] transition-colors duration-200"
             >
               Book Site Visit
@@ -177,16 +178,10 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="px-6 pb-8 flex flex-col gap-3">
-            <Link
-              href="/contact"
-              className="text-center text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-5 py-3 rounded"
-            >
+            <Link href="/contact" className="text-center text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-5 py-3 rounded">
               Enquiry Now
             </Link>
-            <Link
-              href="/contact#site-visit"
-              className="text-center text-sm font-sans font-medium text-white bg-[#CD0E12] px-5 py-3 rounded"
-            >
+            <Link href="/site-visit" className="text-center text-sm font-sans font-medium text-white bg-[#CD0E12] px-5 py-3 rounded">
               Book Site Visit
             </Link>
           </div>

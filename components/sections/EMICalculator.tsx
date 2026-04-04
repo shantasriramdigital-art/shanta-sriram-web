@@ -19,7 +19,7 @@ export default function EMICalculator() {
   const sliderClass = 'w-full h-1.5 bg-[#E8ECF0] rounded appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#CD0E12] [&::-webkit-slider-thumb]:cursor-pointer accent-[#CD0E12]'
 
   return (
-    <section className="bg-[#F8F4EF] py-20 md:py-28">
+    <section id="emi-calculator" className="bg-[#F8F4EF] py-20 md:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
         <div>
           <SectionLabel className="mb-4">PLAN YOUR INVESTMENT</SectionLabel>

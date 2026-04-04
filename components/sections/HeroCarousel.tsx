@@ -107,7 +107,7 @@ export default function HeroCarousel() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 pt-4">
               <Link
-                href="/contact#site-visit"
+                href="/site-visit"
                 className="text-sm font-sans font-bold text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors"
               >
                 Book Free Site Visit

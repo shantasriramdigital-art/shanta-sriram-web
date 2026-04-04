@@ -18,100 +18,44 @@ function getAmenityGroups(project: (typeof PROJECTS)[number]) {
     return [
       {
         label: 'Clubhouse Facilities',
-        items: [
-          '2 Clubhouses (4-level)',
-          'Swimming pool',
-          'Gymnasium',
-          'Badminton court',
-          'Tennis court',
-          'Home Theatre',
-          'Yoga studio',
-          'Aerobics',
-          'Banquet Hall',
-        ],
+        items: ['2 Clubhouses (4-level)', 'Swimming pool', 'Gymnasium', 'Badminton court', 'Tennis court', 'Home Theatre', 'Yoga studio', 'Aerobics', 'Banquet Hall'],
       },
       {
         label: 'Work & Community',
-        items: [
-          'Co-working spaces',
-          'Tuition rooms',
-          'Board room',
-          'Guest suites',
-          'Business centre',
-          'Retail space',
-        ],
+        items: ['Co-working spaces', 'Tuition rooms', 'Board room', 'Guest suites', 'Business centre', 'Retail space'],
       },
       {
         label: 'Outdoor & Wellness',
-        items: [
-          'Children park',
-          'Meditation area',
-          'Reflexology path',
-          'Maze garden',
-          'Mini amphitheatre',
-        ],
+        items: ['Children park', 'Meditation area', 'Reflexology path', 'Maze garden', 'Mini amphitheatre'],
       },
     ];
   }
   if (project.slug === 'kalpavriksha') {
     return [
       {
-        label: 'Community & Infrastructure',
-        items: [
-          'Gated community',
-          'Podium for every tower',
-          'Robust engineering',
-          'Maximising spaces',
-          'Double height reception',
-        ],
+        label: 'Community & Security',
+        items: ['Gated community with 24hr security', 'Podium for every tower', 'Double height reception', 'Landscaped gardens', 'Natural water bodies', 'Jogging track'],
       },
       {
         label: 'Convenience & Retail',
-        items: [
-          'ATM',
-          'Co-working space',
-          'Pharmacy',
-          'Milk booth',
-          'Super market',
-        ],
+        items: ['ATM on premises', 'Co-working space', 'Pharmacy', 'Milk booth', 'Supermarket'],
       },
       {
-        label: 'Entertainment & Leisure',
-        items: [
-          'Conference hall',
-          'Juice bar and VR room',
-          'Two mini theatres',
-        ],
+        label: 'Recreation & Wellness',
+        items: ['Swimming pool', 'Gymnasium', 'Children play area', 'Conference hall', 'Juice bar and VR room', 'Two mini theatres', 'Meditation space'],
       },
     ];
   }
   return [{ label: 'Amenities', items: project.amenities }];
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: ProjectDetailPageProps) {
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = await params;
   const project = PROJECTS.find((item) => item.slug === slug);
-
-  if (!project) {
-    notFound();
-  }
+  if (!project) notFound();
 
   const amenityGroups = getAmenityGroups(project);
   const p = project as any;
-  const hasSpecs = p.specifications;
-  const hasUnitTypes = p.unitTypes;
-  const hasTowers = p.towers;
-  const hasTagline = p.tagline;
-  const hasSize = p.size;
-  const hasCert = p.certification;
-  const hasSiteArea = p.siteArea;
-  const hasBlocks = p.blocks;
-  const hasClubhouses = p.clubhouses;
-  const hasPodium = p.landscapedPodium;
-  const hasContact = p.contact;
-  const hasPricingNotes = p.pricingNotes && p.pricingNotes.length > 0;
 
   return (
     <>
@@ -132,15 +76,11 @@ export default async function ProjectDetailPage({
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className={`text-xs font-sans font-medium px-2.5 py-1 rounded-sm ${
-                    project.status === 'Ready to Move'
-                      ? 'bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20'
-                      : 'bg-[#F59E0B]/10 text-amber-800 border border-[#F59E0B]/20'
-                  }`}>
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                  <span className={`text-xs font-sans font-medium px-2.5 py-1 rounded-sm ${project.status === 'Ready to Move' ? 'bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20' : 'bg-[#F59E0B]/10 text-amber-800 border border-[#F59E0B]/20'}`}>
                     {project.status}
                   </span>
-                  {hasCert && (
+                  {p.certification && (
                     <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20">
                       {p.certification}
                     </span>
@@ -148,31 +88,30 @@ export default async function ProjectDetailPage({
                 </div>
 
                 <h1 className="text-h1 font-serif text-[#1A1A2E] mb-2">{project.name}</h1>
-                {hasTagline && (
-                  <p className="font-serif text-[#C9A96E] text-xl italic mb-4">{p.tagline}</p>
-                )}
+                {p.tagline && <p className="font-serif text-[#C9A96E] text-xl italic mb-4">{p.tagline}</p>}
 
-                <div className="flex items-center gap-2 text-[#4A4A5A] mb-6">
+                <div className="flex items-center gap-2 text-[#4A4A5A] mb-4">
                   <MapPin size={16} className="text-[#CD0E12]" />
                   <span className="font-sans text-sm">{project.location}</span>
                 </div>
 
-                <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-6">
-                  {project.description}
-                </p>
+                <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-4">{project.description}</p>
+
+                {/* Price */}
+                <div className="mb-6">
+                  <p className="font-serif text-[#CD0E12] text-2xl font-bold">{project.priceRange}</p>
+                  {p.priceDisclaimer && <p className="font-sans text-[10px] text-[#6B6B6B] mt-1">{p.priceDisclaimer}</p>}
+                </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <a
-                    href="#inquiry-form"
-                    className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors"
-                  >
+                  <a href="#inquiry-form" className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors">
                     Request Information
                   </a>
-                  <Link
-                    href="/contact#site-visit"
-                    className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors"
-                  >
+                  <Link href="/site-visit" className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors">
                     Book Site Visit
+                  </Link>
+                  <Link href="/payment-plans" className="text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#CD0E12] transition-colors py-3">
+                    View Payment Plans
                   </Link>
                 </div>
               </div>
@@ -183,16 +122,16 @@ export default async function ProjectDetailPage({
                 <div className="flex flex-col gap-0">
                   {[
                     { label: 'Type', value: project.type },
-                    { label: 'Configuration', value: project.units },
-                    ...(hasSize ? [{ label: 'Sizes', value: p.size }] : []),
-                    ...(hasSiteArea ? [{ label: 'Site Area', value: p.siteArea }] : []),
-                    ...(hasBlocks ? [{ label: 'Blocks', value: p.blocks }] : []),
-                    ...(hasClubhouses ? [{ label: 'Clubhouses', value: p.clubhouses }] : []),
-                    ...(hasPodium ? [{ label: 'Landscaped Podium', value: p.landscapedPodium }] : []),
+                    { label: 'Configuration', value: p.configuration || project.units },
+                    ...(p.size ? [{ label: 'Sizes', value: p.size }] : []),
+                    ...(p.siteArea ? [{ label: 'Site Area', value: p.siteArea }] : []),
+                    ...(p.blocks ? [{ label: 'Blocks', value: p.blocks }] : []),
+                    ...(p.clubhouses ? [{ label: 'Clubhouses', value: p.clubhouses }] : []),
+                    ...(p.landscapedPodium ? [{ label: 'Landscaped Podium', value: p.landscapedPodium }] : []),
                     { label: 'Status', value: project.status },
                     { label: 'Possession', value: project.possession },
                     { label: 'Price', value: project.priceRange },
-                    ...(hasTowers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
+                    ...(p.towers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between items-center py-3 border-b border-[#E8ECF0] last:border-0">
                       <span className="font-sans text-sm text-[#6B6B6B]">{label}</span>
@@ -207,7 +146,7 @@ export default async function ProjectDetailPage({
                   </div>
                   <p className="font-mono text-sm text-[#1A1A2E] font-medium mt-1">{project.rera}</p>
                 </div>
-                {hasContact && (
+                {p.contact && (
                   <div className="mt-5 pt-5 border-t border-[#E8ECF0]">
                     <p className="font-sans text-xs text-[#6B6B6B] mb-1">Sales Enquiry</p>
                     <p className="font-sans text-sm text-[#1A1A2E] font-medium">{p.contact}</p>
@@ -237,7 +176,7 @@ export default async function ProjectDetailPage({
         </section>
 
         {/* Unit Types */}
-        {hasUnitTypes && (
+        {p.unitTypes && (
           <section className="bg-[#F4F7FC] py-20 md:py-24">
             <div className="max-w-[1200px] mx-auto px-6">
               <SectionLabel className="mb-4">FLOOR PLANS</SectionLabel>
@@ -288,7 +227,7 @@ export default async function ProjectDetailPage({
         </section>
 
         {/* Specifications */}
-        {hasSpecs && (
+        {p.specifications && (
           <section className="bg-[#1A1A2E] py-20 md:py-28 relative overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-6 relative z-10">
               <SectionLabel className="!text-[#C9A96E] mb-4">SPECIFICATIONS</SectionLabel>
@@ -296,18 +235,14 @@ export default async function ProjectDetailPage({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {Object.entries(p.specifications).map(([key, value]) => (
                   <div key={key} className="bg-white/5 border border-white/10 rounded-md p-5">
-                    <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-white/40 mb-2">
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
-                    </p>
+                    <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-white/40 mb-2">{key.charAt(0).toUpperCase() + key.slice(1)}</p>
                     <p className="font-sans text-sm text-white/80 leading-relaxed">{value as string}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div className="absolute inset-0 opacity-[0.025]" aria-hidden="true">
-              <div className="w-full h-full" style={{
-                backgroundImage: 'repeating-linear-gradient(0deg, #C9A96E 0, #C9A96E 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #C9A96E 0, #C9A96E 1px, transparent 1px, transparent 60px)'
-              }} />
+              <div className="w-full h-full" style={{ backgroundImage: 'repeating-linear-gradient(0deg, #C9A96E 0, #C9A96E 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #C9A96E 0, #C9A96E 1px, transparent 1px, transparent 60px)' }} />
             </div>
           </section>
         )}
@@ -338,7 +273,7 @@ export default async function ProjectDetailPage({
         </section>
 
         {/* Pricing Notes */}
-        {hasPricingNotes && (
+        {p.pricingNotes && p.pricingNotes.length > 0 && (
           <section className="bg-[#F8F4EF] py-20 md:py-24">
             <div className="max-w-[1200px] mx-auto px-6">
               <SectionLabel className="mb-4">PRICING INFORMATION</SectionLabel>
@@ -366,12 +301,7 @@ export default async function ProjectDetailPage({
                   <p className="font-mono text-base text-[#1A1A2E] font-medium">{project.rera}</p>
                 </div>
               </div>
-              <Link
-                href="https://rera.telangana.gov.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm font-medium text-[#CD0E12] hover:underline"
-              >
+              <Link href="https://rera.telangana.gov.in/" target="_blank" rel="noopener noreferrer" className="font-sans text-sm font-medium text-[#CD0E12] hover:underline">
                 Verify on TSRERA Portal
               </Link>
             </div>
@@ -383,9 +313,7 @@ export default async function ProjectDetailPage({
           <div className="max-w-[600px] mx-auto px-6">
             <SectionLabel className="mb-4">ENQUIRE NOW</SectionLabel>
             <h2 className="text-h2 font-serif text-[#1A1A2E] mb-2">Interested in {project.name}?</h2>
-            <p className="font-sans text-[#4A4A5A] text-sm leading-relaxed mb-8">
-              Fill out the form below and our team will reach out to you shortly.
-            </p>
+            <p className="font-sans text-[#4A4A5A] text-sm leading-relaxed mb-8">Fill out the form below and our team will reach out to you shortly.</p>
             <div className="bg-[#F8F4EF] border border-[#E8ECF0] rounded-md p-8">
               <LeadForm compact={false} title="" subtitle="" />
             </div>

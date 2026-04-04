@@ -13,7 +13,7 @@ export default function StickyMobileCTA() {
           Call Now
         </a>
         <Link
-          href="/contact#site-visit"
+          href="/site-visit"
           className="flex-1 text-center text-sm font-sans font-medium text-white bg-[#CD0E12] py-2.5 rounded hover:bg-[#b50d10] transition-colors"
         >
           Book Site Visit
