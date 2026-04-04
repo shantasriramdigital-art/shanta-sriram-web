@@ -72,6 +72,8 @@ export default function AboutStrip() {
                   <img
                     src={founder.photo}
                     alt={founder.name}
+                    width={400}
+                    height={500}
                     loading="lazy"
                     className="w-full md:w-[100px] h-[200px] md:h-[120px] object-cover object-top border-2 border-[#CD0E12]"
                     style={{ borderRadius: '8px', filter: 'contrast(1.08) brightness(1.04) saturate(1.12)' }}

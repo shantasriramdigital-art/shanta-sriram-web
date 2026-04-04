@@ -98,6 +98,8 @@ export default function AboutPage() {
                     <img
                       src={founder.photo}
                       alt={founder.name}
+                      width={600}
+                      height={400}
                       loading="lazy"
                       className="w-full h-full object-cover object-top"
                       style={{ filter: 'contrast(1.08) brightness(1.04) saturate(1.12)' }}

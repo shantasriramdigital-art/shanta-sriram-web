@@ -162,10 +162,14 @@ export default function ImageCarousel({
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
         >
-          {/* Main image - crossfade, fixed container */}
+          {/* Main image - crossfade, fixed container with padding-bottom for CLS */}
           <div
             className="relative overflow-hidden rounded-lg"
-            style={{ aspectRatio, backgroundColor: '#F8F4EF' }}
+            style={{
+              paddingBottom: aspectRatio === '16/9' ? '56.25%' : aspectRatio === '4/3' ? '75%' : '56.25%',
+              height: 0,
+              backgroundColor: '#F8F4EF',
+            }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -234,9 +238,11 @@ export default function ImageCarousel({
             )}
           </div>
 
-          {/* Thumbnails - only show when ready */}
-          {showThumbnails && total > 1 && isReady && (
-            <div className="relative mt-3">
+          {/* Thumbnails - space always reserved to prevent CLS */}
+          {showThumbnails && total > 1 && (
+            <div style={{ height: '72px', marginTop: '12px' }}>
+            {isReady && (
+            <div className="relative">
               <div className="absolute left-0 top-0 bottom-0 w-8 z-10 pointer-events-none" style={{ background: `linear-gradient(to right, ${bgColor}, transparent)` }} />
               <div className="absolute right-0 top-0 bottom-0 w-8 z-10 pointer-events-none" style={{ background: `linear-gradient(to left, ${bgColor}, transparent)` }} />
               <div ref={thumbRef} className="flex gap-2 overflow-x-auto py-1 px-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
@@ -251,6 +257,8 @@ export default function ImageCarousel({
                   </button>
                 ))}
               </div>
+            </div>
+            )}
             </div>
           )}
         </div>

@@ -166,6 +166,35 @@
   animation: shimmer 1.8s ease-in-out infinite;
 }
 
+/* Aspect ratio containers for CLS prevention */
+.aspect-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 70vh, 800px);
+  overflow: hidden;
+  background-color: #1A1A2E;
+}
+.aspect-16-9 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  background-color: #F8F4EF;
+}
+.aspect-16-9 > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Prevent images from causing layout shift */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

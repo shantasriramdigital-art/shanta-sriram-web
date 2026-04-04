@@ -99,7 +99,7 @@ export default function ProjectGallery({
   return (
     <>
       {/* HERO - fixed height, skeleton, crossfade */}
-      <section className="relative overflow-hidden" style={{ height: '65vh', minHeight: '400px', backgroundColor: '#1A1A2E' }}>
+      <section className="aspect-hero">
         {heroImages.map((img, i) => (
           <div
             key={i}
