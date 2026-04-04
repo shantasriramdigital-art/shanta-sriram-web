@@ -13,13 +13,6 @@ interface ProjectDetailPageProps {
   }>;
 }
 
-const AMENITY_GROUPS: Record<string, { label: string; items: string[] }> = {
-  bodhivriksha: {
-    label: '',
-    items: [],
-  },
-};
-
 function getAmenityGroups(project: (typeof PROJECTS)[number]) {
   if (project.slug === 'bodhivriksha') {
     return [
@@ -60,6 +53,38 @@ function getAmenityGroups(project: (typeof PROJECTS)[number]) {
       },
     ];
   }
+  if (project.slug === 'kalpavriksha') {
+    return [
+      {
+        label: 'Community & Infrastructure',
+        items: [
+          'Gated community',
+          'Podium for every tower',
+          'Robust engineering',
+          'Maximising spaces',
+          'Double height reception',
+        ],
+      },
+      {
+        label: 'Convenience & Retail',
+        items: [
+          'ATM',
+          'Co-working space',
+          'Pharmacy',
+          'Milk booth',
+          'Super market',
+        ],
+      },
+      {
+        label: 'Entertainment & Leisure',
+        items: [
+          'Conference hall',
+          'Juice bar and VR room',
+          'Two mini theatres',
+        ],
+      },
+    ];
+  }
   return [{ label: 'Amenities', items: project.amenities }];
 }
 
@@ -74,12 +99,19 @@ export default async function ProjectDetailPage({
   }
 
   const amenityGroups = getAmenityGroups(project);
-  const hasSpecs = 'specifications' in project && project.specifications;
-  const hasUnitTypes = 'unitTypes' in project && project.unitTypes;
-  const hasTowers = 'towers' in project && project.towers;
-  const hasTagline = 'tagline' in project && project.tagline;
-  const hasSize = 'size' in project && project.size;
-  const hasCert = 'certification' in project && project.certification;
+  const p = project as any;
+  const hasSpecs = p.specifications;
+  const hasUnitTypes = p.unitTypes;
+  const hasTowers = p.towers;
+  const hasTagline = p.tagline;
+  const hasSize = p.size;
+  const hasCert = p.certification;
+  const hasSiteArea = p.siteArea;
+  const hasBlocks = p.blocks;
+  const hasClubhouses = p.clubhouses;
+  const hasPodium = p.landscapedPodium;
+  const hasContact = p.contact;
+  const hasPricingNotes = p.pricingNotes && p.pricingNotes.length > 0;
 
   return (
     <>
@@ -110,14 +142,14 @@ export default async function ProjectDetailPage({
                   </span>
                   {hasCert && (
                     <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20">
-                      {(project as any).certification}
+                      {p.certification}
                     </span>
                   )}
                 </div>
 
                 <h1 className="text-h1 font-serif text-[#1A1A2E] mb-2">{project.name}</h1>
                 {hasTagline && (
-                  <p className="font-serif text-[#C9A96E] text-xl italic mb-4">{(project as any).tagline}</p>
+                  <p className="font-serif text-[#C9A96E] text-xl italic mb-4">{p.tagline}</p>
                 )}
 
                 <div className="flex items-center gap-2 text-[#4A4A5A] mb-6">
@@ -152,11 +184,15 @@ export default async function ProjectDetailPage({
                   {[
                     { label: 'Type', value: project.type },
                     { label: 'Configuration', value: project.units },
-                    ...(hasSize ? [{ label: 'Sizes', value: (project as any).size }] : []),
+                    ...(hasSize ? [{ label: 'Sizes', value: p.size }] : []),
+                    ...(hasSiteArea ? [{ label: 'Site Area', value: p.siteArea }] : []),
+                    ...(hasBlocks ? [{ label: 'Blocks', value: p.blocks }] : []),
+                    ...(hasClubhouses ? [{ label: 'Clubhouses', value: p.clubhouses }] : []),
+                    ...(hasPodium ? [{ label: 'Landscaped Podium', value: p.landscapedPodium }] : []),
                     { label: 'Status', value: project.status },
                     { label: 'Possession', value: project.possession },
                     { label: 'Price', value: project.priceRange },
-                    ...(hasTowers ? [{ label: 'Towers', value: (project as any).towers.join(', ') }] : []),
+                    ...(hasTowers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between items-center py-3 border-b border-[#E8ECF0] last:border-0">
                       <span className="font-sans text-sm text-[#6B6B6B]">{label}</span>
@@ -171,6 +207,12 @@ export default async function ProjectDetailPage({
                   </div>
                   <p className="font-mono text-sm text-[#1A1A2E] font-medium mt-1">{project.rera}</p>
                 </div>
+                {hasContact && (
+                  <div className="mt-5 pt-5 border-t border-[#E8ECF0]">
+                    <p className="font-sans text-xs text-[#6B6B6B] mb-1">Sales Enquiry</p>
+                    <p className="font-sans text-sm text-[#1A1A2E] font-medium">{p.contact}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -209,7 +251,7 @@ export default async function ProjectDetailPage({
                     </tr>
                   </thead>
                   <tbody>
-                    {(project as any).unitTypes.map((unit: { config: string; size: string }, i: number) => (
+                    {p.unitTypes.map((unit: { config: string; size: string }, i: number) => (
                       <tr key={i} className={`border-b border-[#E8ECF0] last:border-0 ${i % 2 === 1 ? 'bg-[#F8F4EF]/40' : ''}`}>
                         <td className="font-sans text-sm text-[#1A1A2E] font-medium px-6 py-4">{unit.config}</td>
                         <td className="font-sans text-sm text-[#4A4A5A] px-6 py-4">{unit.size}</td>
@@ -252,7 +294,7 @@ export default async function ProjectDetailPage({
               <SectionLabel className="!text-[#C9A96E] mb-4">SPECIFICATIONS</SectionLabel>
               <h2 className="text-h2 font-serif text-white mb-10">Build Quality</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {Object.entries((project as any).specifications).map(([key, value]) => (
+                {Object.entries(p.specifications).map(([key, value]) => (
                   <div key={key} className="bg-white/5 border border-white/10 rounded-md p-5">
                     <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-white/40 mb-2">
                       {key.charAt(0).toUpperCase() + key.slice(1)}
@@ -294,6 +336,24 @@ export default async function ProjectDetailPage({
             </div>
           </div>
         </section>
+
+        {/* Pricing Notes */}
+        {hasPricingNotes && (
+          <section className="bg-[#F8F4EF] py-20 md:py-24">
+            <div className="max-w-[1200px] mx-auto px-6">
+              <SectionLabel className="mb-4">PRICING INFORMATION</SectionLabel>
+              <h2 className="text-h2 font-serif text-[#1A1A2E] mb-10">Additional Charges</h2>
+              <div className="bg-white border border-[#E8ECF0] rounded-md overflow-hidden">
+                {p.pricingNotes.map((note: string, i: number) => (
+                  <div key={i} className={`flex items-start gap-3 px-6 py-4 border-b border-[#E8ECF0] last:border-0 ${i % 2 === 1 ? 'bg-[#F8F4EF]/40' : ''}`}>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] flex-shrink-0 mt-2" />
+                    <p className="font-sans text-sm text-[#4A4A5A]">{note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* RERA Banner */}
         <section className="bg-[#F8F4EF] py-12 border-y border-[#E8ECF0]">
