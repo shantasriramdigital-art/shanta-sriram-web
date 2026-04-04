@@ -11,7 +11,7 @@ const CORRIDORS = [
     tab: 'Appa Junction Belt',
     label: 'APPA JUNCTION BELT',
     heading: "South Hyderabad's Rising Star",
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.5!2d78.3677!3d17.3234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbb85e9ca82f45%3A0x1234!2sAppa%20Junction%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1234567890',
+    mapSrc: 'https://maps.google.com/maps?q=Appa+Junction+Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed',
     stats: [
       { label: 'Current Price', value: 'Rs 8,200 to Rs 9,500/sft' },
       { label: '1 Year Growth', value: '+9.2%' },
@@ -31,7 +31,7 @@ const CORRIDORS = [
     tab: 'Kokapet Corridor',
     label: 'KOKAPET CORRIDOR',
     heading: "Hyderabad's Most Premium Growth Zone",
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.5!2d78.3200!3d17.3800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93e8b5c3b5c3%3A0x1234!2sKokapet%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1234567890',
+    mapSrc: 'https://maps.google.com/maps?q=Kokapet+Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed',
     stats: [
       { label: 'Current Price', value: 'Rs 9,500 to Rs 12,700/sft' },
       { label: '5 Year Growth', value: '+100%' },
@@ -51,7 +51,7 @@ const CORRIDORS = [
     tab: 'ORR Belt',
     label: 'OUTER RING ROAD BELT',
     heading: '158 km of Opportunity',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60917.5!2d78.3500!3d17.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93dc8d1e05c5%3A0x4b6c1a8e4f2d3c9a!2sOuter%20Ring%20Road%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1234567890',
+    mapSrc: 'https://maps.google.com/maps?q=Outer+Ring+Road+Hyderabad&t=&z=11&ie=UTF8&iwloc=&output=embed',
     stats: [
       { label: 'Kokapet (Exit 3)', value: '414% since 2010' },
       { label: 'Narsingi (Exit 4)', value: '329% since 2012' },
