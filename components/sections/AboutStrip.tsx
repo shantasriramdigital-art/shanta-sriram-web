@@ -14,7 +14,7 @@ export default function AboutStrip() {
               Three Decades of Building Hyderabad&apos;s Future
             </h2>
             <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-4">
-              Founded in 1995 by Chairman M. Narsaiah, Shanta Sriram Constructions has grown from a single promise into one of Hyderabad&apos;s most trusted real estate brands. Over three decades, we have delivered 8,000+ homes across 80+ projects — always on time, always as specified.
+              Founded in 1995 by Chairman M. Narsaiah, Shanta Sriram Constructions has grown from a single promise into one of Hyderabad&apos;s most trusted real estate brands. Over three decades, we have delivered 8,000+ homes across 80+ projects, always on time, always as specified.
             </p>
             <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-8">
               Our philosophy is rooted in a simple truth: the best marketing is a kept promise. Every project we launch is fully funded before construction begins. Every specification we commit to is delivered without compromise.
@@ -29,7 +29,7 @@ export default function AboutStrip() {
             </div>
           </div>
 
-          {/* Right — director cards */}
+          {/* Right: director cards */}
           <div className="flex flex-col gap-6">
             {BRAND.directors.map((director) => (
               <div

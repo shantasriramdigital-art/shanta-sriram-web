@@ -157,7 +157,7 @@ export default function TrustPage() {
         </div>
       </section>
 
-      {/* Financial Discipline — dark navy */}
+      {/* Financial Discipline - dark navy */}
       <section className="bg-[#1A1A2E] py-20 md:py-28 relative overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           <SectionLabel className="!text-[#C9A96E] mb-4">CAPITAL DISCIPLINE</SectionLabel>
@@ -207,7 +207,7 @@ export default function TrustPage() {
               <p className="font-serif text-[#1A1A2E] italic leading-relaxed mb-6" style={{ fontSize: '24px', lineHeight: 1.5 }}>
                 {ETHICAL_QUOTE.text}
               </p>
-              <p className="font-sans text-[#6B6B6B] text-sm">— {ETHICAL_QUOTE.author}</p>
+              <p className="font-sans text-[#6B6B6B] text-sm">- {ETHICAL_QUOTE.author}</p>
             </div>
           </div>
         </div>

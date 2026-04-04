@@ -26,7 +26,7 @@ export const TESTIMONIALS = [
   {
     name: 'Meera Krishnamurthy',
     location: 'Shanta Sriram Sapphire, Appa Junction',
-    text: 'The RERA compliance, the transparent pricing, the construction quality — everything reflects a company that takes its commitments seriously. I recommended Shanta Sriram to four colleagues.',
+    text: 'The RERA compliance, the transparent pricing, the construction quality: everything reflects a company that takes its commitments seriously. I recommended Shanta Sriram to four colleagues.',
     profession: 'Finance Professional, Hyderabad',
   },
   {

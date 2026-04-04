@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top info bar — desktop only */}
+      {/* Top info bar - desktop only */}
       <div
         className="hidden md:block bg-[#F4F7FC] border-b border-[#E8ECF0] transition-all duration-300"
         style={{ height: scrolled ? 0 : 'auto', opacity: scrolled ? 0 : 1, overflow: 'hidden' }}

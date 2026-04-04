@@ -60,6 +60,6 @@ export const DELIVERY_STATS = [
 ]
 
 export const ETHICAL_QUOTE = {
-  text: "We believe that ethical business is good business. Every decision we make is guided by the principle of doing what's right for our customers, our communities, and our company — in that order.",
+  text: "We believe that ethical business is good business. Every decision we make is guided by the principle of doing what's right for our customers, our communities, and our company, in that order.",
   author: 'Leadership Team, Shanta Sriram Constructions',
 }

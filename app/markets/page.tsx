@@ -8,7 +8,7 @@ import MarketsClient from './MarketsClient'
 
 export const metadata = {
   title: 'Strategic Growth Corridors | Shanta Sriram Constructions',
-  description: 'Deep analysis of Hyderabad\'s most promising micro-markets — Appa Junction, Kokapet, ORR Belt, and Tellapur.',
+  description: 'Deep analysis of Hyderabad\'s most promising micro-markets: Appa Junction, Kokapet, ORR Belt, and Tellapur.',
 }
 
 export default function MarketsPage() {

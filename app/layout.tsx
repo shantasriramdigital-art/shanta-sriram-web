@@ -19,7 +19,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'Shanta Sriram Constructions | Where Trust Is A Tradition',
   description:
-    'Shanta Sriram Constructions Pvt. Ltd. — 30 years of building enduring urban wealth across Hyderabad. 8,000+ happy homes, 80+ projects delivered. Explore premium residential and commercial properties.',
+    'Shanta Sriram Constructions Pvt. Ltd. 30 years of building enduring urban wealth across Hyderabad. 8,000+ happy homes, 80+ projects delivered. Explore premium residential and commercial properties.',
   keywords: 'Shanta Sriram, real estate Hyderabad, apartments Hyderabad, villas Hyderabad, TSRERA, property Hyderabad',
   openGraph: {
     title: 'Shanta Sriram Constructions | Where Trust Is A Tradition',

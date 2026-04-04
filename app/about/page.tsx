@@ -56,7 +56,7 @@ export default function AboutPage() {
                 Founded in 1995, Shanta Sriram Constructions has grown from a small local builder to one of Hyderabad&apos;s most trusted real estate developers. Our commitment to quality, integrity, and innovation has set us apart.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                We believe in creating more than just buildings—we create communities, foster dreams, and build futures for thousands of families.
+                We believe in creating more than just buildings. We create communities, foster dreams, and build futures for thousands of families.
               </p>
               <Link href="/projects">
                 <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
