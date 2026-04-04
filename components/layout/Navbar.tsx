@@ -119,7 +119,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <img
-              src="/placeholder-logo.svg"
+              src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/logo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL2xvZ28ucG5nIiwiaWF0IjoxNzc1MzQzOTM0LCJleHAiOjg4MTc1MzQzOTM0fQ.J5Wi2db5qMp1FGyp9pB4Legm3BTl9U_9ktT72-kHY-E"
               alt="Shanta Sriram Constructions"
               data-logo=""
               style={{ height: '48px', width: 'auto', maxWidth: '220px', display: 'block', objectFit: 'contain' }}
@@ -259,7 +259,7 @@ export default function Navbar() {
           className="fixed inset-0 z-[60] bg-[#1A1A2E] flex flex-col">
           <div className="flex items-center justify-between px-6 h-[60px] border-b border-white/10">
             <img
-              src="/placeholder-logo.svg"
+              src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/logo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL2xvZ28ucG5nIiwiaWF0IjoxNzc1MzQzOTM0LCJleHAiOjg4MTc1MzQzOTM0fQ.J5Wi2db5qMp1FGyp9pB4Legm3BTl9U_9ktT72-kHY-E"
               alt="Shanta Sriram Constructions"
               data-logo=""
               style={{ height: '40px', width: 'auto', maxWidth: '180px', display: 'block', objectFit: 'contain' }}

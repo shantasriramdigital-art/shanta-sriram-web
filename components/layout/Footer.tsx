@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <img
-              src="/placeholder-logo.svg"
+              src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/logo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL2xvZ28ucG5nIiwiaWF0IjoxNzc1MzQzOTM0LCJleHAiOjg4MTc1MzQzOTM0fQ.J5Wi2db5qMp1FGyp9pB4Legm3BTl9U_9ktT72-kHY-E"
               alt="Shanta Sriram Constructions"
               data-logo=""
               style={{ height: '56px', width: 'auto', maxWidth: 'none', display: 'block', marginBottom: '16px' }}
