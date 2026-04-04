@@ -12,7 +12,7 @@ export default function FeaturedProject() {
   const [brochureOpen, setBrochureOpen] = useState(false)
 
   return (
-    <section className="bg-[#F8F4EF] py-20 md:py-28">
+    <section className="bg-[#F8F4EF] py-20 md:py-28 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         <SectionLabel className="mb-4">FEATURED PROJECT</SectionLabel>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">

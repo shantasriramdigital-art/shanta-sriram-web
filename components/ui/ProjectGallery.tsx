@@ -36,6 +36,7 @@ export default function ProjectGallery({
   rera,
 }: ProjectGalleryProps) {
   const [heroIndex, setHeroIndex] = useState(0)
+  const [heroLoaded, setHeroLoaded] = useState<Set<number>>(new Set())
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
@@ -47,54 +48,55 @@ export default function ProjectGallery({
     return () => clearInterval(timer)
   }, [nextHero])
 
+  const isNearHero = (i: number) =>
+    i === heroIndex || i === (heroIndex + 1) % heroImages.length || i === (heroIndex - 1 + heroImages.length) % heroImages.length
+
   return (
     <>
-      {/* HERO IMAGE CAROUSEL */}
-      <section className="relative overflow-hidden bg-[#1A1A2E]">
-        <div className="relative h-[50vh] md:h-[70vh]">
-          {heroImages.map((img, i) => {
-            const isNear = i === heroIndex || i === (heroIndex + 1) % heroImages.length || i === (heroIndex - 1 + heroImages.length) % heroImages.length
-            return (
-              <div
-                key={i}
-                className="absolute inset-0 w-full h-full cursor-pointer"
-                style={{ opacity: i === heroIndex ? 1 : 0, transition: 'opacity 0.7s ease', zIndex: i === heroIndex ? 1 : 0 }}
-                onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
-              >
-                {isNear && (
-                  <img
-                    src={img.url}
-                    alt={img.alt}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-            )
-          })}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-            <div className="max-w-[1200px] mx-auto flex items-end justify-between gap-4">
-              <div>
-                <h1 className="font-serif text-white text-3xl md:text-5xl font-bold mb-2">{projectName}</h1>
-                <p className="font-sans text-white/70 text-sm md:text-base">{location}</p>
-              </div>
-              <span className="font-mono text-[10px] text-white/50 bg-white/10 px-3 py-1.5 rounded-sm flex-shrink-0">
-                RERA: {rera}
-              </span>
+      {/* HERO - fixed height, no layout shift */}
+      <section className="relative overflow-hidden" style={{ height: '65vh', minHeight: '400px', backgroundColor: '#1A1A2E' }}>
+        {heroImages.map((img, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 cursor-pointer"
+            style={{ opacity: i === heroIndex ? 1 : 0, transition: 'opacity 0.7s ease', zIndex: i === heroIndex ? 1 : 0 }}
+            onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
+          >
+            {isNearHero(i) && (
+              <img
+                src={img.url}
+                alt={img.alt}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchPriority={i === 0 ? 'high' : undefined}
+                onLoad={() => setHeroLoaded((prev) => new Set(prev).add(i))}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ opacity: heroLoaded.has(i) ? 1 : 0, transition: 'opacity 0.3s ease' }}
+              />
+            )}
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none z-[2]" />
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 z-[3]">
+          <div className="max-w-[1200px] mx-auto flex items-end justify-between gap-4">
+            <div>
+              <h1 className="font-serif text-white text-3xl md:text-5xl font-bold mb-2">{projectName}</h1>
+              <p className="font-sans text-white/70 text-sm md:text-base">{location}</p>
             </div>
+            <span className="font-mono text-[10px] text-white/50 bg-white/10 px-3 py-1.5 rounded-sm flex-shrink-0">
+              RERA: {rera}
+            </span>
           </div>
-          <button onClick={prevHero} className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Previous image">
-            <ChevronLeft size={20} className="text-white" />
-          </button>
-          <button onClick={nextHero} className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Next image">
-            <ChevronRight size={20} className="text-white" />
-          </button>
-          <div className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            {heroImages.map((_, i) => (
-              <button key={i} onClick={() => setHeroIndex(i)} className={`h-2 rounded-full transition-all duration-300 ${i === heroIndex ? 'bg-white w-6' : 'bg-white/40 w-2'}`} aria-label={`Image ${i + 1}`} />
-            ))}
-          </div>
+        </div>
+        <button onClick={prevHero} className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Previous image">
+          <ChevronLeft size={20} className="text-white" />
+        </button>
+        <button onClick={nextHero} className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Next image">
+          <ChevronRight size={20} className="text-white" />
+        </button>
+        <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {heroImages.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} className={`h-2 rounded-full transition-all duration-300 ${i === heroIndex ? 'bg-white w-6' : 'bg-white/40 w-2'}`} aria-label={`Image ${i + 1}`} />
+          ))}
         </div>
       </section>
 
@@ -111,14 +113,8 @@ export default function ProjectGallery({
         />
       ))}
 
-      {/* Hero lightbox */}
       {lightboxOpen && (
-        <Lightbox
-          images={heroImages}
-          currentIndex={lightboxIndex}
-          onClose={() => setLightboxOpen(false)}
-          onNavigate={setLightboxIndex}
-        />
+        <Lightbox images={heroImages} currentIndex={lightboxIndex} onClose={() => setLightboxOpen(false)} onNavigate={setLightboxIndex} />
       )}
     </>
   )

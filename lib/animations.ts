@@ -3,7 +3,7 @@
 import { Variants } from 'framer-motion'
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -20,7 +20,7 @@ export const fadeIn: Variants = {
 }
 
 export const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0,
@@ -29,7 +29,7 @@ export const slideInLeft: Variants = {
 }
 
 export const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 60 },
+  hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
     x: 0,
@@ -45,7 +45,7 @@ export const staggerContainer: Variants = {
 }
 
 export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
@@ -54,7 +54,7 @@ export const staggerItem: Variants = {
 }
 
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.93 },
+  hidden: { opacity: 0, scale: 0.97 },
   visible: {
     opacity: 1,
     scale: 1,
