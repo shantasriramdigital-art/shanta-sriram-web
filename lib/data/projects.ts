@@ -99,6 +99,7 @@ export const PROJECTS = [
     ],
     contactForPricing: '9959311299',
     heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg', alt: 'The Bodhivriksha - Aerial Render', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/VIEW%20FROM%20ROAD%20SIDE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvVklFVyBGUk9NIFJPQUQgU0lERS5qcGciLCJpYXQiOjE3NzUzMzE4NzAsImV4cCI6MTA0MTUzMzE4NzB9.EhEstqnAs3txdBUcQn4j_WKDRt8hWvaGMPkwUi1Y9sM', alt: 'The Bodhivriksha - View from Road Side', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/SGAppaJnLandscape04WithoutLS01%20twilight%201.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIHR3aWxpZ2h0IDEuanBnIiwiaWF0IjoxNzc1MzMxODA5LCJleHAiOjg4MTc1MzMxODA5fQ.RAiW1VHWwbsCWYVChi6G6xHfiVrBDYhde75bjIiBmVM', alt: 'The Bodhivriksha - Twilight View', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/SGAppaJnLandscape04WithoutLS01%20evening.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIGV2ZW5pbmcuanBnIiwiaWF0IjoxNzc1MzMxNzk0LCJleHAiOjEwNDE1MzMxNzk0fQ.rgmTgSQmGYMNFMQTGK3dDZ8zskKvv_jqdgLmu9s6_jE', alt: 'The Bodhivriksha - Evening View', category: 'exterior' },
@@ -209,6 +210,7 @@ export const PROJECTS = [
       'Cancellation charges: \u20b950,000',
     ],
     heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/kalpavriksha-render.jpg', alt: 'The Kalpavriksha - Road View Render', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Entrance%20Gate%20Evening%20View%20NEW.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0VudHJhbmNlIEdhdGUgRXZlbmluZyBWaWV3IE5FVy5qcGciLCJpYXQiOjE3NzUzMzI4NzgsImV4cCI6ODgxNzUzMzI4Nzh9.qESuf1los8yMPXmnbDzitJczrnlOOjxV1A4KZHl1xOw', alt: 'The Kalpavriksha - Entrance Gate Evening View', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/ENTRANCE%20GATE%20%20Day.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0VOVFJBTkNFIEdBVEUgIERheS5qcGciLCJpYXQiOjE3NzUzMzI4NjgsImV4cCI6ODY1Nzc1MzMyODY4fQ.7-Y7NC3HjQF_4Shg7O6Waa2XXP3vKw31YZaJ6pwUfSM', alt: 'The Kalpavriksha - Entrance Gate Day View', category: 'exterior' },
       { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Elevation%20Day%20View%2001.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0VsZXZhdGlvbiBEYXkgVmlldyAwMS5qcGciLCJpYXQiOjE3NzUzMzI4NDIsImV4cCI6ODgxNzUzMzI4NDJ9.CHdi1V6b_Hf1085OEg4grOKzVsqzvB9rqxpbVOkRD7s', alt: 'The Kalpavriksha - Elevation Day View 1', category: 'exterior' },
@@ -268,6 +270,9 @@ export const PROJECTS = [
     description:
       'Centrally located premium apartments at Ameerpet, the heart of Hyderabad. Exceptional connectivity to all major employment hubs, educational institutions, and civic infrastructure.',
     highlights: ['Central location', 'Metro-adjacent', 'Fully connected', 'TSRERA approved'],
+    heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/pinnacle-render.jpg', alt: 'Shanta Sriram Pinnacle - Ameerpet Hyderabad', category: 'exterior' },
+    ],
     amenities: [
       'Swimming Pool',
       'Gymnasium',
@@ -300,6 +305,9 @@ export const PROJECTS = [
     description:
       'Exclusive 3 & 4 BHK villa community in the leafy Kismatpur belt where green living meets urban connectivity. Sprawling plots, private gardens, and premium villa finishes.',
     highlights: ['Independent villas', 'Private gardens', 'Gated community', 'TSRERA approved'],
+    heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/brookwoods-render.jpg', alt: 'Brookwoods - Villa Render Kismathpur', category: 'exterior' },
+    ],
     amenities: [
       'Clubhouse',
       'Swimming Pool',
