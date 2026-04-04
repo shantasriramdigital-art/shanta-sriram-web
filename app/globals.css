@@ -203,6 +203,13 @@ main img:not([data-logo]) {
   display: none;
 }
 
+/* Project page responsive */
+@media (max-width: 768px) {
+  .project-info-strip { grid-template-columns: 1fr 1fr !important; }
+  .project-content-grid { grid-template-columns: 1fr !important; }
+  .project-sidebar { position: static !important; }
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

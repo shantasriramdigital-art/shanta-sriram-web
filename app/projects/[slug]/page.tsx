@@ -84,66 +84,70 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           );
         })()}
 
-        {/* Hero */}
-        <section className={`${p.heroImages ? 'bg-white' : 'bg-gradient-to-br from-[#F8F4EF] to-[#F4F7FC]'} py-20 md:py-28 border-b border-[#E8ECF0]`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <nav className="mb-8" aria-label="Breadcrumb">
-              <ol className="flex items-center gap-2 font-sans text-xs text-[#6B6B6B]">
-                <li><Link href="/" className="hover:text-[#CD0E12]">Home</Link></li>
-                <li className="text-[#E8ECF0]">/</li>
-                <li><Link href="/" className="hover:text-[#CD0E12]">Projects</Link></li>
-                <li className="text-[#E8ECF0]">/</li>
-                <li className="text-[#4A4A5A]">{project.name}</li>
-              </ol>
-            </nav>
+        {/* Info Strip - for projects without gallery hero, show full hero; for projects with gallery, show compact strip */}
+        {!p.heroImages && (
+          <div style={{ position: 'relative', width: '100%', height: 'clamp(280px, 50vh, 500px)', overflow: 'hidden', backgroundColor: '#1A1A2E' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A2E 0%, #2d2d4e 100%)' }} />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(24px, 4vw, 48px)' }}>
+              <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                <span style={{ display: 'inline-block', background: '#CD0E12', color: 'white', padding: '4px 12px', borderRadius: '100px', fontSize: '10px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '12px' }}>{project.status}</span>
+                <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 400, color: 'white', lineHeight: 1.1, margin: '0 0 8px 0' }}>{project.name}</h1>
+                <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.8)', margin: 0 }}>{project.location}</p>
+              </div>
+            </div>
+          </div>
+        )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        {/* Project Info Strip */}
+        <section style={{ backgroundColor: 'white', borderBottom: '0.5px solid rgba(0,0,0,0.08)' }}>
+          <div className="project-info-strip" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+            {[
+              { label: 'Type', value: project.type },
+              { label: 'RERA', value: project.rera },
+              { label: 'Possession', value: project.possession },
+              ...(p.siteArea ? [{ label: 'Site Area', value: p.siteArea }] : [{ label: 'Config', value: p.configuration || project.units }]),
+            ].map((item, i) => (
+              <div key={i}>
+                <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '4px' }}>{item.label}</div>
+                <div style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', color: '#1A1A2E', fontWeight: 500 }}>{item.value}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Content */}
+        <section className="bg-[#F8F4EF] py-16 md:py-20">
+          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+            <div className="project-content-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '48px', alignItems: 'start' }}>
+              {/* Main content */}
               <div>
-                <div className="flex items-center gap-3 mb-4 flex-wrap">
-                  <span className={`text-xs font-sans font-medium px-2.5 py-1 rounded-sm ${project.status === 'Ready to Move' ? 'bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20' : 'bg-[#F59E0B]/10 text-amber-800 border border-[#F59E0B]/20'}`}>
-                    {project.status}
-                  </span>
-                  {p.certification && (
-                    <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#2E7D32]/10 text-[#2E7D32] border border-[#2E7D32]/20">
-                      {p.certification}
-                    </span>
-                  )}
-                </div>
-
-                <h1 className="text-h1 font-serif text-[#1A1A2E] mb-2">{project.name}</h1>
-                {p.tagline && <p className="font-serif text-[#C9A96E] text-xl italic mb-4">{p.tagline}</p>}
-
-                <div className="flex items-center gap-2 text-[#4A4A5A] mb-4">
-                  <MapPin size={16} className="text-[#CD0E12]" />
-                  <span className="font-sans text-sm">{project.location}</span>
-                </div>
-
-                <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-4">{project.description}</p>
-
-                {/* Price */}
-                <div className="mb-4">
-                  <p className="font-serif text-[#CD0E12] text-2xl font-bold">{project.priceRange}</p>
-                  {p.priceDisclaimer && <p className="font-sans text-[10px] text-[#6B6B6B] mt-1">{p.priceDisclaimer}</p>}
-                </div>
+                {p.tagline && <p style={{ fontFamily: 'var(--font-playfair)', fontSize: '20px', fontStyle: 'italic', color: '#C9A96E', marginBottom: '16px' }}>{p.tagline}</p>}
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '15px', color: '#4A4A5A', lineHeight: 1.8, marginBottom: '24px' }}>{project.description}</p>
 
                 {/* Location Advantages */}
                 {p.locationAdvantages && (
-                  <div className="mb-6">
+                  <div style={{ marginBottom: '24px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                       <span style={{ height: '1px', width: '16px', backgroundColor: '#CD0E12', display: 'block' }} />
-                      <span style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#CD0E12' }}>Location Advantages</span>
+                      <span style={{ fontFamily: 'var(--font-tenor)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#CD0E12' }}>Location Advantages</span>
                       <span style={{ height: '1px', width: '16px', backgroundColor: '#CD0E12', display: 'block' }} />
                     </div>
-                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
+                    <div className="no-scrollbar" style={{ display: 'flex', gap: '10px', overflowX: 'auto', overflowY: 'hidden', paddingBottom: '4px', paddingRight: '24px' }}>
                       {p.locationAdvantages.map((adv: { label: string; value: string }, i: number) => (
-                        <div key={i} style={{ backgroundColor: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '12px 16px', minWidth: '100px', flexShrink: 0, textAlign: 'center' }}>
-                          <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888', marginBottom: '4px' }}>{adv.label}</div>
-                          <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E' }}>{adv.value}</div>
+                        <div key={i} style={{ flexShrink: 0, minWidth: '90px', maxWidth: '130px', background: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '10px 14px', textAlign: 'center' }}>
+                          <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{adv.label}</div>
+                          <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '15px', color: '#1A1A2E', fontWeight: 400 }}>{adv.value}</div>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
+
+                {/* Price */}
+                <div style={{ marginBottom: '24px' }}>
+                  <p style={{ fontFamily: 'var(--font-playfair)', fontSize: '28px', fontWeight: 500, color: '#CD0E12', margin: 0 }}>{project.priceRange}</p>
+                  {p.priceDisclaimer && <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: '#888', marginTop: '4px' }}>{p.priceDisclaimer}</p>}
+                </div>
 
                 <div className="flex flex-wrap gap-3">
                   <a href="#inquiry-form" className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors">
@@ -175,42 +179,37 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 </div>
               </div>
 
-              {/* Key details card */}
-              <div className="bg-white border border-[#E8ECF0] rounded-md p-6">
-                <h3 className="font-serif text-[#1A1A2E] text-xl mb-6">Project Details</h3>
-                <div className="flex flex-col gap-0">
+              {/* Sidebar */}
+              <div className="project-sidebar" style={{ position: 'sticky', top: '88px' }}>
+                <div style={{ background: 'white', border: '0.5px solid rgba(0,0,0,0.08)', borderRadius: '8px', padding: '24px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: '18px', fontWeight: 500, color: '#1A1A2E', marginBottom: '20px' }}>Project Details</h3>
                   {[
-                    { label: 'Type', value: project.type },
                     { label: 'Configuration', value: p.configuration || project.units },
                     ...(p.size ? [{ label: 'Sizes', value: p.size }] : []),
-                    ...(p.siteArea ? [{ label: 'Site Area', value: p.siteArea }] : []),
                     ...(p.blocks ? [{ label: 'Blocks', value: p.blocks }] : []),
-                    ...(p.clubhouses ? [{ label: 'Clubhouses', value: p.clubhouses }] : []),
-                    ...(p.landscapedPodium ? [{ label: 'Landscaped Podium', value: p.landscapedPodium }] : []),
+                    ...(p.towers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
                     { label: 'Status', value: project.status },
                     { label: 'Possession', value: project.possession },
-                    { label: 'Price', value: project.priceRange },
-                    ...(p.towers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
                   ].map(({ label, value }) => (
-                    <div key={label} className="flex justify-between items-center py-3 border-b border-[#E8ECF0] last:border-0">
-                      <span className="font-sans text-sm text-[#6B6B6B]">{label}</span>
-                      <span className="font-sans text-sm font-medium text-[#1A1A2E] text-right">{value}</span>
+                    <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '0.5px solid rgba(0,0,0,0.06)' }}>
+                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#888' }}>{label}</span>
+                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#1A1A2E', fontWeight: 500, textAlign: 'right' }}>{value}</span>
                     </div>
                   ))}
-                </div>
-                <div className="mt-5 pt-5 border-t border-[#E8ECF0]">
-                  <div className="flex items-center gap-2">
-                    <Shield size={14} className="text-[#2E7D32]" />
-                    <span className="font-sans text-xs text-[#6B6B6B]">TSRERA Registration</span>
+                  <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                      <Shield size={14} style={{ color: '#2E7D32' }} />
+                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: '#888' }}>TSRERA Registration</span>
+                    </div>
+                    <p style={{ fontFamily: 'monospace', fontSize: '13px', color: '#1A1A2E', fontWeight: 500, margin: 0 }}>{project.rera}</p>
                   </div>
-                  <p className="font-mono text-sm text-[#1A1A2E] font-medium mt-1">{project.rera}</p>
+                  {p.contact && (
+                    <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}>
+                      <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: '#888', marginBottom: '4px' }}>Sales Enquiry</p>
+                      <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', color: '#1A1A2E', fontWeight: 500, margin: 0 }}>{p.contact}</p>
+                    </div>
+                  )}
                 </div>
-                {p.contact && (
-                  <div className="mt-5 pt-5 border-t border-[#E8ECF0]">
-                    <p className="font-sans text-xs text-[#6B6B6B] mb-1">Sales Enquiry</p>
-                    <p className="font-sans text-sm text-[#1A1A2E] font-medium">{p.contact}</p>
-                  </div>
-                )}
               </div>
             </div>
           </div>
