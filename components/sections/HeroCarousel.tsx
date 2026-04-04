@@ -154,27 +154,17 @@ export default function HeroCarousel() {
                 )}
               </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-3">
-                <div className="bg-white border border-[#E8ECF0] rounded-md p-4 text-center">
-                  <div className="font-serif text-[#CD0E12] text-2xl font-bold mb-1">
-                    {project.nearby.itParks?.length || 0}
-                  </div>
-                  <p className="font-sans text-[10px] text-[#6B6B6B] uppercase tracking-wider">IT Parks</p>
+              {/* Location Advantages */}
+              {(project as any).locationAdvantages && (
+                <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
+                  {(project as any).locationAdvantages.slice(0, 4).map((adv: { label: string; value: string }, i: number) => (
+                    <div key={i} style={{ backgroundColor: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '12px 16px', minWidth: '100px', flexShrink: 0, textAlign: 'center' }}>
+                      <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888', marginBottom: '4px' }}>{adv.label}</div>
+                      <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E' }}>{adv.value}</div>
+                    </div>
+                  ))}
                 </div>
-                <div className="bg-white border border-[#E8ECF0] rounded-md p-4 text-center">
-                  <div className="font-serif text-[#CD0E12] text-2xl font-bold mb-1">
-                    {project.amenities?.length || 0}
-                  </div>
-                  <p className="font-sans text-[10px] text-[#6B6B6B] uppercase tracking-wider">Amenities</p>
-                </div>
-                <div className="bg-white border border-[#E8ECF0] rounded-md p-4 text-center">
-                  <div className="font-serif text-[#CD0E12] text-2xl font-bold mb-1">
-                    {project.nearby.metro?.length || 0}
-                  </div>
-                  <p className="font-sans text-[10px] text-[#6B6B6B] uppercase tracking-wider">Metro</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

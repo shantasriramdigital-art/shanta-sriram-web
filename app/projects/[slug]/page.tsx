@@ -121,10 +121,29 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 <p className="font-sans text-[#4A4A5A] text-base leading-relaxed mb-4">{project.description}</p>
 
                 {/* Price */}
-                <div className="mb-6">
+                <div className="mb-4">
                   <p className="font-serif text-[#CD0E12] text-2xl font-bold">{project.priceRange}</p>
                   {p.priceDisclaimer && <p className="font-sans text-[10px] text-[#6B6B6B] mt-1">{p.priceDisclaimer}</p>}
                 </div>
+
+                {/* Location Advantages */}
+                {p.locationAdvantages && (
+                  <div className="mb-6">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                      <span style={{ height: '1px', width: '16px', backgroundColor: '#CD0E12', display: 'block' }} />
+                      <span style={{ fontFamily: 'var(--font-tenor, serif)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#CD0E12' }}>Location Advantages</span>
+                      <span style={{ height: '1px', width: '16px', backgroundColor: '#CD0E12', display: 'block' }} />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
+                      {p.locationAdvantages.map((adv: { label: string; value: string }, i: number) => (
+                        <div key={i} style={{ backgroundColor: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '12px 16px', minWidth: '100px', flexShrink: 0, textAlign: 'center' }}>
+                          <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888', marginBottom: '4px' }}>{adv.label}</div>
+                          <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E' }}>{adv.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex flex-wrap gap-3">
                   <a href="#inquiry-form" className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors">
