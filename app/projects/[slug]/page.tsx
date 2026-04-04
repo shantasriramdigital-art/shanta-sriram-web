@@ -67,6 +67,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         {p.heroImages && (() => {
           const sections = [];
           if (p.aerialImages?.length) sections.push({ sectionLabel: 'MASTER PLAN', heading: slug === 'kalpavriksha' ? 'Planned for 1,408 Families Across 15.52 Acres' : 'Thoughtfully Planned for 775 Families', images: p.aerialImages, layout: p.aerialImages.length === 2 ? 'split' as const : 'grid-2' as const, background: 'bg-white' });
+          if (p.towerImages?.length) sections.push({ sectionLabel: '10 TOWERS', heading: 'Every Tower. A World of Its Own.', subheading: '15.52 acres. 1408 homes. Each tower with its own podium, landscape, and amenities.', images: p.towerImages, layout: 'towers' as const, background: 'bg-white' });
           if (p.landscapeImages?.length) sections.push({ sectionLabel: 'LANDSCAPE', heading: 'Where Nature Meets Architecture', images: p.landscapeImages, layout: 'grid-2' as const, background: 'bg-[#F4F7FC]' });
           if (p.podiumImages?.length) sections.push({ sectionLabel: 'PODIUM LIVING', heading: '89,000 sft of Landscaped Podium', images: p.podiumImages, layout: 'grid-2' as const, background: 'bg-[#F4F7FC]' });
           if (p.clubhouseImages?.length) sections.push({ sectionLabel: 'CLUBHOUSE', heading: '2 Club Houses, 50,000 sft Each', images: p.clubhouseImages, layout: 'grid-3' as const, background: 'bg-white' });
