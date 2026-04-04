@@ -135,13 +135,14 @@ export default function HeroCarousel() {
           <div className="hidden lg:flex items-center justify-center">
             <div className="w-full max-w-md">
               {/* Project Image */}
-              <div className="rounded-lg overflow-hidden shadow-xl mb-6 aspect-[4/3] relative">
-                {(project as any).heroImages?.[0] ? (
+              <div className="rounded-lg overflow-hidden shadow-xl mb-6 aspect-[4/3] relative" style={{ backgroundColor: '#1A1A2E' }}>
+                {(project as any).cardImage ? (
                   <img
-                    src={(project as any).heroImages[0].url}
-                    alt={(project as any).heroImages[0].alt}
+                    src={(project as any).cardImage}
+                    alt={project.name}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div className="bg-gradient-to-br from-[#CD0E12] to-[#1A1A2E] w-full h-full flex items-center justify-center">
