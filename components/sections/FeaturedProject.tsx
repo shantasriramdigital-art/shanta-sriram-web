@@ -20,7 +20,7 @@ export default function FeaturedProject() {
           <MotionSection variants={slideInLeft} className="lg:col-span-3">
             <div className="aspect-[16/10] rounded-md relative overflow-hidden">
               <img
-                src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/SGAppaJnLandscape04WithoutLS01%20twilight%201.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIHR3aWxpZ2h0IDEuanBnIiwiaWF0IjoxNzc1MzMxODA5LCJleHAiOjg4MTc1MzMxODA5fQ.RAiW1VHWwbsCWYVChi6G6xHfiVrBDYhde75bjIiBmVM"
+                src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/render/image/sign/Images/SGAppaJnLandscape04WithoutLS01%20twilight%201.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIHR3aWxpZ2h0IDEuanBnIiwiaWF0IjoxNzc1MzMxODA5LCJleHAiOjg4MTc1MzMxODA5fQ.RAiW1VHWwbsCWYVChi6G6xHfiVrBDYhde75bjIiBmVM&width=1600&quality=80&format=webp"
                 alt="The Bodhivriksha - Twilight View"
                 className="w-full h-full object-cover"
                 loading="lazy"
