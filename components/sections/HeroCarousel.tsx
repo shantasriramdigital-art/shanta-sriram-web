@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, MapPin, Home, Clock, DollarSign } from 'lucide-react'
+import { ChevronLeft, ChevronRight, MapPin, Home, Clock, IndianRupee } from 'lucide-react'
 import { PROJECTS } from '@/lib/data/projects'
 
 export default function HeroCarousel() {
@@ -82,7 +82,7 @@ export default function HeroCarousel() {
 
               <div className="bg-white border border-[#E8ECF0] rounded-md p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <DollarSign size={16} className="text-[#CD0E12]" />
+                  <IndianRupee size={16} className="text-[#CD0E12]" />
                   <span className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B]">Price</span>
                 </div>
                 <p className="font-serif text-lg font-medium text-[#1A1A2E]">{project.priceRange}</p>

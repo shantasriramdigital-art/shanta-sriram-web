@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PROJECTS } from '@/lib/data/projects';
 import LeadForm from '@/components/ui/LeadForm';
-import { ArrowLeft, MapPin, Home, DollarSign, Building2, Shield, Ruler } from 'lucide-react';
+import { MapPin, Shield, Home } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
