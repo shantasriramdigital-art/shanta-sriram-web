@@ -179,12 +179,31 @@ export default function SiteVisitPage() {
         <div className="max-w-[1200px] mx-auto px-6">
           <SectionLabel className="mb-4">SALES OFFICE</SectionLabel>
           <h2 className="text-h2 font-serif text-[#1A1A2E] mb-8">Visit Us</h2>
+          <iframe
+            src="https://maps.google.com/maps?q=Shalom+Skycity+Gachibowli+Hyderabad+500032&output=embed"
+            width="100%"
+            className="h-[250px] md:h-[350px]"
+            style={{ border: 0, borderRadius: '8px' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Shanta Sriram Constructions Sales Office"
+          />
+          <p className="font-sans text-xs text-[#6B6B6B] mt-3 mb-6">Visit us Monday to Saturday, 9AM to 6PM. Complimentary parking available at Shalom Skycity.</p>
           <div className="bg-white border border-[#E8ECF0] rounded-md p-6 max-w-md">
             <div className="flex flex-col gap-3 font-sans text-sm text-[#4A4A5A]">
               <p className="leading-relaxed">{BRAND.address}</p>
               <p>Phone: {BRAND.phone}</p>
               <p className="text-[#6B6B6B] text-xs">{BRAND.hours}</p>
             </div>
+            <a
+              href="https://maps.app.goo.gl/gpiFANFng4D5gmsW6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-sans text-sm font-medium text-[#CD0E12] hover:underline mt-4"
+            >
+              Get Directions
+            </a>
           </div>
         </div>
       </section>

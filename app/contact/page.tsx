@@ -83,24 +83,26 @@ export default function ContactPage() {
         </section>
 
         {/* Google Maps */}
-        <section className="py-0">
+        <section className="py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.567!2d78.3677!3d17.4237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93dc8d1e05c5%3A0x4b6c1a8e4f2d3c9a!2sShalom%20Skycity%2C%20Gachibowli%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=Shalom+Skycity+Gachibowli+Hyderabad+500032&output=embed"
               width="100%"
               height="400"
+              className="h-[280px] md:h-[400px]"
               style={{ border: 0, borderRadius: '8px' }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Shanta Sriram Constructions Office"
+              title="Shanta Sriram Constructions Sales Office"
             />
-            <div className="mt-4 mb-12">
+            <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
+              <p className="font-sans text-xs text-[#6B6B6B]">Visit us Monday to Saturday, 9AM to 6PM. Complimentary parking available at Shalom Skycity.</p>
               <a
-                href="https://maps.google.com/?q=Shalom+Skycity+Gachibowli+Hyderabad+500032"
+                href="https://maps.app.goo.gl/gpiFANFng4D5gmsW6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-sm font-medium text-[#CD0E12] hover:underline"
+                className="font-sans text-sm font-medium text-[#CD0E12] hover:underline flex-shrink-0"
               >
                 Get Directions
               </a>
