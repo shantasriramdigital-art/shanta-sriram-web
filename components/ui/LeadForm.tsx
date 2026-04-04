@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { supabase } from '@/utils/supabase/client'
 
 const schema = z.object({
   name: z.string().min(2, 'Enter your full name'),
@@ -38,8 +39,15 @@ export default function LeadForm({ title = 'Get In Touch', subtitle = 'Our sales
   const onSubmit = async (data: FormData) => {
     setError('')
     try {
-      await new Promise((r) => setTimeout(r, 800))
-      console.log('[v0] Lead form submitted:', data)
+      const { error: dbError } = await supabase.from('leads').insert({
+        name: data.name,
+        phone: data.phone,
+        email: data.email || null,
+        interest: data.interest,
+        message: data.message || null,
+        source: 'lead-form',
+      })
+      if (dbError) throw dbError
       setSubmitted(true)
     } catch {
       setError('Something went wrong. Please try again or call us directly.')

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { BRAND } from '@/lib/data/brand'
+import { supabase } from '@/utils/supabase/client'
 
 const schema = z.object({
   name: z.string().min(2, 'Enter your full name'),
@@ -40,8 +41,15 @@ export default function ExitIntentPopup() {
   }, [])
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 800))
-    console.log('[v0] Exit intent form submitted:', data)
+    const { error } = await supabase.from('leads').insert({
+      name: data.name,
+      phone: data.phone,
+      source: 'exit-popup',
+    })
+    if (error) {
+      console.error('Failed to save lead:', error)
+      return
+    }
     setSubmitted(true)
   }
 
