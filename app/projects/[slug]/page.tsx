@@ -65,14 +65,14 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       <main className="min-h-screen bg-[#F8F4EF]">
         {/* Image Gallery */}
         {p.heroImages && (() => {
-          const sections = [];
-          if (p.aerialImages?.length) sections.push({ sectionLabel: 'MASTER PLAN', heading: slug === 'kalpavriksha' ? 'Planned for 1,408 Families Across 15.52 Acres' : 'Thoughtfully Planned for 775 Families', images: p.aerialImages, layout: p.aerialImages.length === 2 ? 'split' as const : 'grid-2' as const, background: 'bg-white' });
-          if (p.towerImages?.length) sections.push({ sectionLabel: '10 TOWERS', heading: 'Every Tower. A World of Its Own.', subheading: '15.52 acres. 1408 homes. Each tower with its own podium, landscape, and amenities.', images: p.towerImages, layout: 'towers' as const, background: 'bg-white' });
-          if (p.landscapeImages?.length) sections.push({ sectionLabel: 'LANDSCAPE', heading: 'Where Nature Meets Architecture', images: p.landscapeImages, layout: 'grid-2' as const, background: 'bg-[#F4F7FC]' });
-          if (p.podiumImages?.length) sections.push({ sectionLabel: 'PODIUM LIVING', heading: '89,000 sft of Landscaped Podium', images: p.podiumImages, layout: 'grid-2' as const, background: 'bg-[#F4F7FC]' });
-          if (p.clubhouseImages?.length) sections.push({ sectionLabel: 'CLUBHOUSE', heading: '2 Club Houses, 50,000 sft Each', images: p.clubhouseImages, layout: 'grid-3' as const, background: 'bg-white' });
-          if (p.amenityImages?.length) sections.push({ sectionLabel: 'AMENITIES', heading: 'Designed for Every Moment of Joy', images: p.amenityImages, layout: p.amenityImages.length > 4 ? 'masonry' as const : 'grid-2' as const, background: 'bg-white' });
-          if (p.elevationImages?.length) sections.push({ sectionLabel: 'ELEVATIONS', heading: slug === 'kalpavriksha' ? 'Ten Blocks. One Community.' : 'Three Towers. One Vision.', images: p.elevationImages, layout: 'grid-3' as const, background: 'bg-[#F8F4EF]' });
+          const sections: { sectionLabel: string; heading: string; images: any[]; autoScrollInterval?: number; background?: string }[] = [];
+          if (p.aerialImages?.length) sections.push({ sectionLabel: 'AERIAL VIEWS', heading: slug === 'kalpavriksha' ? '15.52 Acres of Thoughtful Planning' : 'Seen from Above', images: p.aerialImages, autoScrollInterval: 5000, background: 'bg-white' });
+          if (p.towerImages?.length) sections.push({ sectionLabel: '10 TOWERS', heading: 'Every Tower. A World of Its Own.', images: p.towerImages, autoScrollInterval: 4000, background: 'bg-[#F8F4EF]' });
+          if (p.landscapeImages?.length) sections.push({ sectionLabel: 'LANDSCAPE', heading: 'Where Nature Meets Architecture', images: p.landscapeImages, autoScrollInterval: 4000, background: 'bg-[#F8F4EF]' });
+          if (p.podiumImages?.length) sections.push({ sectionLabel: 'PODIUM LIVING', heading: 'A Podium on Every Floor', images: p.podiumImages, autoScrollInterval: 4000, background: 'bg-white' });
+          if (p.clubhouseImages?.length) sections.push({ sectionLabel: 'CLUBHOUSE', heading: 'Two World-Class Clubhouses', images: p.clubhouseImages, autoScrollInterval: 5000, background: 'bg-[#F8F4EF]' });
+          if (p.amenityImages?.length) sections.push({ sectionLabel: 'AMENITIES', heading: slug === 'kalpavriksha' ? '40+ Amenities Across Every Tower' : 'Designed for Every Moment of Joy', images: p.amenityImages, autoScrollInterval: 3500, background: 'bg-white' });
+          if (p.elevationImages?.length) sections.push({ sectionLabel: 'ELEVATIONS', heading: 'Three Towers. One Vision.', images: p.elevationImages, autoScrollInterval: 5000, background: 'bg-[#F8F4EF]' });
           return (
             <ProjectGallery
               heroImages={p.heroImages}
