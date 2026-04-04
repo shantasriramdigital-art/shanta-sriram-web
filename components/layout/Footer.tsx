@@ -2,24 +2,29 @@ import Link from 'next/link'
 import { BRAND } from '@/lib/data/brand'
 
 const FOOTER_LINKS = {
+  properties: [
+    { label: 'Residential Apartments', href: '/residential' },
+    { label: 'Villas', href: '/villas' },
+    { label: 'Commercial', href: '/commercial' },
+    { label: 'Mall Properties', href: '/malls' },
+    { label: 'Legacy Projects', href: '/legacy' },
+  ],
+  buyers: [
+    { label: 'NRI Guide', href: '/nri' },
+    { label: 'Payment Plans', href: '/payment-plans' },
+    { label: 'Book Site Visit', href: '/site-visit' },
+  ],
   company: [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
-  ],
-  explore: [
-    { label: 'Markets', href: '/markets' },
-    { label: 'Legacy Projects', href: '/legacy' },
-    { label: 'Trust', href: '/trust' },
+    { label: 'Trust and Governance', href: '/trust' },
     { label: 'Insights', href: '/insights' },
+    { label: 'Careers', href: '/careers' },
     { label: 'Contact', href: '/contact' },
   ],
-  buyers: [
-    { label: 'NRI Buyers Guide', href: '/nri' },
-    { label: 'Payment Plans', href: '/payment-plans' },
-    { label: 'Book Site Visit', href: '/site-visit' },
+  legal: [
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Use', href: '/terms' },
   ],
 }
 
@@ -27,17 +32,15 @@ export default function Footer() {
   return (
     <footer className="bg-[#0F1A2E]">
       <div className="max-w-[1200px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <div className="mb-4">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
-                alt="Shanta Sriram Constructions"
-                className="h-16 w-auto mb-4"
-              />
-            </div>
-            <p className="font-serif text-white/60 italic text-base mb-6">{BRAND.tagline}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
+              alt="Shanta Sriram Constructions"
+              className="h-14 w-auto mb-4"
+            />
+            <p className="font-serif text-white/60 italic text-base mb-5">{BRAND.tagline}</p>
             <Link
               href={BRAND.rera}
               target="_blank"
@@ -48,56 +51,60 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Company links */}
+          {/* Properties */}
+          <div>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Properties</h3>
+            <ul className="flex flex-col gap-2.5">
+              {FOOTER_LINKS.properties.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
           <div>
             <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Company</h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2.5">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Explore */}
-          <div>
-            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Explore</h3>
-            <ul className="flex flex-col gap-3">
-              {FOOTER_LINKS.explore.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Buyer Resources */}
-          <div>
+          {/* Buyers + Legal */}
+          <div className="lg:col-span-2">
             <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Buyer Resources</h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2.5 mb-8">
               {FOOTER_LINKS.buyers.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-150">{link.label}</Link>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">Contact</h3>
-            <div className="flex flex-col gap-3 font-sans text-sm text-white/60">
-              <p className="leading-relaxed">{BRAND.address}</p>
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-4">Legal</h3>
+            <ul className="flex flex-col gap-2.5 mb-8">
+              {FOOTER_LINKS.legal.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="font-sans text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-3">Contact</h3>
+            <div className="flex flex-col gap-2 font-sans text-sm text-white/60">
               <p>{BRAND.phone}</p>
               <p>{BRAND.email}</p>
-              <p className="text-white/40 text-xs">{BRAND.hours}</p>
+              <p className="text-white/35 text-xs">{BRAND.hours}</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="max-w-[1200px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-sans text-xs text-white/35">

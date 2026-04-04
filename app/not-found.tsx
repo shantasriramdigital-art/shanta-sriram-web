@@ -24,7 +24,7 @@ export default function NotFound() {
           </Link>
           <Link href="/residential">
             <button className="w-full px-6 py-3 bg-white border border-[#E8ECF0] text-[#1A1A2E] rounded font-sans font-medium hover:bg-[#F4F7FC] transition-colors">
-              View Projects
+              View Residential Projects
             </button>
           </Link>
         </div>
