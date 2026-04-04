@@ -36,8 +36,15 @@ export default function ExitIntentPopup() {
         document.removeEventListener('mouseleave', handleMouseLeave)
       }
     }
-    document.addEventListener('mouseleave', handleMouseLeave)
-    return () => document.removeEventListener('mouseleave', handleMouseLeave)
+
+    const timer = setTimeout(() => {
+      document.addEventListener('mouseleave', handleMouseLeave)
+    }, 30000)
+
+    return () => {
+      clearTimeout(timer)
+      document.removeEventListener('mouseleave', handleMouseLeave)
+    }
   }, [])
 
   const onSubmit = async (data: FormData) => {

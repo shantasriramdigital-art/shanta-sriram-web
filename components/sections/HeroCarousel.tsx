@@ -14,7 +14,7 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     if (paused) return
-    const timer = setInterval(next, 6000)
+    const timer = setInterval(next, 8000)
     return () => clearInterval(timer)
   }, [paused, next])
 
@@ -107,17 +107,27 @@ export default function HeroCarousel() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 pt-4">
               <Link
-                href={`/projects/${project.slug}`}
-                className="text-sm font-sans font-medium text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors"
+                href="/contact#site-visit"
+                className="text-sm font-sans font-bold text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors"
               >
-                View Project Details
+                Book Free Site Visit
               </Link>
               <Link
-                href="/contact#site-visit"
+                href="/#projects-grid"
                 className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors"
               >
-                Book Site Visit
+                View All Projects
               </Link>
+            </div>
+
+            {/* Badges */}
+            <div className="flex items-center gap-3 pt-2">
+              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#CD0E12] border border-[#CD0E12]/30 px-2.5 py-1 rounded-sm">
+                TSRERA Registered
+              </span>
+              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#6B6B6B] border border-[#E8ECF0] px-2.5 py-1 rounded-sm">
+                Est. 1995
+              </span>
             </div>
           </div>
 
@@ -156,6 +166,12 @@ export default function HeroCarousel() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
+        <span className="font-sans text-[10px] uppercase tracking-widest text-[#6B6B6B]">Scroll to explore</span>
+        <div className="w-px h-4 bg-[#6B6B6B]" />
       </div>
 
       {/* Navigation Controls */}

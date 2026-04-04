@@ -10,12 +10,10 @@ const FOOTER_LINKS = {
     { label: 'Terms', href: '/terms' },
   ],
   properties: [
-    { label: 'Residential', href: '/residential' },
-    { label: 'Commercial', href: '/commercial' },
-    { label: 'Leasing', href: '/leasing' },
     { label: 'Markets', href: '/markets' },
     { label: 'Trust', href: '/trust' },
     { label: 'Insights', href: '/insights' },
+    { label: 'Contact', href: '/contact' },
   ],
 }
 
@@ -66,7 +64,7 @@ export default function Footer() {
           {/* Properties & Markets */}
           <div>
             <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/40 mb-5">
-              Properties & Markets
+              Explore
             </h3>
             <ul className="flex flex-col gap-3">
               {FOOTER_LINKS.properties.map((link) => (
@@ -104,7 +102,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Shanta Sriram Constructions Pvt. Ltd. All Rights Reserved.
           </p>
           <p className="font-sans text-xs text-white/25">
-            Founded 1995 · Hyderabad, Telangana
+            All projects registered with Telangana RERA. Verify at rera.telangana.gov.in
           </p>
         </div>
       </div>

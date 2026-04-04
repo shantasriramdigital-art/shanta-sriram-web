@@ -5,6 +5,7 @@ type Project = (typeof PROJECTS)[number]
 
 interface ProjectCardProps {
   project: Project
+  featured?: boolean
 }
 
 function StatusBadge({ status }: { status: string }) {
@@ -22,7 +23,7 @@ function StatusBadge({ status }: { status: string }) {
   )
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
     <div className="bg-white border border-[#E8ECF0] rounded-md overflow-hidden hover:border-[#CD0E12]/30 transition-colors duration-200 flex flex-col hover:shadow-md">
       {/* Image placeholder */}
@@ -33,13 +34,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#F4F7FC] text-[#4A4A5A] border border-[#E8ECF0]">
             {project.type}
           </span>
+          {featured && (
+            <span className="text-xs font-sans font-medium px-2.5 py-1 rounded-sm bg-[#C9A96E] text-white">
+              Featured
+            </span>
+          )}
         </div>
       </div>
 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-serif text-[#1A1A2E] text-xl font-medium mb-1">{project.name}</h3>
-        <p className="font-sans text-[#6B6B6B] text-sm mb-1">{project.location}</p>
+        <p className="font-sans text-[#6B6B6B] text-sm mb-0.5">{project.location}</p>
+        <p className="font-mono text-[10px] text-[#6B6B6B] mb-1">RERA: {project.rera}</p>
         <p className="font-sans text-[#6B6B6B] text-xs mb-3">{project.units}</p>
         <p className="font-sans text-[#4A4A5A] text-sm line-clamp-2 leading-relaxed flex-1 mb-4">
           {project.description}
