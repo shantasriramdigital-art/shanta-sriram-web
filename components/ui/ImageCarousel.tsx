@@ -95,26 +95,21 @@ export default function ImageCarousel({
     img.src = images[nextIdx].url
   }, [current, total, images])
 
-  // Scroll active thumbnail into view
+  // Scroll thumbnail strip (NOT the page) to show active thumb
   useEffect(() => {
-    if (!showThumbnails || !thumbRef.current) return
-    const activeThumb = thumbRef.current.children[current] as HTMLElement
-    if (activeThumb) {
-      activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-    }
+    const strip = thumbRef.current
+    if (!showThumbnails || !strip) return
+    const activeThumb = strip.children[current] as HTMLElement
+    if (!activeThumb) return
+    const scrollLeft = activeThumb.offsetLeft - (strip.clientWidth / 2) + (activeThumb.clientWidth / 2)
+    strip.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' })
   }, [current, showThumbnails])
 
-  // Keyboard
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); handleManualNav((current - 1 + total) % total) }
-      if (e.key === 'ArrowRight') { e.preventDefault(); handleManualNav((current + 1) % total) }
-    }
-    el.addEventListener('keydown', handleKey)
-    return () => el.removeEventListener('keydown', handleKey)
-  }, [current, total])
+  // Keyboard - inline handler only fires when container is focused
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); handleManualNav((current - 1 + total) % total) }
+    if (e.key === 'ArrowRight') { e.preventDefault(); handleManualNav((current + 1) % total) }
+  }, [current, total, handleManualNav])
 
   const handleManualNav = useCallback((newIndex: number) => {
     stopAutoScroll()
@@ -156,7 +151,8 @@ export default function ImageCarousel({
           className="relative"
           role="region"
           aria-label={title}
-          tabIndex={0}
+          tabIndex={-1}
+          onKeyDown={handleKeyDown}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}
