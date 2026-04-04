@@ -139,9 +139,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
         {/* Content */}
         <section className="bg-[#F8F4EF] py-16 md:py-20">
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-            <div className="project-content-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '48px', alignItems: 'start' }}>
-              {/* Main content */}
+          <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px' }}>
               <div>
                 {p.tagline && <p style={{ fontFamily: 'var(--font-playfair)', fontSize: '20px', fontStyle: 'italic', color: '#C9A96E', marginBottom: '16px' }}>{p.tagline}</p>}
                 <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '15px', color: '#4A4A5A', lineHeight: 1.8, marginBottom: '24px' }}>{project.description}</p>
@@ -200,40 +198,6 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                   </Link>
                 </div>
               </div>
-
-              {/* Sidebar */}
-              <div className="project-sidebar" style={{ position: 'sticky', top: '88px' }}>
-                <div style={{ background: 'white', border: '0.5px solid rgba(0,0,0,0.08)', borderRadius: '8px', padding: '24px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: '18px', fontWeight: 500, color: '#1A1A2E', marginBottom: '20px' }}>Project Details</h3>
-                  {[
-                    { label: 'Configuration', value: p.configuration || project.units },
-                    ...(p.size ? [{ label: 'Sizes', value: p.size }] : []),
-                    ...(p.blocks ? [{ label: 'Blocks', value: p.blocks }] : []),
-                    ...(p.towers ? [{ label: 'Towers', value: p.towers.join(', ') }] : []),
-                    { label: 'Status', value: project.status },
-                    { label: 'Possession', value: project.possession },
-                  ].map(({ label, value }) => (
-                    <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '0.5px solid rgba(0,0,0,0.06)' }}>
-                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#888' }}>{label}</span>
-                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#1A1A2E', fontWeight: 500, textAlign: 'right' }}>{value}</span>
-                    </div>
-                  ))}
-                  <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                      <Shield size={14} style={{ color: '#2E7D32' }} />
-                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: '#888' }}>TSRERA Registration</span>
-                    </div>
-                    <p style={{ fontFamily: 'monospace', fontSize: '13px', color: '#1A1A2E', fontWeight: 500, margin: 0 }}>{project.rera}</p>
-                  </div>
-                  {p.contact && (
-                    <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}>
-                      <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '11px', color: '#888', marginBottom: '4px' }}>Sales Enquiry</p>
-                      <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', color: '#1A1A2E', fontWeight: 500, margin: 0 }}>{p.contact}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
