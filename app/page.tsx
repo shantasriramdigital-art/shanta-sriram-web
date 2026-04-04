@@ -6,6 +6,7 @@ import StickyMobileCTA from '@/components/ui/StickyMobileCTA'
 import HeroCarousel from '@/components/sections/HeroCarousel'
 import TrustBar from '@/components/sections/TrustBar'
 import FeaturedProject from '@/components/sections/FeaturedProject'
+import AboutStrip from '@/components/sections/AboutStrip'
 import ProjectsGrid from '@/components/sections/ProjectsGrid'
 import WhyShantaSriram from '@/components/sections/WhyShantaSriram'
 import StatsCounter from '@/components/sections/StatsCounter'
@@ -20,6 +21,7 @@ export default function HomePage() {
       <HeroCarousel />
       <TrustBar />
       <FeaturedProject />
+      <AboutStrip />
       <ProjectsGrid />
       <WhyShantaSriram />
       <StatsCounter />
