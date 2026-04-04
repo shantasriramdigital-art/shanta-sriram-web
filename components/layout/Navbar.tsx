@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronRight, X, Menu, Phone } from 'lucide-react'
 import { BRAND } from '@/lib/data/brand'
 
@@ -247,8 +248,14 @@ export default function Navbar() {
       </header>
 
       {/* Mobile menu */}
+      <AnimatePresence>
       {mobileOpen && (
-        <div className="fixed inset-0 z-[60] bg-[#1A1A2E] flex flex-col animate-in fade-in duration-200">
+        <motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: 'tween', duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="fixed inset-0 z-[60] bg-[#1A1A2E] flex flex-col">
           <div className="flex items-center justify-between px-6 h-[60px] border-b border-white/10">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-cLl8N2uTwDKdXZp9PzuDPPhI3lvzzb.png"
@@ -317,8 +324,9 @@ export default function Navbar() {
               Book Site Visit
             </Link>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </>
   )
 }

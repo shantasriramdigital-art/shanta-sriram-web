@@ -1,5 +1,6 @@
 import SectionLabel from '@/components/ui/SectionLabel'
 import { TESTIMONIALS } from '@/lib/data/testimonials'
+import { MotionStagger, MotionItem } from '@/components/ui/MotionWrapper'
 
 export default function Testimonials() {
   const top3 = TESTIMONIALS.slice(0, 3)
@@ -14,9 +15,9 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <MotionStagger className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {top3.map((t, i) => (
-            <div key={i} className="bg-white rounded-md p-6 flex flex-col">
+            <MotionItem key={i} className="bg-white rounded-md p-6 flex flex-col">
               <div className="font-serif text-[#CD0E12] text-5xl leading-none mb-4 select-none">&ldquo;</div>
               <p className="quote-text text-[#4A4A5A] flex-1 mb-5" style={{ fontSize: '14px' }}>
                 {t.text}
@@ -31,9 +32,9 @@ export default function Testimonials() {
                   {t.location}
                 </span>
               </div>
-            </div>
+            </MotionItem>
           ))}
-        </div>
+        </MotionStagger>
       </div>
 
       <div className="absolute inset-0 opacity-[0.02]" aria-hidden="true">

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
@@ -169,7 +170,15 @@ export default function LegacyPage() {
       {/* Project Grid */}
       <section className="bg-[#F8F4EF] pb-20">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E8ECF0] transition-all duration-200 ${transitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+          <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E8ECF0]"
+          >
             {filtered.map((project, i) => (
               <div
                 key={project.name}
@@ -216,7 +225,8 @@ export default function LegacyPage() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 

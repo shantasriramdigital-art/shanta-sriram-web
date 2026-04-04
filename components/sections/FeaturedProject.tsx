@@ -5,6 +5,8 @@ import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
 import BrochureGateModal from '@/components/ui/BrochureGateModal'
 import { MapPin, Shield } from 'lucide-react'
+import { MotionSection } from '@/components/ui/MotionWrapper'
+import { slideInLeft, slideInRight } from '@/lib/animations'
 
 export default function FeaturedProject() {
   const [brochureOpen, setBrochureOpen] = useState(false)
@@ -15,7 +17,7 @@ export default function FeaturedProject() {
         <SectionLabel className="mb-4">FEATURED PROJECT</SectionLabel>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
           {/* Left: project image (60%) */}
-          <div className="lg:col-span-3">
+          <MotionSection variants={slideInLeft} className="lg:col-span-3">
             <div className="aspect-[16/10] rounded-md relative overflow-hidden">
               <img
                 src="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Images/SGAppaJnLandscape04WithoutLS01%20twilight%201.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvU0dBcHBhSm5MYW5kc2NhcGUwNFdpdGhvdXRMUzAxIHR3aWxpZ2h0IDEuanBnIiwiaWF0IjoxNzc1MzMxODA5LCJleHAiOjg4MTc1MzMxODA5fQ.RAiW1VHWwbsCWYVChi6G6xHfiVrBDYhde75bjIiBmVM"
@@ -29,10 +31,10 @@ export default function FeaturedProject() {
                 </span>
               </div>
             </div>
-          </div>
+          </MotionSection>
 
           {/* Right: details (40%) */}
-          <div className="lg:col-span-2">
+          <MotionSection variants={slideInRight} className="lg:col-span-2">
             <h2 className="text-4xl md:text-5xl font-serif text-[#1A1A2E] font-bold mb-2">
               The Bodhivriksha
             </h2>
@@ -77,7 +79,7 @@ export default function FeaturedProject() {
                 Download Brochure
               </button>
             </div>
-          </div>
+          </MotionSection>
         </div>
       </div>
 

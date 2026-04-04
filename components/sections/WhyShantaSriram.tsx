@@ -1,4 +1,7 @@
+'use client'
+
 import SectionLabel from '@/components/ui/SectionLabel'
+import { MotionStagger, MotionItem } from '@/components/ui/MotionWrapper'
 
 const DIFFERENTIATORS = [
   {
@@ -29,9 +32,9 @@ export default function WhyShantaSriram() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <MotionStagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {DIFFERENTIATORS.map((d) => (
-            <div
+            <MotionItem
               key={d.num}
               className="bg-white border border-[#E8ECF0] border-l-2 border-l-[#CD0E12] rounded-md p-6"
             >
@@ -40,9 +43,9 @@ export default function WhyShantaSriram() {
               </div>
               <h3 className="font-serif text-[#1A1A2E] text-xl font-medium mb-3">{d.title}</h3>
               <p className="font-sans text-[#4A4A5A] text-sm leading-relaxed">{d.body}</p>
-            </div>
+            </MotionItem>
           ))}
-        </div>
+        </MotionStagger>
       </div>
     </section>
   )

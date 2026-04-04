@@ -13,25 +13,28 @@ import StatsCounter from '@/components/sections/StatsCounter'
 import EMICalculator from '@/components/sections/EMICalculator'
 import Testimonials from '@/components/sections/Testimonials'
 import ContactStrip from '@/components/sections/ContactStrip'
+import { PageWrapper } from '@/components/ui/PageWrapper'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <HeroCarousel />
-      <TrustBar />
-      <FeaturedProject />
-      <AboutStrip />
-      <ProjectsGrid />
-      <WhyShantaSriram />
-      <StatsCounter />
-      <EMICalculator />
-      <Testimonials />
-      <ContactStrip />
-      <Footer />
-      <WhatsAppFAB />
-      <ExitIntentPopup />
-      <StickyMobileCTA />
-    </main>
+    <PageWrapper>
+      <main className="min-h-screen">
+        <Navbar />
+        <HeroCarousel />
+        <TrustBar />
+        <FeaturedProject />
+        <AboutStrip />
+        <ProjectsGrid />
+        <WhyShantaSriram />
+        <StatsCounter />
+        <EMICalculator />
+        <Testimonials />
+        <ContactStrip />
+        <Footer />
+        <WhatsAppFAB />
+        <ExitIntentPopup />
+        <StickyMobileCTA />
+      </main>
+    </PageWrapper>
   )
 }
