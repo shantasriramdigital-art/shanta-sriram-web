@@ -6,9 +6,22 @@ import BrochureGateModal from '@/components/ui/BrochureGateModal'
 interface BrochureButtonProps {
   className?: string
   label?: string
+  projectName: string
+  brochureUrl: string
+  supabaseSource: string
+  heading?: string
+  subheading?: string
 }
 
-export default function BrochureButton({ className = '', label = 'Download Brochure' }: BrochureButtonProps) {
+export default function BrochureButton({
+  className = '',
+  label = 'Download Brochure',
+  projectName,
+  brochureUrl,
+  supabaseSource,
+  heading,
+  subheading,
+}: BrochureButtonProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -19,7 +32,15 @@ export default function BrochureButton({ className = '', label = 'Download Broch
       >
         {label}
       </button>
-      <BrochureGateModal open={open} onClose={() => setOpen(false)} />
+      <BrochureGateModal
+        open={open}
+        onClose={() => setOpen(false)}
+        projectName={projectName}
+        brochureUrl={brochureUrl}
+        supabaseSource={supabaseSource}
+        heading={heading}
+        subheading={subheading}
+      />
     </>
   )
 }

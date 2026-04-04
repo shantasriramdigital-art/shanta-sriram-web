@@ -7,8 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { supabase } from '@/utils/supabase/client'
 
-const BROCHURE_URL = 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/PDFS/BODHIVRIKSHA%20FOR%20WHATSAPP.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQREZTL0JPREhJVlJJS1NIQSBGT1IgV0hBVFNBUFAucGRmIiwiaWF0IjoxNzc1MzI5ODU4LCJleHAiOjMxNzEzNTMyOTg1OH0.RoB_ZtL3jpu31kYib5CmjX3Q6tJ9ghiynAsOot4erUI'
-
 const schema = z.object({
   name: z.string().min(2, 'Enter your full name'),
   phone: z.string().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number'),
@@ -21,9 +19,22 @@ type FormData = z.infer<typeof schema>
 interface BrochureGateModalProps {
   open: boolean
   onClose: () => void
+  projectName: string
+  brochureUrl: string
+  supabaseSource: string
+  heading?: string
+  subheading?: string
 }
 
-export default function BrochureGateModal({ open, onClose }: BrochureGateModalProps) {
+export default function BrochureGateModal({
+  open,
+  onClose,
+  projectName,
+  brochureUrl,
+  supabaseSource,
+  heading,
+  subheading,
+}: BrochureGateModalProps) {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
 
@@ -63,12 +74,12 @@ export default function BrochureGateModal({ open, onClose }: BrochureGateModalPr
         phone: data.phone,
         email: data.email,
         interest: data.buyerType,
-        message: 'Requested Bodhivriksha brochure',
-        source: 'brochure-download-bodhivriksha',
+        message: `Requested ${projectName} brochure`,
+        source: supabaseSource,
       })
       if (dbError) throw dbError
       setSubmitted(true)
-      window.open(BROCHURE_URL, '_blank')
+      window.open(brochureUrl, '_blank')
       setTimeout(() => {
         handleClose()
       }, 2000)
@@ -80,6 +91,9 @@ export default function BrochureGateModal({ open, onClose }: BrochureGateModalPr
   if (!open) return null
 
   const inputClass = 'w-full bg-white border border-[#E8ECF0] rounded px-4 py-3 text-sm font-sans text-[#4A4A5A] placeholder-[#6B6B6B] focus:border-[#CD0E12] focus:ring-1 focus:ring-[#CD0E12]/30 outline-none transition'
+
+  const displayHeading = heading || `Get the ${projectName} Brochure`
+  const displaySubheading = subheading || 'Enter your details and we will send you the complete brochure instantly'
 
   return (
     <div
@@ -107,8 +121,8 @@ export default function BrochureGateModal({ open, onClose }: BrochureGateModalPr
         ) : (
           <>
             <div className="mb-6">
-              <h2 className="font-serif text-[#1A1A2E] text-2xl font-medium mb-2">Get the Bodhivriksha Brochure</h2>
-              <p className="font-sans text-[#6B6B6B] text-sm">Enter your details and we will send you the complete brochure instantly</p>
+              <h2 className="font-serif text-[#1A1A2E] text-2xl font-medium mb-2">{displayHeading}</h2>
+              <p className="font-sans text-[#6B6B6B] text-sm">{displaySubheading}</p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

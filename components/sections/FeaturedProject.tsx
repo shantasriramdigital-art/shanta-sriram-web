@@ -79,7 +79,13 @@ export default function FeaturedProject() {
         </div>
       </div>
 
-      <BrochureGateModal open={brochureOpen} onClose={() => setBrochureOpen(false)} />
+      <BrochureGateModal
+        open={brochureOpen}
+        onClose={() => setBrochureOpen(false)}
+        projectName="The Bodhivriksha"
+        brochureUrl="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/PDFS/BODHIVRIKSHA%20FOR%20WHATSAPP.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQREZTL0JPREhJVlJJS1NIQSBGT1IgV0hBVFNBUFAucGRmIiwiaWF0IjoxNzc1MzI5ODU4LCJleHAiOjMxNzEzNTMyOTg1OH0.RoB_ZtL3jpu31kYib5CmjX3Q6tJ9ghiynAsOot4erUI"
+        supabaseSource="brochure-download-bodhivriksha"
+      />
     </section>
   )
 }

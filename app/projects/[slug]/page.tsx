@@ -112,7 +112,21 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                     Book Site Visit
                   </Link>
                   {slug === 'bodhivriksha' && (
-                    <BrochureButton />
+                    <BrochureButton
+                      projectName="The Bodhivriksha"
+                      brochureUrl="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/PDFS/BODHIVRIKSHA%20FOR%20WHATSAPP.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQREZTL0JPREhJVlJJS1NIQSBGT1IgV0hBVFNBUFAucGRmIiwiaWF0IjoxNzc1MzI5ODU4LCJleHAiOjMxNzEzNTMyOTg1OH0.RoB_ZtL3jpu31kYib5CmjX3Q6tJ9ghiynAsOot4erUI"
+                      supabaseSource="brochure-download-bodhivriksha"
+                    />
+                  )}
+                  {slug === 'kalpavriksha' && (
+                    <BrochureButton
+                      label="Download Floor Plans"
+                      projectName="The Kalpavriksha"
+                      brochureUrl="https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/PDFS/Kalpavriksha%20Floor%20Plans%20(4).pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQREZTL0thbHBhdnJpa3NoYSBGbG9vciBQbGFucyAoNCkucGRmIiwiaWF0IjoxNzc1MzMwMjMzLCJleHAiOjMzMzExMzMwMjMzfQ.gCKq5mNG_cQavKwfKtbWZEWMtYVcvjTFGIKWFFuSduI"
+                      supabaseSource="brochure-download-kalpavriksha"
+                      heading="Get the Kalpavriksha Floor Plans"
+                      subheading="Enter your details and we will send you the complete floor plans instantly"
+                    />
                   )}
                   <Link href="/payment-plans" className="text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#CD0E12] transition-colors py-3">
                     View Payment Plans
