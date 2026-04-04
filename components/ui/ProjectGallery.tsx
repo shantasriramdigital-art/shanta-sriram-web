@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Lightbox from '@/components/ui/Lightbox'
 import ImageCarousel from '@/components/ui/ImageCarousel'
 
@@ -37,125 +36,111 @@ export default function ProjectGallery({
 }: ProjectGalleryProps) {
   const [heroIndex, setHeroIndex] = useState(0)
   const [heroLoaded, setHeroLoaded] = useState<Set<number>>(new Set())
-  const [heroReady, setHeroReady] = useState(false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const manualRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const isHovered = useRef(false)
+  const isReady = useRef(false)
 
   const heroTotal = heroImages.length
 
-  const handleHeroLoad = useCallback((i: number) => {
-    setHeroLoaded((prev) => {
-      const next = new Set(prev)
-      next.add(i)
-      if (next.size >= Math.min(2, heroTotal)) setHeroReady(true)
-      return next
-    })
-  }, [heroTotal])
-
-  const stopHeroScroll = useCallback(() => {
-    if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+  const onHeroLoad = useCallback((i: number) => {
+    setHeroLoaded((prev) => { const n = new Set(prev); n.add(i); return n })
+    if (i === 0) isReady.current = true
   }, [])
 
-  const startHeroScroll = useCallback(() => {
-    if (!heroReady || heroTotal <= 1) return
-    stopHeroScroll()
-    intervalRef.current = setInterval(() => {
+  const stopTimer = useCallback(() => {
+    if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null }
+  }, [])
+
+  const startTimer = useCallback(() => {
+    if (heroTotal <= 1) return
+    stopTimer()
+    timerRef.current = setInterval(() => {
+      if (!isReady.current || isHovered.current || document.hidden) return
       setHeroIndex((i) => (i + 1) % heroTotal)
     }, 5000)
-  }, [heroReady, heroTotal, stopHeroScroll])
+  }, [heroTotal, stopTimer])
 
   useEffect(() => {
-    if (heroReady) startHeroScroll()
-    return stopHeroScroll
-  }, [heroReady, startHeroScroll, stopHeroScroll])
+    if (heroLoaded.has(0)) {
+      const t = setTimeout(startTimer, 1500)
+      return () => clearTimeout(t)
+    }
+  }, [heroLoaded, startTimer])
 
   useEffect(() => {
-    const onVis = () => { if (document.hidden) stopHeroScroll(); else if (heroReady) startHeroScroll() }
-    document.addEventListener('visibilitychange', onVis)
-    return () => document.removeEventListener('visibilitychange', onVis)
-  }, [heroReady, startHeroScroll, stopHeroScroll])
+    const fn = () => document.hidden ? stopTimer() : startTimer()
+    document.addEventListener('visibilitychange', fn)
+    return () => document.removeEventListener('visibilitychange', fn)
+  }, [startTimer, stopTimer])
 
-  // Preload next hero
-  useEffect(() => {
-    const nextIdx = (heroIndex + 1) % heroTotal
-    const img = new Image()
-    img.src = heroImages[nextIdx].url
-  }, [heroIndex, heroTotal, heroImages])
+  useEffect(() => () => stopTimer(), [stopTimer])
 
-  const handleHeroNav = useCallback((i: number) => {
-    stopHeroScroll()
+  const goToHero = (i: number) => {
+    stopTimer()
     setHeroIndex(i)
-    if (manualRef.current) clearTimeout(manualRef.current)
-    manualRef.current = setTimeout(() => { if (heroReady) startHeroScroll() }, 8000)
-  }, [stopHeroScroll, startHeroScroll, heroReady])
-
-  useEffect(() => { return () => { if (manualRef.current) clearTimeout(manualRef.current) } }, [])
-
-  const isNearHero = (i: number) =>
-    i === heroIndex || i === (heroIndex + 1) % heroTotal || i === (heroIndex - 1 + heroTotal) % heroTotal
+    setTimeout(startTimer, 8000)
+  }
 
   return (
     <>
-      {/* HERO - fixed height, skeleton, crossfade */}
-      <section className="aspect-hero">
+      {/* HERO - fixed height, never changes, no scroll interference */}
+      <div
+        onMouseEnter={() => { isHovered.current = true; stopTimer() }}
+        onMouseLeave={() => { isHovered.current = false; startTimer() }}
+        style={{ position: 'relative', width: '100%', height: 'clamp(300px, 65vh, 750px)', overflow: 'hidden', backgroundColor: '#1A1A2E', flexShrink: 0 }}
+      >
         {heroImages.map((img, i) => (
-          <div
-            key={i}
-            className="absolute inset-0"
-            style={{
-              opacity: i === heroIndex ? 1 : 0,
-              transition: 'opacity 0.7s ease-in-out',
-              zIndex: i === heroIndex ? 1 : 0,
-              pointerEvents: i === heroIndex ? 'auto' : 'none',
-            }}
-          >
-            {/* Skeleton */}
-            <div className={`absolute inset-0 skeleton-shimmer transition-opacity duration-300 ${heroLoaded.has(i) ? 'opacity-0' : 'opacity-100'}`} style={{ zIndex: 0 }} />
-            {/* Image */}
-            {isNearHero(i) && (
-              <img
-                src={img.url}
-                alt={img.alt}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                fetchPriority={i === 0 ? 'high' : undefined}
-                onLoad={() => handleHeroLoad(i)}
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity ${heroLoaded.has(i) ? 'opacity-100' : 'opacity-0'}`}
-                style={{ zIndex: 1, cursor: 'pointer', transitionDuration: '0.4s' }}
-                onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
-              />
-            )}
+          <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === heroIndex ? 1 : 0, transition: 'opacity 0.7s ease-in-out', pointerEvents: i === heroIndex ? 'auto' : 'none' }}>
+            <div style={{ position: 'absolute', inset: 0, opacity: heroLoaded.has(i) ? 0 : 1, transition: 'opacity 0.4s ease', background: 'linear-gradient(90deg, #1A1A2E 0%, #2d2d4e 50%, #1A1A2E 100%)', backgroundSize: '200% 100%', animation: 'shimmer 1.8s ease-in-out infinite', zIndex: 0 }} />
+            <img
+              src={img.url}
+              alt={img.alt}
+              onLoad={() => onHeroLoad(i)}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchPriority={i === 0 ? 'high' : undefined}
+              decoding="async"
+              onClick={() => { setLightboxIndex(i); setLightboxOpen(true) }}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: heroLoaded.has(i) ? 1 : 0, transition: 'opacity 0.5s ease', zIndex: 1, cursor: 'pointer', display: 'block' }}
+            />
           </div>
         ))}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none z-[2]" />
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 z-[3]">
+        {/* Gradient overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)', pointerEvents: 'none', zIndex: 2 }} />
+
+        {/* Text overlay */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', zIndex: 3 }}>
           <div className="max-w-[1200px] mx-auto flex items-end justify-between gap-4">
             <div>
               <h1 className="font-serif text-white text-3xl md:text-5xl font-bold mb-2">{projectName}</h1>
               <p className="font-sans text-white/70 text-sm md:text-base">{location}</p>
             </div>
-            <span className="font-mono text-[10px] text-white/50 bg-white/10 px-3 py-1.5 rounded-sm flex-shrink-0">
-              RERA: {rera}
-            </span>
+            <span className="font-mono text-[10px] text-white/50 bg-white/10 px-3 py-1.5 rounded-sm flex-shrink-0">RERA: {rera}</span>
           </div>
         </div>
-        <button onClick={() => handleHeroNav((heroIndex - 1 + heroTotal) % heroTotal)} className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Previous image">
-          <ChevronLeft size={20} className="text-white" />
-        </button>
-        <button onClick={() => handleHeroNav((heroIndex + 1) % heroTotal)} className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10" aria-label="Next image">
-          <ChevronRight size={20} className="text-white" />
-        </button>
-        <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          {heroImages.map((_, i) => (
-            <button key={i} onClick={() => handleHeroNav(i)} className={`h-2 rounded-full transition-all duration-300 ${i === heroIndex ? 'bg-white w-6' : 'bg-white/40 w-2'}`} aria-label={`Image ${i + 1}`} />
-          ))}
-        </div>
-      </section>
 
-      {/* CAROUSEL SECTIONS */}
+        {/* Arrows */}
+        {heroTotal > 1 && (
+          <>
+            <button onClick={() => goToHero((heroIndex - 1 + heroTotal) % heroTotal)} aria-label="Previous image" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: '50%', width: '44px', height: '44px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', color: 'white' }}>&#8249;</button>
+            <button onClick={() => goToHero((heroIndex + 1) % heroTotal)} aria-label="Next image" style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: '50%', width: '44px', height: '44px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', color: 'white' }}>&#8250;</button>
+          </>
+        )}
+
+        {/* Dots */}
+        {heroTotal > 1 && (
+          <div style={{ position: 'absolute', bottom: '80px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px', zIndex: 10 }}>
+            {heroImages.map((_, i) => (
+              <button key={i} onClick={() => goToHero(i)} aria-label={`Image ${i + 1}`} style={{ width: i === heroIndex ? '24px' : '8px', height: '8px', borderRadius: '100px', border: 'none', background: i === heroIndex ? 'white' : 'rgba(255,255,255,0.4)', cursor: 'pointer', padding: 0, transition: 'all 0.3s ease' }} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* IMAGE CAROUSEL SECTIONS */}
       {sections.map((section, i) => (
         <ImageCarousel
           key={i}
@@ -163,11 +148,11 @@ export default function ProjectGallery({
           title={section.heading}
           images={section.images}
           autoScrollInterval={section.autoScrollInterval || 5000}
-          showThumbnails={true}
           background={section.background || (i % 2 === 0 ? 'bg-white' : 'bg-[#F8F4EF]')}
         />
       ))}
 
+      {/* Lightbox */}
       {lightboxOpen && (
         <Lightbox images={heroImages} currentIndex={lightboxIndex} onClose={() => setLightboxOpen(false)} onNavigate={setLightboxIndex} />
       )}
