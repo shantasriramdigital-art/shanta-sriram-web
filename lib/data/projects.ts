@@ -343,7 +343,7 @@ export const PROJECTS = [
       'Exclusive 3 & 4 BHK villa community in the leafy Kismatpur belt where green living meets urban connectivity. Sprawling plots, private gardens, and premium villa finishes.',
     highlights: ['Independent villas', 'Private gardens', 'Gated community', 'TSRERA approved'],
     heroImages: [
-      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/render/image/public/Images/brookwoods-render.jpg?width=1200&quality=80&format=webp', alt: 'Brookwoods - Villa Render Kismathpur', category: 'exterior' },
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/brookwoods-render.jpg', alt: 'Brookwoods Villa - Kismathpur Hyderabad', category: 'exterior' },
     ],
     amenities: [
       'Clubhouse',
@@ -374,7 +374,7 @@ export const PROJECTS = [
     rera: 'Registration applied',
     priceRange: 'Price on request',
     priceDisclaimer: 'Prices indicative. Contact sales for current pricing.',
-    cardImage: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+    cardImage: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/pinnacle-render.jpg',
     locationAdvantages: [
       { label: 'HITEC City', value: '5 min' },
       { label: 'Financial District', value: '8 min' },
@@ -385,6 +385,9 @@ export const PROJECTS = [
     description:
       "Shanta Sriram's flagship premium tower at Gachibowli, the nerve centre of Hyderabad's IT economy. Ready-to-move apartments with panoramic city views and world-class amenities.",
     highlights: ['Ready to move', 'Premium tower', 'Panoramic views', 'IT hub location'],
+    heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/pinnacle-render.jpg', alt: 'Shanta Sriram Skycity - Gachibowli Hyderabad', category: 'exterior' },
+    ],
     amenities: [
       'Swimming Pool',
       'Gymnasium',
