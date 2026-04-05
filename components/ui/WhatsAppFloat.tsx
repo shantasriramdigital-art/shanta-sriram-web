@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 export default function WhatsAppFloat() {
   const [bottom, setBottom] = useState('24px')
-  const phone = '914045656500'
+  const phone = '919849955887'
   const message = 'Hi, I am interested in Shanta Sriram properties. Please share details.'
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 

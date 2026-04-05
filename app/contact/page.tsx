@@ -71,7 +71,7 @@ export default function ContactPage() {
             {/* WhatsApp quick contact */}
             <div className="text-center mb-16">
               <Link
-                href="https://wa.me/914045656500"
+                href="https://wa.me/919849955887"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-sans text-sm font-medium text-white bg-[#25D366] px-6 py-3 rounded hover:bg-[#20bd5a] transition-colors"

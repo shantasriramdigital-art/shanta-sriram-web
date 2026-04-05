@@ -6,7 +6,7 @@ export const BRAND = {
   email: 'sales@shantasriram.com',
   hours: 'Monday–Saturday, 9:00 AM – 6:00 PM',
   address: '1802 & 1803, 18th Floor, Tower-1, Shalom Skycity, Gachibowli, Hyderabad – 500032',
-  whatsapp: 'https://wa.me/914045656500?text=Hi%2C%20I%27m%20interested%20in%20Shanta%20Sriram%20properties',
+  whatsapp: 'https://wa.me/919849955887?text=Hi%2C%20I%27m%20interested%20in%20Shanta%20Sriram%20properties',
   rera: 'https://rera.telangana.gov.in/',
   directors: [
     {
