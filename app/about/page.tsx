@@ -23,50 +23,31 @@ const FOUNDERS = [
 ]
 
 const LEGACY_PROJECTS = [
-  { name: 'Belvedere Gardens', location: 'Mehdipatnam', type: 'Residential', area: '2,50,000 sft' },
-  { name: 'Sonata', location: 'Tolichowki', type: 'Residential', area: '1,80,000 sft' },
-  { name: 'SS Tech Park', location: 'Ameerpet', type: 'Commercial', area: '3,50,000 sft' },
-  { name: 'Satellite Township', location: 'Miyapur', type: 'Township', area: '12,00,000 sft' },
-  { name: 'Harmony Heights', location: 'Kukatpally', type: 'Residential', area: '1,60,000 sft' },
-  { name: 'Blue Birds Habitat', location: 'Manikonda', type: 'Residential', area: '1,40,000 sft' },
-  { name: 'Spring Valley', location: 'Narsingi', type: 'Residential', area: '2,20,000 sft' },
-  { name: 'Oyster Mall', location: 'Somajiguda', type: 'Commercial', area: '1,80,000 sft' },
-  { name: 'Chippendale', location: 'Banjara Hills', type: 'Commercial', area: '90,000 sft' },
-  { name: 'Dukes Galaxy', location: 'Madhapur', type: 'Residential', area: '2,00,000 sft' },
-  { name: 'Emerald Court', location: 'Jubilee Hills', type: 'Residential', area: '1,20,000 sft' },
-  { name: 'Sapphire Residency', location: 'Appa Junction', type: 'Residential', area: '1,50,000 sft' },
-  { name: 'Pearl Heights', location: 'Tellapur', type: 'Residential', area: '1,80,000 sft' },
-  { name: 'Ruby Towers', location: 'Attapur', type: 'Residential', area: '1,10,000 sft' },
-  { name: 'Diamond Plaza', location: 'Begumpet', type: 'Commercial', area: '2,40,000 sft' },
-  { name: 'Coral Enclave', location: 'Kondapur', type: 'Residential', area: '1,30,000 sft' },
-  { name: 'Topaz Heights', location: 'Pocharam', type: 'Residential', area: '95,000 sft' },
-  { name: 'Amber Residences', location: 'Kompally', type: 'Residential', area: '1,70,000 sft' },
-  { name: 'Crystal Plaza', location: 'Ameerpet', type: 'Commercial', area: '1,60,000 sft' },
-  { name: 'Opal Gardens', location: 'LB Nagar', type: 'Residential', area: '1,25,000 sft' },
-  { name: 'Jade Towers', location: 'Kukatpally', type: 'Residential', area: '1,45,000 sft' },
-  { name: 'Platinum Square', location: 'Gachibowli', type: 'Commercial', area: '2,80,000 sft' },
-  { name: 'Silver Oak', location: 'Miyapur', type: 'Residential', area: '1,60,000 sft' },
-  { name: 'Bronze Heights', location: 'Dilsukhnagar', type: 'Residential', area: '85,000 sft' },
-  { name: 'Golden Arcade', location: 'Abids', type: 'Commercial', area: '1,20,000 sft' },
-  { name: 'Copper Residency', location: 'Serilingampally', type: 'Residential', area: '1,50,000 sft' },
-  { name: 'Ivory Towers', location: 'Banjara Hills', type: 'Commercial', area: '2,10,000 sft' },
-  { name: 'Marble Enclave', location: 'Khairatabad', type: 'Residential', area: '1,15,000 sft' },
-  { name: 'Onyx Complex', location: 'Himayatnagar', type: 'Commercial', area: '1,90,000 sft' },
-  { name: 'Garnet Heights', location: 'Tarnaka', type: 'Residential', area: '1,05,000 sft' },
-  { name: 'Quartz Residency', location: 'Uppal', type: 'Residential', area: '1,35,000 sft' },
-  { name: 'Turquoise Towers', location: 'ECIL', type: 'Residential', area: '1,10,000 sft' },
-  { name: 'Zircon Plaza', location: 'Secunderabad', type: 'Commercial', area: '1,75,000 sft' },
-  { name: 'Aquamarine Homes', location: 'Alwal', type: 'Residential', area: '90,000 sft' },
-  { name: 'Tanzanite Court', location: 'Malkajgiri', type: 'Residential', area: '1,20,000 sft' },
-  { name: 'Citrine Towers', location: 'Kukatpally', type: 'Residential', area: '1,55,000 sft' },
-  { name: 'Peridot Gardens', location: 'Chandanagar', type: 'Residential', area: '1,40,000 sft' },
-  { name: 'Moonstone Residency', location: 'Bachupally', type: 'Residential', area: '1,30,000 sft' },
-  { name: 'Alexandrite Complex', location: 'Hitech City', type: 'Commercial', area: '2,60,000 sft' },
-  { name: 'Sunstone Enclave', location: 'Patancheru', type: 'Commercial', area: '1,40,000 sft' },
-  { name: 'Larimar Heights', location: 'Shamshabad', type: 'Commercial', area: '1,80,000 sft' },
+  { name: 'Belvedere Gardens Phase I and II', location: 'Padmarao Nagar, Secunderabad', type: 'Residential', area: '3,00,000 sft', units: '60 units', year: '2000-2004', image: null },
+  { name: 'Aspen', location: 'Tarnaka, Secunderabad', type: 'Residential', area: '3,00,000 sft', units: '55 units', year: '2001-2005', image: null },
+  { name: 'Studio Sycamore', location: 'Road No. 4, Banjara Hills', type: 'Residential', area: '1,25,000 sft', units: '20 units', year: '1999-2003', image: null },
+  { name: 'Chippendale', location: 'Musheerabad, Hyderabad', type: 'Residential', area: '3,00,000 sft', units: '60 units', year: '2010-2014', image: null },
+  { name: 'Satellite Township Blocks A to F', location: 'Petbasheerabad, Hyderabad', type: 'Township', area: '8,00,000 sft', units: '120 units', year: '1996-2016', image: null },
+  { name: 'Harmony Heights', location: 'Namal Gundu, Secunderabad', type: 'Residential', area: '2,25,000 sft', units: '180 units', year: '2012-2017', image: null },
+  { name: 'Padmanabha Residency', location: 'Padmarao Nagar, Secunderabad', type: 'Residential', area: '1,20,000 sft', units: '80 units', year: '2014-2018', image: null },
+  { name: 'Amity Ville', location: 'Tarnaka, Secunderabad', type: 'Residential', area: '43,470 sft', units: '15 units', year: '2016-2019', image: null },
+  { name: 'Blue Birds Habitat', location: 'Yousufguda, Hyderabad', type: 'Residential', area: '1,36,310 sft', units: '65 units', year: '2016-2022', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Blue%20Birds%20Habitat%20Yousufguda.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvQmx1ZSBCaXJkcyBIYWJpdGF0IFlvdXN1Zmd1ZGEuanBnIiwiaWF0IjoxNzc1MzY4NDM4LCJleHAiOjEwNDE1MzY4NDM4fQ.jLWBOxmBfVD8COpuOFAi7f2q6pLBE_oeZhDl7NVTlDM' },
+  { name: 'Chalet Meadows', location: 'Musheerabad, Hyderabad', type: 'Residential', area: '1,25,840 sft', units: '60 units', year: '2019-2023', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Chalet%20Meaodws%20Musheerabad.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvQ2hhbGV0IE1lYW9kd3MgTXVzaGVlcmFiYWQuanBnIiwiaWF0IjoxNzc1MzY4NTI5LCJleHAiOjEwNDE1MzY4NTI5fQ.AcpOHCunhfDlADU9Y6nbwbP4ts58n_VIRErRffs0v8w' },
+  { name: 'Spring Valley', location: 'Manikonda, Hyderabad', type: 'Villas', area: '1,96,845 sft', units: '36 villas', year: '2020-2023', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Entrance%20Gate%20Day%20View%20Spring%20Valley%20Manikonda.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvRW50cmFuY2UgR2F0ZSBEYXkgVmlldyBTcHJpbmcgVmFsbGV5IE1hbmlrb25kYS5qcGciLCJpYXQiOjE3NzUzNjg1OTYsImV4cCI6ODY1Nzc1MzY4NTk2fQ.uqhwIZPQcUf9a0YPRvR9csDII3RmtxxYfZoKkI84Yt0' },
+  { name: 'Duke Galaxy', location: 'Road No. 13, Banjara Hills', type: 'Residential', area: null, units: '66 units', year: null, image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Galaxy%20Road%20no%2013%20Banjara%20Hills.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvR2FsYXh5IFJvYWQgbm8gMTMgQmFuamFyYSBIaWxscy5qcGciLCJpYXQiOjE3NzUzNjg2MDMsImV4cCI6ODgxNzUzNjg2MDN9.tKUEDKBvr6y1kL6-INNCtYtoln-1sR_zwk39yIhYF1s' },
+  { name: 'SS Tech Park', location: 'Gachibowli, Hyderabad', type: 'Commercial', area: '2,30,000 sft', units: '2 blocks', year: '2018-2022', image: null },
+  { name: 'Oyster Mall', location: 'Begumpet, Secunderabad', type: 'Commercial', area: '1,38,600 sft', units: null, year: '2005-2008', image: null },
+  { name: 'Lakshmi Palace (Neerus Emporium)', location: 'Road No. 36, Jubilee Hills', type: 'Commercial', area: '86,000 sft', units: null, year: '2001-2006', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/NBR%20@%20Road.no.36,%20Jubilee%20Hills.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvTkJSIEAgUm9hZC5uby4zNiwgSnViaWxlZSBIaWxscy5qcGciLCJpYXQiOjE3NzUzNjg2MTksImV4cCI6ODgxNzUzNjg2MTl9.JFdXKux8kYnhBsVUo2huGuGx4n0qJ1BOGOJISbp33CM' },
+  { name: 'Ozone', location: 'Panjagutta, Hyderabad', type: 'Commercial', area: '75,000 sft', units: null, year: '1999-2003', image: null },
+  { name: 'Solitaire', location: 'Road No. 36, Jubilee Hills', type: 'Commercial', area: '43,000 sft', units: null, year: '1998-2000', image: null },
+  { name: 'Blue Moon', location: 'Somajiguda, Hyderabad', type: 'Commercial', area: '64,810 sft', units: null, year: '1999-2023', image: null },
+  { name: 'Silver Square', location: 'Road No. 36, Jubilee Hills', type: 'Commercial', area: '33,000 sft', units: null, year: '1999-2001', image: null },
+  { name: 'Jagadish Mall', location: 'Road No. 36, Jubilee Hills', type: 'Commercial', area: '81,400 sft', units: null, year: '2011-2015', image: null },
+  { name: 'Odeon Mall', location: 'RTC X Roads, Hyderabad', type: 'Commercial', area: '80,620 sft', units: null, year: '2020-2026', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Odean%20Mall%20RTC%20X%20Roads.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvT2RlYW4gTWFsbCBSVEMgWCBSb2Fkcy5qcGciLCJpYXQiOjE3NzUzNjg2MzAsImV4cCI6ODgxNzUzNjg2MzB9.Q5Lgod-RIOzlLbDjvy8vqY4YYv56vhRckSRHpU5sPzg' },
+  { name: 'Dundoo Mall', location: 'Patny Circle, Secunderabad', type: 'Commercial', area: '22,25,620 sft', units: null, year: '2019-2024', image: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Delivered%20projects%20resources/Dundoo%20Mall%20Patny%20Circle.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0RlbGl2ZXJlZCBwcm9qZWN0cyByZXNvdXJjZXMvRHVuZG9vIE1hbGwgUGF0bnkgQ2lyY2xlLmpwZyIsImlhdCI6MTc3NTM2ODU1OSwiZXhwIjo4ODE3NTM2ODU1OX0.YvgvXmZdTL852JH2zn_lbcAeUXllHNhPCCS3lzUZgXY' },
 ]
 
-const FILTERS = ['All', 'Residential', 'Commercial', 'Township'] as const
+const FILTERS = ['All', 'Residential', 'Commercial', 'Villas', 'Township'] as const
 
 export default function AboutPage() {
   const [activeFilter, setActiveFilter] = useState<string>('All')
@@ -101,10 +82,10 @@ export default function AboutPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0' }} className="stats-bar-grid">
             {[
-              { num: '41', label: 'Projects Delivered' },
-              { num: '6M+', label: 'Square Feet' },
-              { num: '8,000+', label: 'Families' },
-              { num: '30', label: 'Years' },
+              { num: '23', label: 'Projects Delivered' },
+              { num: '62L+', label: 'Square Feet' },
+              { num: '800+', label: 'Homes Delivered' },
+              { num: '30', label: 'Years Since 1995' },
             ].map((stat, i) => (
               <div key={stat.label} style={{ textAlign: 'center', borderLeft: i > 0 ? '1px solid rgba(201,169,110,0.3)' : 'none' }}>
                 <p style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 400, fontStyle: 'italic', color: 'white', lineHeight: 1 }}>{stat.num}</p>
@@ -215,18 +196,39 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', backgroundColor: '#E8ECF0' }} className="legacy-grid">
-            {filtered.map((project, i) => (
-              <div key={project.name} style={{ backgroundColor: 'white', padding: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 500, padding: '3px 10px', background: project.type === 'Residential' ? '#CD0E12' : project.type === 'Commercial' ? '#1A1A2E' : '#C9A96E', color: project.type === 'Township' ? '#1A1A2E' : 'white' }}>{project.type}</span>
-                  <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '9px', color: '#2D7A4F', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#2D7A4F', display: 'inline-block' }} />Delivered</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }} className="legacy-grid">
+            {filtered.map((project) => (
+              <div key={project.name} style={{ background: 'white', border: '0.5px solid rgba(0,0,0,0.08)', borderRadius: '4px', overflow: 'hidden', transition: 'transform 0.25s ease' }}>
+                {/* Image */}
+                <div style={{ position: 'relative', width: '100%', paddingBottom: '60%', height: 0, overflow: 'hidden', backgroundColor: '#1A1A2E' }}>
+                  {(project as any).image ? (
+                    <img src={(project as any).image} alt={project.name} loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #1A1A2E 0%, #2d2d4e 100%)' }}>
+                      <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '13px', color: 'rgba(255,255,255,0.2)', textAlign: 'center', padding: '0 16px' }}>{project.name}</span>
+                    </div>
+                  )}
+                  <span style={{ position: 'absolute', top: '10px', left: '10px', background: project.type === 'Residential' ? 'rgba(205,14,18,0.9)' : project.type === 'Villas' ? 'rgba(201,169,110,0.9)' : project.type === 'Township' ? 'rgba(45,122,79,0.9)' : 'rgba(26,26,46,0.9)', color: 'white', padding: '2px 10px', borderRadius: '100px', fontSize: '9px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{project.type}</span>
+                  {(project as any).year && <span style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(45,122,79,0.9)', color: 'white', padding: '2px 10px', borderRadius: '100px', fontSize: '9px', letterSpacing: '0.05em' }}>Delivered</span>}
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: '18px', fontWeight: 500, color: '#1A1A2E', marginBottom: '4px' }}>{project.name}</h3>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: '#888', marginBottom: '4px' }}>{project.location}</p>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#CD0E12', fontWeight: 500 }}>{project.area}</p>
-                <div style={{ textAlign: 'right', marginTop: '8px' }}>
-                  <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '28px', fontStyle: 'italic', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}>{String(i + 1).padStart(2, '0')}</span>
+                {/* Content */}
+                <div style={{ padding: '16px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-playfair)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E', margin: '0 0 4px 0', lineHeight: 1.3 }}>{project.name}</h3>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: '#888', margin: '0 0 12px 0' }}>{project.location}</p>
+                  <div style={{ display: 'flex', gap: '16px', borderTop: '0.5px solid rgba(0,0,0,0.06)', paddingTop: '12px' }}>
+                    {project.area && (
+                      <div>
+                        <div style={{ fontSize: '8px', color: '#CD0E12', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '2px' }}>Area</div>
+                        <div style={{ fontSize: '12px', color: '#1A1A2E', fontWeight: 500 }}>{project.area}</div>
+                      </div>
+                    )}
+                    {(project as any).units && (
+                      <div>
+                        <div style={{ fontSize: '8px', color: '#CD0E12', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '2px' }}>Units</div>
+                        <div style={{ fontSize: '12px', color: '#1A1A2E', fontWeight: 500 }}>{(project as any).units}</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
