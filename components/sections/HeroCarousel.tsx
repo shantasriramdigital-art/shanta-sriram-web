@@ -50,58 +50,22 @@ export default function HeroCarousel() {
               </div>
             </div>
 
-            <p className="font-sans text-base leading-relaxed text-[#4A4A5A] max-w-lg">
+            <p className="font-sans text-base leading-relaxed text-[#4A4A5A] max-w-lg line-clamp-3">
               {project.description}
             </p>
 
-            {/* Property Details Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-4 py-6">
-              <div className="bg-white border border-[#E8ECF0] rounded-md p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Home size={16} className="text-[#CD0E12]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B]">Type</span>
+            {/* Quick stats row */}
+            <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap', rowGap: '8px', paddingTop: '8px' }}>
+              {[
+                { label: 'Type', value: project.type },
+                { label: 'Units', value: project.units },
+                { label: 'Price', value: project.priceRange },
+              ].map((stat, i, arr) => (
+                <div key={i} style={{ paddingRight: '20px', marginRight: '20px', borderRight: i < arr.length - 1 ? '1px solid #E8ECF0' : 'none' }}>
+                  <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '3px' }}>{stat.label}</div>
+                  <div style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '15px', color: '#1A1A2E', fontWeight: 500 }}>{stat.value}</div>
                 </div>
-                <p className="font-serif text-lg font-medium text-[#1A1A2E]">{project.type}</p>
-              </div>
-
-              <div className="bg-white border border-[#E8ECF0] rounded-md p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Home size={16} className="text-[#CD0E12]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B]">Units</span>
-                </div>
-                <p className="font-serif text-lg font-medium text-[#1A1A2E]">{project.units}</p>
-              </div>
-
-              <div className="bg-white border border-[#E8ECF0] rounded-md p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock size={16} className="text-[#CD0E12]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B]">Possession</span>
-                </div>
-                <p className="font-serif text-lg font-medium text-[#1A1A2E]">{project.possession}</p>
-              </div>
-
-              <div className="bg-white border border-[#E8ECF0] rounded-md p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <IndianRupee size={16} className="text-[#CD0E12]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B]">Price</span>
-                </div>
-                <p className="font-serif text-lg font-medium text-[#1A1A2E]">{project.priceRange}</p>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            <div>
-              <p className="font-sans text-xs uppercase tracking-wider text-[#6B6B6B] mb-3">Key Highlights</p>
-              <div className="flex flex-wrap gap-2">
-                {project.highlights.map((highlight, i) => (
-                  <span
-                    key={i}
-                    className="font-sans text-sm px-3 py-1.5 bg-[#1A1A2E]/5 text-[#1A1A2E] rounded-full border border-[#1A1A2E]/10"
-                  >
-                    {highlight}
-                  </span>
-                ))}
-              </div>
+              ))}
             </div>
 
             {/* CTAs */}
