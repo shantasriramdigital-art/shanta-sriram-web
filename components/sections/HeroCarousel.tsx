@@ -27,35 +27,29 @@ export default function HeroCarousel() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="max-w-[1400px] mx-auto px-6 py-20 md:py-32 lg:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[600px]">
-          {/* Left: Project Details */}
-          <div className="flex flex-col justify-center space-y-6">
+      <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24 lg:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center" style={{ minHeight: '420px' }}>
+          {/* Left: Project Details (3/5 width) */}
+          <div className="lg:col-span-3 flex flex-col justify-center space-y-5">
             <div>
-              <div className="inline-block mb-4">
-                <span className={`text-xs font-sans font-semibold uppercase tracking-widest px-3 py-1 rounded ${
-                  isReadyToMove 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-[#CD0E12]/10 text-[#CD0E12]'
-                }`}>
-                  {project.status}
-                </span>
-              </div>
-              <h1 className="hero-heading text-[#1A1A2E] mb-3 text-balance">
+              <span className={`inline-block text-xs font-sans font-semibold uppercase tracking-widest px-3 py-1 rounded mb-4 ${
+                isReadyToMove ? 'bg-green-100 text-green-700' : 'bg-[#CD0E12]/10 text-[#CD0E12]'
+              }`}>
+                {project.status}
+              </span>
+              <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 400, color: '#1A1A2E', lineHeight: 1.1, margin: '0 0 10px 0' }}>
                 {project.name}
               </h1>
-              <div className="flex items-center gap-2 text-[#4A4A5A] mb-6">
-                <MapPin size={18} className="text-[#CD0E12]" />
-                <span className="font-sans text-lg">{project.location}</span>
+              <div className="flex items-center gap-2 text-[#4A4A5A]">
+                <MapPin size={16} className="text-[#CD0E12]" />
+                <span className="font-sans text-base">{project.location}</span>
               </div>
             </div>
 
-            <p className="font-sans text-base leading-relaxed text-[#4A4A5A] max-w-lg line-clamp-3">
-              {project.description}
-            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-[#4A4A5A] line-clamp-2">{project.description}</p>
 
-            {/* Quick stats row */}
-            <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap', rowGap: '8px', paddingTop: '8px' }}>
+            {/* Stats row */}
+            <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap', rowGap: '8px' }}>
               {[
                 { label: 'Type', value: project.type },
                 { label: 'Units', value: project.units },
@@ -69,67 +63,44 @@ export default function HeroCarousel() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-3 pt-4">
-              <Link
-                href="/site-visit"
-                className="text-sm font-sans font-bold text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors"
-              >
-                Book Free Site Visit
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href={`/projects/${project.slug}`} className="text-sm font-sans font-bold text-white bg-[#CD0E12] px-6 py-3 rounded hover:bg-[#b50d10] transition-colors">
+                View Project
               </Link>
-              <Link
-                href="/#projects-grid"
-                className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors"
-              >
-                View All Projects
+              <Link href="/site-visit" className="text-sm font-sans font-medium text-[#1A1A2E] border border-[#1A1A2E] px-6 py-3 rounded hover:bg-[#1A1A2E] hover:text-white transition-colors">
+                Book Site Visit
               </Link>
             </div>
 
             {/* Badges */}
-            <div className="flex items-center gap-3 pt-2">
-              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#CD0E12] border border-[#CD0E12]/30 px-2.5 py-1 rounded-sm">
-                TSRERA Registered
-              </span>
-              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#6B6B6B] border border-[#E8ECF0] px-2.5 py-1 rounded-sm">
-                Est. 1995
-              </span>
+            <div className="flex items-center gap-3">
+              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#CD0E12] border border-[#CD0E12]/30 px-2.5 py-1 rounded-sm">TSRERA Registered</span>
+              <span className="font-sans text-[10px] uppercase tracking-[0.12em] font-medium text-[#6B6B6B] border border-[#E8ECF0] px-2.5 py-1 rounded-sm">Est. 1995</span>
             </div>
           </div>
 
-          {/* Right: Visual Card */}
-          <div className="hidden lg:flex items-center justify-center">
-            <div className="w-full max-w-md">
-              {/* Project Image */}
-              <div className="rounded-lg overflow-hidden shadow-xl mb-6 aspect-[4/3] relative" style={{ backgroundColor: '#1A1A2E' }}>
-                {(project as any).cardImage ? (
-                  <img
-                    src={(project as any).cardImage}
-                    alt={project.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div className="bg-gradient-to-br from-[#CD0E12] to-[#1A1A2E] w-full h-full flex items-center justify-center">
-                    <div className="text-center px-6">
-                      <Home size={48} className="text-white/30 mx-auto mb-3" />
-                      <p className="font-serif text-white/40 text-lg">{project.name}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Location Advantages */}
-              {(project as any).locationAdvantages && (
-                <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
-                  {(project as any).locationAdvantages.slice(0, 4).map((adv: { label: string; value: string }, i: number) => (
-                    <div key={i} style={{ backgroundColor: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '12px 16px', minWidth: '100px', flexShrink: 0, textAlign: 'center' }}>
-                      <div style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888', marginBottom: '4px' }}>{adv.label}</div>
-                      <div style={{ fontFamily: 'var(--font-playfair, serif)', fontSize: '16px', fontWeight: 500, color: '#1A1A2E' }}>{adv.value}</div>
-                    </div>
-                  ))}
+          {/* Right: Image (2/5 width) */}
+          <div className="lg:col-span-2">
+            <div className="rounded-lg overflow-hidden shadow-xl aspect-[4/3] relative" style={{ backgroundColor: '#1A1A2E' }}>
+              {(project as any).cardImage ? (
+                <img src={(project as any).cardImage} alt={project.name} className="w-full h-full object-cover" loading="lazy" decoding="async" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+              ) : (
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A2E 0%, #2d2d4e 50%, #1A1A2E 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <p style={{ fontFamily: 'var(--font-playfair)', fontSize: '20px', color: 'rgba(255,255,255,0.15)' }}>{project.name}</p>
                 </div>
               )}
             </div>
+            {/* Location pills below image */}
+            {(project as any).locationAdvantages && (
+              <div className="no-scrollbar" style={{ display: 'flex', gap: '6px', overflowX: 'auto', marginTop: '12px', paddingBottom: '4px' }}>
+                {(project as any).locationAdvantages.slice(0, 4).map((adv: { label: string; value: string }, i: number) => (
+                  <div key={i} style={{ backgroundColor: 'white', border: '0.5px solid rgba(0,0,0,0.1)', borderRadius: '6px', padding: '8px 12px', minWidth: '80px', flexShrink: 0, textAlign: 'center' }}>
+                    <div style={{ fontSize: '8px', color: '#999', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '2px' }}>{adv.label}</div>
+                    <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '14px', color: '#1A1A2E' }}>{adv.value}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
