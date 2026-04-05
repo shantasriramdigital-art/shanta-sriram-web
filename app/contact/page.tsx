@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import WhatsAppFAB from '@/components/ui/WhatsAppFAB';
 import SectionLabel from '@/components/ui/SectionLabel';
 import LeadForm from '@/components/ui/LeadForm';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -137,7 +136,6 @@ export default function ContactPage() {
           </div>
         </section>
         <Footer />
-        <WhatsAppFAB />
       </main>
     </>
   );

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import WhatsAppFAB from '@/components/ui/WhatsAppFAB'
 import SectionLabel from '@/components/ui/SectionLabel'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
 import {
@@ -268,7 +267,6 @@ export default function TrustPage() {
       </section>
 
       <Footer />
-      <WhatsAppFAB />
     </main>
   )
 }

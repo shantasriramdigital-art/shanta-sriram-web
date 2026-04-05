@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import WhatsAppFAB from '@/components/ui/WhatsAppFAB';
 import { INSIGHTS } from '@/lib/data/insights';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 

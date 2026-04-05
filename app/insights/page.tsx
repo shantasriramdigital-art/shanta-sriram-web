@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import WhatsAppFAB from '@/components/ui/WhatsAppFAB';
 import { INSIGHTS } from '@/lib/data/insights';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { ChevronRight } from 'lucide-react';
@@ -128,7 +127,6 @@ export default function InsightsPage() {
         </div>
       </section>
       <Footer />
-      <WhatsAppFAB />
     </main>
     </>
   );

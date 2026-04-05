@@ -1,6 +1,5 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import WhatsAppFAB from '@/components/ui/WhatsAppFAB'
 import ExitIntentPopup from '@/components/ui/ExitIntentPopup'
 import StickyMobileCTA from '@/components/ui/StickyMobileCTA'
 import HeroCarousel from '@/components/sections/HeroCarousel'
@@ -31,7 +30,6 @@ export default function HomePage() {
         <Testimonials />
         <ContactStrip />
         <Footer />
-        <WhatsAppFAB />
         <ExitIntentPopup />
         <StickyMobileCTA />
       </main>
