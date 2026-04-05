@@ -37,7 +37,7 @@ const PROPERTY_MENU = {
   legacy: {
     label: 'Legacy',
     links: [
-      { label: 'Completed Projects', href: '/legacy' },
+      { label: 'Completed Projects', href: '/about' },
     ],
     stats: ['41 Projects Delivered', '6M+ Sft'],
     note: '30 years of delivery',

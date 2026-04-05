@@ -7,7 +7,7 @@ const FOOTER_LINKS = {
     { label: 'Villas', href: '/villas' },
     { label: 'Commercial', href: '/commercial' },
     { label: 'Mall Properties', href: '/malls' },
-    { label: 'Legacy Projects', href: '/legacy' },
+    { label: 'Our Story', href: '/about' },
   ],
   buyers: [
     { label: 'NRI Guide', href: '/nri' },
