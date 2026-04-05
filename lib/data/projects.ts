@@ -366,6 +366,7 @@ export const PROJECTS = [
     rera: 'Registration applied',
     priceRange: 'Price on request',
     priceDisclaimer: 'Prices indicative. Contact sales for current pricing.',
+    cardImage: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/skycity/gdk4gdbei5otqxpo6fjw.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL3NreWNpdHkvZ2RrNGdkYmVpNW90cXhwbzZmancuanBnIiwiaWF0IjoxNzc1MzY1MDk0LCJleHAiOjg2NTc3NTM2NTA5NH0.7mUQjMH4uhEcJiHjg5-v1ibtiboVCexDtjngzf8yqWU',
     locationAdvantages: [
       { label: 'HITEC City', value: '5 min' },
       { label: 'Financial District', value: '8 min' },
@@ -375,7 +376,21 @@ export const PROJECTS = [
     ],
     description:
       "Shanta Sriram's flagship premium tower at Gachibowli, the nerve centre of Hyderabad's IT economy. Ready-to-move apartments with panoramic city views and world-class amenities.",
-    highlights: ['Ready to move', 'Premium tower', 'Panoramic views', 'IT hub location'],
+    highlights: [
+      'Premium tower at Gachibowli Circle',
+      'Panoramic city and IT corridor views',
+      'Ready to move',
+      '2, 3 and 4 BHK configurations',
+      'World-class amenities',
+      'Direct ORR connectivity',
+      'Walking distance to IT parks',
+      '24 hour security',
+    ],
+    heroImages: [
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/skycity/gdk4gdbei5otqxpo6fjw.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL3NreWNpdHkvZ2RrNGdkYmVpNW90cXhwbzZmancuanBnIiwiaWF0IjoxNzc1MzY1MDk0LCJleHAiOjg2NTc3NTM2NTA5NH0.7mUQjMH4uhEcJiHjg5-v1ibtiboVCexDtjngzf8yqWU', alt: 'Shanta Sriram Skycity - Gachibowli Hyderabad', category: 'exterior' },
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/skycity/download%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL3NreWNpdHkvZG93bmxvYWQgKDIpLmpwZWciLCJpYXQiOjE3NzUzNjUzMDAsImV4cCI6ODY1Nzc1MzY1MzAwfQ.A20mDVSZDlU5jlpuSzKEvNEu5d4KQt9BVxjRzqPse_M', alt: 'Shanta Sriram Skycity - View 2', category: 'exterior' },
+      { url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/skycity/download%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL3NreWNpdHkvZG93bmxvYWQgKDEpLmpwZWciLCJpYXQiOjE3NzUzNjUzMjIsImV4cCI6ODgxNzUzNjUzMjJ9.PJ4P4MpB47g4bN6tJtAP5UKOjsGItNePH5SJEJ0Kav0', alt: 'Shanta Sriram Skycity - View 3', category: 'exterior' },
+    ],
     amenities: [
       'Swimming Pool',
       'Gymnasium',
