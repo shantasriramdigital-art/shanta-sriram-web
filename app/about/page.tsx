@@ -118,7 +118,7 @@ export default function AboutPage() {
                     height={180}
                     loading="lazy"
                     data-logo=""
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.05) brightness(1.02) saturate(1.05)' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block', filter: 'contrast(1.05) brightness(1.02) saturate(1.05)' }}
                   />
                 </div>
                 {/* Text */}
@@ -254,7 +254,7 @@ export default function AboutPage() {
           .stats-bar-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
           .founders-grid-about { grid-template-columns: 1fr !important; }
           .founder-card-about { flex-direction: column !important; }
-          .founder-card-about > div:first-child { width: 100% !important; height: 240px !important; }
+          .founder-card-about > div:first-child { width: 100% !important; height: 200px !important; }
           .values-grid { grid-template-columns: 1fr !important; }
           .legacy-grid { grid-template-columns: 1fr !important; }
         }

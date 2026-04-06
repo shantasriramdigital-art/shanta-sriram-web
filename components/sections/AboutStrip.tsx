@@ -75,7 +75,7 @@ export default function AboutStrip() {
                   height={200}
                   loading="lazy"
                   data-logo=""
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.05) brightness(1.02) saturate(1.05)' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block', filter: 'contrast(1.05) brightness(1.02) saturate(1.05)' }}
                 />
                 <div style={{ position: 'absolute', top: 0, right: 0, width: '3px', height: '100%', backgroundColor: '#CD0E12' }} />
               </div>
@@ -109,7 +109,7 @@ export default function AboutStrip() {
           }
           .founder-card > div:first-child {
             width: 100% !important;
-            height: 220px !important;
+            height: 200px !important;
           }
         }
       `}</style>
