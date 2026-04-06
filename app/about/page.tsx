@@ -10,7 +10,7 @@ const FOUNDERS = [
     name: 'M. Narsaiah',
     title: 'Chairman and Managing Director',
     photo: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/Founder%20images/Mr.Narsi.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL0ZvdW5kZXIgaW1hZ2VzL01yLk5hcnNpLmpwZWciLCJpYXQiOjE3NzUzMzQwNTcsImV4cCI6ODgxNzUzMzQwNTd9.06ZID2cft8-AL441l6d4M8iJxBW-QUIUlGoADkvUCWo',
-    bio: 'Founded Shanta Sriram Constructions in 1995 with a singular vision: to build homes that stand the test of time. Under his leadership, the company has delivered 8,000+ homes across Hyderabad across 30 years, maintaining a zero-default record on delivery commitments.',
+    bio: 'Founded Shanta Sriram Constructions in 1995 with a singular vision: to build homes that stand the test of time. Under his leadership, the company has delivered 8,000+ homes across Hyderabad across 31 years, maintaining a zero-default record on delivery commitments.',
     quote: "We don't build homes. We build wealth platforms. Every brick we lay is a promise of permanence.",
   },
   {
@@ -85,7 +85,7 @@ export default function AboutPage() {
               { num: '23', label: 'Projects Delivered' },
               { num: '62L+', label: 'Square Feet' },
               { num: '800+', label: 'Homes Delivered' },
-              { num: '30', label: 'Years Since 1995' },
+              { num: '31', label: 'Years Since 1995' },
             ].map((stat, i) => (
               <div key={stat.label} style={{ textAlign: 'center', borderLeft: i > 0 ? '1px solid rgba(201,169,110,0.3)' : 'none' }}>
                 <p style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 400, fontStyle: 'italic', color: 'white', lineHeight: 1 }}>{stat.num}</p>
@@ -166,7 +166,7 @@ export default function AboutPage() {
       <section style={{ backgroundColor: '#1A1A2E', padding: '80px 0' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
           <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(24px, 3vw, 40px)', fontWeight: 300, fontStyle: 'italic', color: 'white', lineHeight: 1.4, marginBottom: '24px' }}>
-            &ldquo;We have never missed a possession date. Not once. In 30 years.&rdquo;
+            &ldquo;We have never missed a possession date. Not once. In 31 years.&rdquo;
           </p>
           <div style={{ width: '60px', height: '2px', backgroundColor: '#C9A96E', margin: '0 auto 16px' }} />
           <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#C9A96E', marginBottom: '24px' }}>M. Narsaiah, Chairman and Managing Director</p>

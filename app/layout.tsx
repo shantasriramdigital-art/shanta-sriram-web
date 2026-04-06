@@ -10,7 +10,7 @@ const tenorSans = Tenor_Sans({ subsets: ['latin'], weight: ['400'], variable: '-
 
 export const metadata: Metadata = {
   title: { default: 'Shanta Sriram Constructions | Where Trust Is A Tradition', template: '%s | Shanta Sriram Constructions' },
-  description: 'Premium residential apartments in Hyderabad. The Bodhivriksha at Appa Junction and The Kalpavriksha at Bahadurpally. 30 years of trust. 8,000+ homes delivered.',
+  description: 'Premium residential apartments in Hyderabad. The Bodhivriksha at Appa Junction and The Kalpavriksha at Bahadurpally. 31 years of trust. 8,000+ homes delivered.',
   keywords: ['Shanta Sriram', 'apartments Hyderabad', 'Bodhivriksha', 'Kalpavriksha', 'flats Hyderabad', 'RERA registered', 'Bahadurpally apartments', 'Appa Junction flats'],
   authors: [{ name: 'Shanta Sriram Constructions Pvt. Ltd.' }],
   creator: 'Shanta Sriram Constructions Pvt. Ltd.',
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website', locale: 'en_IN', url: 'https://shanta-sriram-web.vercel.app', siteName: 'Shanta Sriram Constructions',
     title: 'Shanta Sriram Constructions | Where Trust Is A Tradition',
-    description: 'Premium residential apartments in Hyderabad. 30 years of legacy. 8,000+ homes delivered. RERA registered projects.',
+    description: 'Premium residential apartments in Hyderabad. 31 years of legacy. 8,000+ homes delivered. RERA registered projects.',
     images: [{ url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg', width: 1200, height: 630, alt: 'Shanta Sriram Constructions' }],
   },
-  twitter: { card: 'summary_large_image', title: 'Shanta Sriram Constructions | Where Trust Is A Tradition', description: 'Premium residential apartments in Hyderabad. RERA registered. 30 years legacy.', images: ['https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg'] },
+  twitter: { card: 'summary_large_image', title: 'Shanta Sriram Constructions | Where Trust Is A Tradition', description: 'Premium residential apartments in Hyderabad. RERA registered. 31 years legacy.', images: ['https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg'] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large' as const, 'max-snippet': -1 } },
 }
 

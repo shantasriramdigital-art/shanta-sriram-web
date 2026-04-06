@@ -55,7 +55,7 @@ Be cautious of any developer who cannot provide a TSRERA registration number, or
   },
   {
     slug: 'thirty-years-of-trust',
-    title: '30 Years of Trust: The Shanta Sriram Story',
+    title: '31 Years of Trust: The Shanta Sriram Story',
     category: 'Company',
     date: '2024-11-20',
     excerpt:

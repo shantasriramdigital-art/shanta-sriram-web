@@ -46,7 +46,7 @@ export default function AboutStrip() {
           <div style={{ display: 'flex', gap: '0', marginBottom: '40px' }}>
             {[
               { number: '8,000+', label: 'Homes Delivered' },
-              { number: '30', label: 'Years' },
+              { number: '31', label: 'Years' },
               { number: 'Zero', label: 'Defaults' },
             ].map((stat, i) => (
               <div key={i} style={{ flex: 1, paddingRight: i < 2 ? '24px' : '0', marginRight: i < 2 ? '24px' : '0', borderRight: i < 2 ? '1px solid rgba(201,169,110,0.3)' : 'none' }}>

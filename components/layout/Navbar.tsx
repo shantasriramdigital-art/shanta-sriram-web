@@ -40,7 +40,7 @@ const PROPERTY_MENU = {
       { label: 'Completed Projects', href: '/about' },
     ],
     stats: ['41 Projects Delivered', '6M+ Sft'],
-    note: '30 years of delivery',
+    note: '31 years of delivery',
   },
 }
 

@@ -228,6 +228,47 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </div>
         </section>
 
+        {/* Tower Names */}
+        {p.towerNames && p.towerNames.length > 0 && (
+          <section className="bg-[#F4F7FC] py-16 md:py-20">
+            <div className="max-w-[1200px] mx-auto px-6">
+              <SectionLabel className="mb-4">TOWER NAMES</SectionLabel>
+              <h2 className="text-h2 font-serif text-[#1A1A2E] mb-10">Our Towers</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(p.towerNames.length, 3)}, 1fr)`, gap: '16px' }} className="tower-names-grid">
+                {p.towerNames.map((tower: { id: string; name: string; possession: string }) => (
+                  <div key={tower.id} style={{ background: 'white', border: '0.5px solid rgba(0,0,0,0.08)', borderRadius: '6px', padding: '20px' }}>
+                    <div style={{ fontFamily: 'var(--font-tenor)', fontSize: '10px', color: '#CD0E12', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '8px' }}>{tower.id}</div>
+                    <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '22px', fontWeight: 500, color: '#1A1A2E', marginBottom: '8px' }}>{tower.name}</div>
+                    <div style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: '#888' }}>Possession: {tower.possession}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Commercial Specs (Skycity) */}
+        {p.commercialSpecs && (
+          <section className="bg-white py-16 md:py-20">
+            <div className="max-w-[1200px] mx-auto px-6">
+              <SectionLabel className="mb-4">COMMERCIAL SPECIFICATIONS</SectionLabel>
+              <h2 className="text-h2 font-serif text-[#1A1A2E] mb-10">Tower 2 - Available Spaces</h2>
+              <div className="bg-[#F8F4EF] border border-[#E8ECF0] rounded-md overflow-hidden max-w-2xl">
+                {Object.entries(p.commercialSpecs).map(([key, value], i) => (
+                  <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px', borderBottom: i < Object.keys(p.commercialSpecs).length - 1 ? '0.5px solid rgba(0,0,0,0.06)' : 'none' }}>
+                    <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', color: '#888', textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', color: '#1A1A2E', fontWeight: 500 }}>{value as string}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: '12px', marginTop: '24px', flexWrap: 'wrap' }}>
+                <a href={`https://wa.me/919849955887?text=${encodeURIComponent('Hi, I am interested in commercial space at Shanta Sriram Skycity, Gachibowli. Please share details.')}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: '#CD0E12', color: 'white', padding: '12px 24px', borderRadius: '4px', textDecoration: 'none', fontSize: '13px', fontWeight: 500 }}>Enquire for Sale</a>
+                <a href={`https://wa.me/919849955887?text=${encodeURIComponent('Hi, I am interested in leasing commercial space at Shanta Sriram Skycity, Gachibowli. Please share details.')}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: '#1A1A2E', color: 'white', padding: '12px 24px', borderRadius: '4px', textDecoration: 'none', fontSize: '13px', fontWeight: 500 }}>Enquire for Lease</a>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Unit Types */}
         {p.unitTypes && (
           <section className="bg-[#F4F7FC] py-20 md:py-24">

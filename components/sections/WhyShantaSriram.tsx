@@ -11,7 +11,7 @@ const DIFFERENTIATORS = [
   },
   {
     num: '02',
-    title: '30 Years, Zero Defaults',
+    title: '31 Years, Zero Defaults',
     body: 'Since 1995, Shanta Sriram has never defaulted on a delivery commitment. Every home promised has been delivered, on time, as specified.',
   },
   {
