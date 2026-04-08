@@ -12,6 +12,7 @@ import StatsCounter from '@/components/sections/StatsCounter'
 import EMICalculator from '@/components/sections/EMICalculator'
 import Testimonials from '@/components/sections/Testimonials'
 import ContactStrip from '@/components/sections/ContactStrip'
+import VideoSection from '@/components/sections/VideoSection'
 import { PageWrapper } from '@/components/ui/PageWrapper'
 
 export default function HomePage() {
@@ -26,6 +27,7 @@ export default function HomePage() {
         <ProjectsGrid />
         <WhyShantaSriram />
         <StatsCounter />
+        <VideoSection />
         <EMICalculator />
         <Testimonials />
         <ContactStrip />
