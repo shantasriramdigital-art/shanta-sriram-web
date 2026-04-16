@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     type: 'website', locale: 'en_IN', url: 'https://shanta-sriram-web.vercel.app', siteName: 'Shanta Sriram Constructions',
     title: 'Shanta Sriram Constructions | Where Trust Is A Tradition',
     description: 'Premium residential apartments in Hyderabad. 31 years of legacy. 8,000+ homes delivered. RERA registered projects.',
-    images: [{ url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg', width: 1200, height: 630, alt: 'Shanta Sriram Constructions' }],
+    images: [{ url: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/render/image/sign/Images/VIEW%20FROM%20ROAD%20SIDE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvVklFVyBGUk9NIFJPQUQgU0lERS5qcGciLCJpYXQiOjE3NzUzMzE4NzAsImV4cCI6MTA0MTUzMzE4NzB9.EhEstqnAs3txdBUcQn4j_WKDRt8hWvaGMPkwUi1Y9sM&width=1200&quality=80&format=webp', width: 1200, height: 630, alt: 'Shanta Sriram Constructions' }],
   },
-  twitter: { card: 'summary_large_image', title: 'Shanta Sriram Constructions | Where Trust Is A Tradition', description: 'Premium residential apartments in Hyderabad. RERA registered. 31 years legacy.', images: ['https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/public/Images/bodhivriksha-render.jpg'] },
+  twitter: { card: 'summary_large_image', title: 'Shanta Sriram Constructions | Where Trust Is A Tradition', description: 'Premium residential apartments in Hyderabad. RERA registered. 31 years legacy.', images: ['https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/render/image/sign/Images/VIEW%20FROM%20ROAD%20SIDE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvVklFVyBGUk9NIFJPQUQgU0lERS5qcGciLCJpYXQiOjE3NzUzMzE4NzAsImV4cCI6MTA0MTUzMzE4NzB9.EhEstqnAs3txdBUcQn4j_WKDRt8hWvaGMPkwUi1Y9sM&width=1200&quality=80&format=webp'] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large' as const, 'max-snippet': -1 } },
 }
 
