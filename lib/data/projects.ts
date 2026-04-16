@@ -30,7 +30,7 @@ export const PROJECTS = [
     certification: 'IGBC Pre-Certified Platinum Rated',
     towers: ['Anandi', 'Sukoon', 'Utsah'],
     description:
-      'Premium gated community at Bandlaguda Jagir near TSPA Junction with 775 thoughtfully designed 2 & 3 BHK apartments across three towers, 2 clubhouses, lake-view homes, and IGBC Pre-Certified Platinum rating.',
+      'Premium gated community at Bandlaguda Jagir near TSPA Junction with 776 thoughtfully designed 2 & 3 BHK apartments across three towers, 2 clubhouses, lake-view homes, and IGBC Pre-Certified Platinum rating.',
     highlights: [
       'A tree for each home',
       'Work from home zones',
@@ -391,7 +391,7 @@ export const PROJECTS = [
     status: 'Available for Sale and Lease',
     possession: 'Immediate',
     rera: 'Registration applied',
-    priceRange: '\u20b930,000 per sft',
+    priceRange: 'Price on Request',
     priceDisclaimer: 'Prices for outright sale. Lease rates available on request.',
     cardImage: 'https://weargjpimolrgzgmzyyd.supabase.co/storage/v1/object/sign/Kalpavriksha%20brouchers/skycity/gdk4gdbei5otqxpo6fjw.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYmI2ZGFmMi04OGE0LTRhNjAtYWFmMi04Y2IzZjg5ZGQ4ZmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJLYWxwYXZyaWtzaGEgYnJvdWNoZXJzL3NreWNpdHkvZ2RrNGdkYmVpNW90cXhwbzZmancuanBnIiwiaWF0IjoxNzc1MzY1MDk0LCJleHAiOjg2NTc3NTM2NTA5NH0.7mUQjMH4uhEcJiHjg5-v1ibtiboVCexDtjngzf8yqWU',
     locationAdvantages: [
@@ -421,7 +421,7 @@ export const PROJECTS = [
     commercialSpecs: {
       minUnit: '3,000 sft',
       maxUnit: '30,000 sft',
-      rate: '\u20b930,000 per sft (outright sale)',
+      rate: 'Price on Request',
       lease: 'Available on request',
       power: '100% backup',
       parking: 'Dedicated basement floors',

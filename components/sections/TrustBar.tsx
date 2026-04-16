@@ -11,7 +11,7 @@ export default function TrustBar() {
             </div>
             <div className="w-px h-10 bg-white/15 hidden md:block" />
             <div className="flex-1 md:flex-none text-center md:px-8">
-              <p className="font-serif text-white text-2xl font-bold">30+</p>
+              <p className="font-serif text-white text-2xl font-bold">31</p>
               <p className="font-sans text-white/50 text-[10px] uppercase tracking-wider">Years of Legacy</p>
             </div>
             <div className="w-px h-10 bg-white/15 hidden md:block" />

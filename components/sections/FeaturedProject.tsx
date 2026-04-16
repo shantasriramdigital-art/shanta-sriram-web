@@ -52,10 +52,9 @@ export default function FeaturedProject() {
             {/* Quick stats 2x2 */}
             <div className="grid grid-cols-2 gap-3 mb-6">
               {[
-                { label: 'Units', value: '775' },
+                { label: 'Units', value: '776' },
                 { label: 'Towers', value: '3' },
                 { label: 'Sizes', value: '1090-1975 sft' },
-                { label: 'Rating', value: 'IGBC Platinum' },
               ].map((stat) => (
                 <div key={stat.label} className="bg-white border border-[#E8ECF0] rounded-md p-3">
                   <p className="font-sans text-[10px] uppercase tracking-wider text-[#6B6B6B] mb-1">{stat.label}</p>

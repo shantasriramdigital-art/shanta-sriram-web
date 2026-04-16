@@ -25,7 +25,7 @@ export const BRAND = {
     },
   ],
   stats: [
-    { value: 30, suffix: '+', label: 'Years of Legacy' },
+    { value: 31, suffix: '', label: 'Years of Legacy' },
     { value: 8000, suffix: '+', label: 'Happy Homes' },
     { value: 80, suffix: '+', label: 'Projects Delivered' },
     { value: 4, suffix: '', label: 'Ongoing Projects' },

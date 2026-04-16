@@ -34,7 +34,7 @@ export default function NRIPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {[
               { value: '8,000+', label: 'Homes Delivered' },
-              { value: '30+', label: 'Years Legacy' },
+              { value: '31', label: 'Years Legacy' },
               { value: 'IGBC', label: 'Certified Projects' },
               { value: '100%', label: 'RERA Compliant' },
             ].map((stat) => (

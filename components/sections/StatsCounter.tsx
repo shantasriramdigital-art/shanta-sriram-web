@@ -2,7 +2,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
 
 const STATS = [
-  { value: 30, suffix: '+', label: 'Years of Legacy', context: 'Since 1995' },
+  { value: 31, suffix: '', label: 'Years of Legacy', context: 'Since 1995' },
   { value: 8000, suffix: '+', label: 'Happy Homes', context: 'Across Hyderabad' },
   { value: 80, suffix: '+', label: 'Projects Delivered', context: '100% completion rate' },
   { value: 100, suffix: '%', label: 'RERA Compliant', context: 'All ongoing projects' },
