@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { UserPlus } from 'lucide-react'
+import type { UserRole } from '@/types/crm'
 
 export function InviteAgentModal() {
   const router = useRouter()
@@ -23,7 +24,7 @@ export function InviteAgentModal() {
   const [email, setEmail] = useState('')
   const [fullName, setFullName] = useState('')
   const [phone, setPhone] = useState('')
-  const [role, setRole] = useState<'admin' | 'sales' | 'viewer'>('sales')
+  const [role, setRole] = useState<UserRole>('sales')
   const [pending, setPending] = useState(false)
 
   async function submit() {
@@ -75,10 +76,11 @@ export function InviteAgentModal() {
           </div>
           <div>
             <Label>Role</Label>
-            <Select value={role} onValueChange={(v) => setRole(v as 'admin' | 'sales' | 'viewer')}>
+            <Select value={role} onValueChange={(v) => setRole(v as UserRole)}>
               <SelectTrigger className="mt-1"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="sales">Sales</SelectItem>
+                <SelectItem value="manager">Manager</SelectItem>
                 <SelectItem value="admin">Admin</SelectItem>
                 <SelectItem value="viewer">Viewer</SelectItem>
               </SelectContent>
