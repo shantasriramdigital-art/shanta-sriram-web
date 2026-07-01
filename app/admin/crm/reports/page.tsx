@@ -24,7 +24,8 @@ export default async function ReportsPage() {
     getSourcePerformance(),
   ])
 
-  const showAgentPerf = user?.role === 'admin' || user?.role === 'viewer'
+  const showAgentPerf =
+    user?.role === 'admin' || user?.role === 'manager' || user?.role === 'viewer'
   const maxLeadsBySource = Math.max(1, ...sourcePerf.map((s) => s.total_leads))
 
   const stageCounts = new Map<LeadStage, number>()

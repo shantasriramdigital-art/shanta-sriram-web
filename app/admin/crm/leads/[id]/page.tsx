@@ -30,7 +30,10 @@ export default async function LeadDetailPage({ params }: PageProps) {
   ])
   if (!lead) notFound()
 
-  const canReassign = user?.role === 'admin' || (user?.role === 'sales' && (lead.assigned_to === null || lead.assigned_to === user.id))
+  const canReassign =
+    user?.role === 'admin' ||
+    user?.role === 'manager' ||
+    (user?.role === 'sales' && (lead.assigned_to === null || lead.assigned_to === user.id))
   const waLink = `https://wa.me/91${lead.phone.replace(/\D/g, '')}`
 
   return (

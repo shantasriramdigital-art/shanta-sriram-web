@@ -14,17 +14,18 @@ import { cn } from '@/lib/utils'
 import type { UserRole } from '@/types/crm'
 
 const navItems = [
-  { href: '/admin/crm', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'sales', 'viewer'] as UserRole[] },
-  { href: '/admin/crm/leads', label: 'Leads', icon: Users, roles: ['admin', 'sales', 'viewer'] as UserRole[] },
-  { href: '/admin/crm/visits', label: 'Visits', icon: CalendarCheck, roles: ['admin', 'sales', 'viewer'] as UserRole[] },
-  { href: '/admin/crm/bookings', label: 'Bookings', icon: IndianRupee, roles: ['admin', 'sales', 'viewer'] as UserRole[] },
-  { href: '/admin/crm/reports', label: 'Reports', icon: BarChart3, roles: ['admin', 'viewer'] as UserRole[] },
+  { href: '/admin/crm', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'manager', 'sales', 'viewer'] as UserRole[] },
+  { href: '/admin/crm/leads', label: 'Leads', icon: Users, roles: ['admin', 'manager', 'sales', 'viewer'] as UserRole[] },
+  { href: '/admin/crm/visits', label: 'Visits', icon: CalendarCheck, roles: ['admin', 'manager', 'sales', 'viewer'] as UserRole[] },
+  { href: '/admin/crm/bookings', label: 'Bookings', icon: IndianRupee, roles: ['admin', 'manager', 'sales', 'viewer'] as UserRole[] },
+  { href: '/admin/crm/reports', label: 'Reports', icon: BarChart3, roles: ['admin', 'manager', 'viewer'] as UserRole[] },
   { href: '/admin/crm/agents', label: 'Team', icon: UserCog, roles: ['admin'] as UserRole[] },
 ]
 
 export function AdminSidebar({ role }: { role: UserRole | null }) {
   const pathname = usePathname()
-  const items = navItems.filter((i) => !role || i.roles.includes(role))
+  // No role (unprovisioned account) gets no navigation, not every item.
+  const items = role ? navItems.filter((i) => i.roles.includes(role)) : []
 
   return (
     <>

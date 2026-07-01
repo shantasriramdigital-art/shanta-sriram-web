@@ -30,7 +30,7 @@ export const LEAD_STAGE_LABELS: Record<LeadStage, string> = {
   lost: 'Lost',
 }
 
-export type UserRole = 'admin' | 'sales' | 'viewer'
+export type UserRole = 'admin' | 'sales' | 'viewer' | 'manager'
 
 export type ActivityType =
   | 'call'
