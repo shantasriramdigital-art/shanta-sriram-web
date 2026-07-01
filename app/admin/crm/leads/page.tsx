@@ -1,14 +1,16 @@
-import { getAgents, getLeads } from '@/lib/crm/queries'
+import { getAgents, getCurrentUser, getLeads } from '@/lib/crm/queries'
 import { LeadsView } from '@/components/crm/LeadsView'
 import type { LeadStage } from '@/types/crm'
 
 export const dynamic = 'force-dynamic'
 
 export default async function LeadsPage() {
-  const [{ rows }, agents] = await Promise.all([
+  const [{ rows }, agents, user] = await Promise.all([
     getLeads({ pageSize: 500 }),
     getAgents(),
+    getCurrentUser(),
   ])
+  const isAdmin = user?.role === 'admin'
 
   const sources = Array.from(
     new Set(rows.map((r) => r.source).filter((s): s is string => Boolean(s)))
@@ -46,6 +48,7 @@ export default async function LeadsPage() {
         agents={agents.map((a) => ({ id: a.id, full_name: a.full_name }))}
         sources={sources}
         projects={projects}
+        isAdmin={isAdmin}
       />
     </div>
   )

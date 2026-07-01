@@ -3,6 +3,8 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { LeadsKanban } from './LeadsKanban'
 import { LeadsTable } from './LeadsTable'
+import { LeadsExportButton } from './LeadsExportButton'
+import { LeadsImportDialog } from './LeadsImportDialog'
 import type { LeadStage } from '@/types/crm'
 
 interface Lead {
@@ -26,15 +28,24 @@ interface Props {
   agents: { id: string; full_name: string }[]
   sources: string[]
   projects: string[]
+  isAdmin?: boolean
 }
 
-export function LeadsView({ leads, agents, sources, projects }: Props) {
+export function LeadsView({ leads, agents, sources, projects, isAdmin = false }: Props) {
   return (
     <Tabs defaultValue="kanban" className="space-y-4">
-      <TabsList>
-        <TabsTrigger value="kanban">Kanban</TabsTrigger>
-        <TabsTrigger value="table">Table</TabsTrigger>
-      </TabsList>
+      <div className="flex items-center justify-between gap-3">
+        <TabsList>
+          <TabsTrigger value="kanban">Kanban</TabsTrigger>
+          <TabsTrigger value="table">Table</TabsTrigger>
+        </TabsList>
+        {isAdmin && (
+          <div className="flex items-center gap-2">
+            <LeadsExportButton />
+            <LeadsImportDialog />
+          </div>
+        )}
+      </div>
       <TabsContent value="kanban">
         <LeadsKanban leads={leads} />
       </TabsContent>
