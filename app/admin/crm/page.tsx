@@ -9,7 +9,7 @@ import {
   getTodaysFollowups,
   getOverdueFollowups,
   getStaleLeads,
-  getSourcePerformance,
+  getSourceBreakdown30d,
 } from '@/lib/crm/queries'
 import { KpiCard } from '@/components/crm/KpiCard'
 import { DashboardFunnel } from '@/components/crm/DashboardFunnel'
@@ -37,7 +37,7 @@ export default async function CrmDashboardPage() {
     getTodaysFollowups(agentId),
     getOverdueFollowups(agentId),
     getStaleLeads(agentId),
-    canSeeSource ? getSourcePerformance() : Promise.resolve([] as SourcePerformanceRow[]),
+    canSeeSource ? getSourceBreakdown30d(agentId) : Promise.resolve([] as SourcePerformanceRow[]),
   ])
 
   const delta =
@@ -124,8 +124,8 @@ export default async function CrmDashboardPage() {
         {canSeeSource && (
           <section className="rounded-lg border border-[#E8ECF0] bg-[#F8F4EF] p-6">
             <div className="mb-4">
-              <h2 className="font-serif text-lg text-[#1A1A2E]">Lead Sources</h2>
-              <p className="mt-0.5 font-sans text-xs text-[#6B6B6B]">Top channels by volume.</p>
+              <h2 className="font-serif text-lg text-[#1A1A2E]">Lead sources, last 30 days</h2>
+              <p className="mt-0.5 font-sans text-xs text-[#6B6B6B]">New leads by channel.</p>
             </div>
             <SourceBars rows={source} />
           </section>

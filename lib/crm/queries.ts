@@ -263,6 +263,38 @@ export async function getStaleLeads(agentId?: string | null): Promise<StaleLeads
   return { rows: stale.slice(0, 8), count: stale.length }
 }
 
+// True last-30-days lead volume by source, for the dashboard source card only.
+// Unlike the all-time v_source_performance view, this is date-bounded, so counts
+// reflect the trailing 30 days. Returned in the SourcePerformanceRow shape with
+// conversion_pct null (this is a volume breakdown, not a conversion report).
+// agentId scopes to a single agent to match the rest of the dashboard, though
+// the card is only shown to admin/manager/viewer (never sales).
+export async function getSourceBreakdown30d(
+  agentId?: string | null
+): Promise<SourcePerformanceRow[]> {
+  const supabase = await createServerSupabase()
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 86400 * 1000).toISOString()
+
+  let query = supabase.from('leads').select('source').gte('created_at', thirtyDaysAgo)
+  if (agentId) query = query.eq('assigned_to', agentId)
+  const { data } = await query
+
+  const counts = new Map<string, number>()
+  for (const r of data ?? []) {
+    const src = r.source ?? 'unknown'
+    counts.set(src, (counts.get(src) ?? 0) + 1)
+  }
+
+  return [...counts.entries()]
+    .map(([source, total_leads]) => ({
+      source,
+      total_leads,
+      bookings_count: 0,
+      conversion_pct: null,
+    }))
+    .sort((a, b) => b.total_leads - a.total_leads)
+}
+
 // Per-agent funnel, computed from the agent's own leads. The shared
 // v_funnel_summary view cannot be filtered by agent, so sales uses this.
 export async function getFunnelForAgent(agentId: string): Promise<FunnelRow[]> {
