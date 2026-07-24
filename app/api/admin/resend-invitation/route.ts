@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createServerSupabase } from '@/utils/supabase/server'
+import { Resend } from 'resend'
+import { AgentInvite } from '@/emails/AgentInvite'
 
 export async function POST(req: NextRequest) {
   const supabase = await createServerSupabase()
@@ -11,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const { data: agent } = await supabase
     .from('agents')
-    .select('role')
+    .select('role, full_name')
     .eq('id', user.id)
     .maybeSingle()
   if (agent?.role !== 'admin') {
@@ -43,13 +45,33 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Agent not found' }, { status: 404 })
   }
 
-  // Resend invitation
-  const { error: inviteError } = await admin.auth.admin.inviteUserByEmail(agentData.email, {
+  // Generate new invitation via Supabase (creates new invite token)
+  const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(agentData.email, {
     data: { full_name: agentData.full_name },
   })
 
-  if (inviteError) {
-    return NextResponse.json({ error: inviteError.message }, { status: 400 })
+  if (inviteError || !invited?.user) {
+    return NextResponse.json({ error: inviteError?.message ?? 'Invite failed' }, { status: 400 })
+  }
+
+  // Send invitation email via Resend with custom template
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
+
+  const { error: emailError } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL || 'noreply@resend.dev',
+    to: agentData.email,
+    subject: `Join Shanta Sriram CRM - Set Your Password`,
+    react: AgentInvite({
+      agentName: agentData.full_name,
+      inviteLink,
+      invitedBy: agent.full_name,
+    }),
+  })
+
+  if (emailError) {
+    console.error('Email send error:', emailError)
+    return NextResponse.json({ error: 'Invitation generated but email failed to send' }, { status: 500 })
   }
 
   return NextResponse.json({ ok: true })
