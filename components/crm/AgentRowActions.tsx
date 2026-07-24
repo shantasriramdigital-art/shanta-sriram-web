@@ -102,7 +102,7 @@ export function AgentRowActions({ agentId, agentName }: AgentRowActionsProps) {
               This will permanently remove <strong>{agentName}</strong> from your team. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
+          <div className="flex justify-end gap-3">
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteAgent}
@@ -111,7 +111,7 @@ export function AgentRowActions({ agentId, agentName }: AgentRowActionsProps) {
             >
               {isDeleting ? 'Deleting...' : 'Delete'}
             </AlertDialogAction>
-          </AlertDialogFooter>
+          </div>
         </AlertDialogContent>
       </AlertDialog>
     </>
