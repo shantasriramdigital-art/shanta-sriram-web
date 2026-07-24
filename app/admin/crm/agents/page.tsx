@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { getAgentsWithStats, getCurrentUser } from '@/lib/crm/queries'
 import { AgentAvatar } from '@/components/crm/AgentAvatar'
 import { InviteAgentModal } from '@/components/crm/InviteAgentModal'
+import { AgentRowActions } from '@/components/crm/AgentRowActions'
 import { Button } from '@/components/ui/button'
 
 export const dynamic = 'force-dynamic'
@@ -47,6 +48,7 @@ export default async function AgentsPage() {
                 <TableHead className="text-right">Leads</TableHead>
                 <TableHead className="text-right">Bookings</TableHead>
                 <TableHead>Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -69,6 +71,9 @@ export default async function AgentsPage() {
                     <span className={`text-[11px] ${a.is_active ? 'text-emerald-700' : 'text-[#6B6B6B]'}`}>
                       {a.is_active ? 'Active' : 'Inactive'}
                     </span>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <AgentRowActions agentId={a.id} agentName={a.full_name} />
                   </TableCell>
                 </TableRow>
               ))}
