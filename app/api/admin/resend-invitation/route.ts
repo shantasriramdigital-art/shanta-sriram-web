@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
 
   const { error: emailError } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || 'noreply@resend.dev',
+    from: 'Shanta Sriram CRM <onboarding@resend.dev>',
     to: agentData.email,
     subject: `Join Shanta Sriram CRM - Set Your Password`,
     react: AgentInvite({
