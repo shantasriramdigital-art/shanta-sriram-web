@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const { data: agent } = await supabase
     .from('agents')
-    .select('role')
+    .select('role, full_name')
     .eq('id', user.id)
     .maybeSingle()
   if (agent?.role !== 'admin') {
