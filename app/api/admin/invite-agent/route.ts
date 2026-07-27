@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     console.log('Inviter:', agent.full_name)
 
     const { data: emailData, error: emailError } = await resend.emails.send({
-      from: 'Shanta Sriram CRM <onboarding@resend.dev>',
+      from: 'Shanta Sriram CRM <noreply@shantasriram.com>',
       to: body.email,
       subject: `Join Shanta Sriram CRM - Set Your Password`,
       react: AgentInvite({
