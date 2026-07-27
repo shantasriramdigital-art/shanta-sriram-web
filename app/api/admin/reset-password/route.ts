@@ -27,9 +27,11 @@ export async function POST(req: NextRequest) {
 
   if (body.action === 'send-link') {
     // Send password reset link via email
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
       type: 'recovery',
       email: body.email,
+      redirectTo: `${siteUrl}/admin/login`,
     })
 
     if (linkError) {
