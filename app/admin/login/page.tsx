@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -57,7 +58,12 @@ export default function LoginPage() {
             {errors.email && <p className="mt-1 text-xs text-[#CD0E12]">{errors.email.message}</p>}
           </div>
           <div>
-            <Label htmlFor="password" className="text-xs uppercase tracking-wider text-[#6B6B6B]">Password</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password" className="text-xs uppercase tracking-wider text-[#6B6B6B]">Password</Label>
+              <Link href="/reset-password" className="text-xs text-[#CD0E12] hover:text-[#a90a0e]">
+                Forgot?
+              </Link>
+            </div>
             <Input id="password" type="password" autoComplete="current-password" {...register('password')} className="mt-1.5" />
             {errors.password && <p className="mt-1 text-xs text-[#CD0E12]">{errors.password.message}</p>}
           </div>
