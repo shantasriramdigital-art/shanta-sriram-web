@@ -74,33 +74,48 @@ export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
 
-  const { data: emailData, error: emailError } = await resend.emails.send({
-    from: 'Shanta Sriram CRM <onboarding@resend.dev>',
-    to: body.email,
-    subject: `Join Shanta Sriram CRM - Set Your Password`,
-    react: AgentInvite({
-      agentName: body.full_name,
-      inviteLink,
-      invitedBy: agent.full_name,
-    }),
-  })
+  try {
+    console.log('Attempting to send invitation email via Resend...')
+    console.log('To:', body.email)
+    console.log('Subject: Join Shanta Sriram CRM - Set Your Password')
+    console.log('Invite Link:', inviteLink)
+    console.log('Inviter:', agent.full_name)
 
-  if (emailError) {
-    console.error('Resend email error:', emailError)
-    // User was created but email failed
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: 'Shanta Sriram CRM <onboarding@resend.dev>',
+      to: body.email,
+      subject: `Join Shanta Sriram CRM - Set Your Password`,
+      react: AgentInvite({
+        agentName: body.full_name,
+        inviteLink,
+        invitedBy: agent.full_name,
+      }),
+    })
+
+    if (emailError) {
+      console.error('❌ Resend email error:', emailError)
+      return NextResponse.json({
+        ok: true,
+        user_id: userData.user.id,
+        email_sent: false,
+        email_error: emailError.message
+      }, { status: 207 })
+    }
+
+    console.log('✅ Email sent via Resend:', emailData?.id)
+    return NextResponse.json({
+      ok: true,
+      user_id: userData.user.id,
+      email_sent: true,
+      email_id: emailData?.id
+    })
+  } catch (err) {
+    console.error('❌ Exception sending email:', err)
     return NextResponse.json({
       ok: true,
       user_id: userData.user.id,
       email_sent: false,
-      email_error: emailError.message
+      email_error: String(err)
     }, { status: 207 })
   }
-
-  console.log('Email sent via Resend:', emailData?.id)
-  return NextResponse.json({
-    ok: true,
-    user_id: userData.user.id,
-    email_sent: true,
-    email_id: emailData?.id
-  })
 }
