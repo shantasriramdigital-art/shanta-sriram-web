@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
       type: 'recovery',
       email: body.email,
-      redirectTo: siteUrl,
+      redirectTo: `${siteUrl}/recovery`,
     })
 
     if (linkError) {
