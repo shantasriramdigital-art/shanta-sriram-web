@@ -37,15 +37,29 @@ export async function POST(req: NextRequest) {
     auth: { autoRefreshToken: false, persistSession: false },
   })
 
-  const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(body.email, {
-    data: { full_name: body.full_name },
+  // Create user without sending email (avoids Supabase rate limit)
+  const { data: userData, error: createError } = await admin.auth.admin.createUser({
+    email: body.email,
+    password: Math.random().toString(36).slice(-20), // Temporary password
+    user_metadata: { full_name: body.full_name },
+    email_confirm: false,
   })
-  if (inviteError || !invited?.user) {
-    return NextResponse.json({ error: inviteError?.message ?? 'Invite failed' }, { status: 400 })
+  if (createError || !userData?.user) {
+    return NextResponse.json({ error: createError?.message ?? 'User creation failed' }, { status: 400 })
   }
 
+  // Generate magic link for password setup
+  const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
+    type: 'signup',
+    email: body.email,
+  })
+  if (linkError) {
+    console.error('Magic link generation error:', linkError)
+  }
+  const magicLink = linkData?.properties?.action_link
+
   const { error: agentError } = await admin.from('agents').upsert({
-    id: invited.user.id,
+    id: userData.user.id,
     email: body.email,
     full_name: body.full_name,
     phone: body.phone ?? null,
@@ -58,7 +72,7 @@ export async function POST(req: NextRequest) {
 
   // Send custom-branded invitation email via Resend
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
+  const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
 
   const { error: emailError } = await resend.emails.send({
     from: 'Shanta Sriram CRM <onboarding@resend.dev>',
@@ -66,19 +80,15 @@ export async function POST(req: NextRequest) {
     subject: `Join Shanta Sriram CRM - Set Your Password`,
     react: AgentInvite({
       agentName: body.full_name,
-      inviteLink: invited.user.user_metadata?.email_change_token_new
-        ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/verify?type=signup&token=${invited.user.user_metadata.email_change_token_new}`
-        : inviteLink,
+      inviteLink,
       invitedBy: agent.full_name,
     }),
   })
 
   if (emailError) {
     console.error('Resend email error:', emailError)
-    console.log('Falling back to Supabase email for invitation')
-    // Resend failed, but user was created. That's acceptable for now.
-    // The user can use the magic link from Supabase's invitation email.
+    // Log the error but don't fail - user was created, email failed but we tried
   }
 
-  return NextResponse.json({ ok: true, user_id: invited.user.id })
+  return NextResponse.json({ ok: true, user_id: userData.user.id })
 }

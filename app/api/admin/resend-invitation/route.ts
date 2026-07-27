@@ -45,18 +45,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Agent not found' }, { status: 404 })
   }
 
-  // Generate new invitation via Supabase (creates new invite token)
-  const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(agentData.email, {
-    data: { full_name: agentData.full_name },
+  // Generate magic link for password setup (no email sent by Supabase)
+  const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
+    type: 'signup',
+    email: agentData.email,
   })
-
-  if (inviteError || !invited?.user) {
-    return NextResponse.json({ error: inviteError?.message ?? 'Invite failed' }, { status: 400 })
+  if (linkError) {
+    console.error('Magic link generation error:', linkError)
   }
+  const magicLink = linkData?.properties?.action_link
 
   // Send invitation email via Resend with custom template
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
+  const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
 
   const { error: emailError } = await resend.emails.send({
     from: 'Shanta Sriram CRM <onboarding@resend.dev>',
