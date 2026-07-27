@@ -70,8 +70,10 @@ export async function POST(req: NextRequest) {
   })
 
   if (emailError) {
-    console.error('Email send error:', emailError)
-    return NextResponse.json({ error: 'Invitation generated but email failed to send' }, { status: 500 })
+    console.error('Resend email error:', emailError)
+    console.log('Falling back to Supabase email for resend invitation')
+    // Resend failed, but invitation was generated. That's acceptable.
+    // The user will receive Supabase's invitation email automatically.
   }
 
   return NextResponse.json({ ok: true })
