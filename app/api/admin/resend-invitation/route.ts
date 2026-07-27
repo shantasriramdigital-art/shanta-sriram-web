@@ -57,7 +57,8 @@ export async function POST(req: NextRequest) {
 
   // Send invitation email via Resend with custom template
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
+  // Use production site URL, not Supabase's magic link (which may point to localhost)
+  const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(agentData.email)}`
 
   const { error: emailError } = await resend.emails.send({
     from: 'Shanta Sriram CRM <noreply@shantasriram.com>',

@@ -72,7 +72,8 @@ export async function POST(req: NextRequest) {
 
   // Send custom-branded invitation email via Resend
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
+  // Use production site URL, not Supabase's magic link (which may point to localhost)
+  const inviteLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
 
   try {
     console.log('Attempting to send invitation email via Resend...')
