@@ -44,7 +44,16 @@ export function InviteAgentModal() {
       toast.error(json.error ?? 'Invite failed')
       return
     }
-    toast.success(`Invitation sent to ${email}`)
+
+    // Check if email was actually sent
+    if (json.email_sent === false) {
+      toast.warning(`User created but email failed to send: ${json.email_error}`)
+    } else if (json.email_sent === true) {
+      toast.success(`✅ Invitation sent to ${email}`)
+    } else {
+      toast.success(`Agent added to ${email}`)
+    }
+
     setOpen(false)
     setEmail(''); setFullName(''); setPhone(''); setRole('sales')
     router.refresh()

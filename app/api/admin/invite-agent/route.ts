@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const inviteLink = magicLink || `${process.env.NEXT_PUBLIC_SITE_URL}/admin/login?email=${encodeURIComponent(body.email)}`
 
-  const { error: emailError } = await resend.emails.send({
+  const { data: emailData, error: emailError } = await resend.emails.send({
     from: 'Shanta Sriram CRM <onboarding@resend.dev>',
     to: body.email,
     subject: `Join Shanta Sriram CRM - Set Your Password`,
@@ -87,8 +87,20 @@ export async function POST(req: NextRequest) {
 
   if (emailError) {
     console.error('Resend email error:', emailError)
-    // Log the error but don't fail - user was created, email failed but we tried
+    // User was created but email failed
+    return NextResponse.json({
+      ok: true,
+      user_id: userData.user.id,
+      email_sent: false,
+      email_error: emailError.message
+    }, { status: 207 })
   }
 
-  return NextResponse.json({ ok: true, user_id: userData.user.id })
+  console.log('Email sent via Resend:', emailData?.id)
+  return NextResponse.json({
+    ok: true,
+    user_id: userData.user.id,
+    email_sent: true,
+    email_id: emailData?.id
+  })
 }
