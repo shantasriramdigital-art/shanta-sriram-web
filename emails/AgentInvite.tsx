@@ -15,9 +15,10 @@ interface Props {
   agentName: string
   inviteLink: string
   invitedBy?: string
+  temporaryPassword: string
 }
 
-export function AgentInvite({ agentName, inviteLink, invitedBy }: Props) {
+export function AgentInvite({ agentName, inviteLink, invitedBy, temporaryPassword }: Props) {
   return (
     <Html>
       <Head />
@@ -45,13 +46,22 @@ export function AgentInvite({ agentName, inviteLink, invitedBy }: Props) {
             </Text>
             <Section style={btnWrap}>
               <Button href={inviteLink} style={button}>
-                Accept Invitation & Set Password
+                Log In to CRM
               </Button>
             </Section>
-            <Text style={smallText}>
-              Or copy and paste this link in your browser:
-              <br />
-              <code style={codeStyle}>{inviteLink}</code>
+            <Hr style={hr} />
+            <Heading as="h3" style={credentialsHeading}>Your Login Credentials</Heading>
+            <Text style={bodyText}>
+              Use these credentials to log in:
+            </Text>
+            <Section style={credentialsBox}>
+              <Text style={credentialLabel}>Email:</Text>
+              <Text style={credentialValue}>{agentName}</Text>
+              <Text style={credentialLabel} style={{ marginTop: 12 }}>Temporary Password:</Text>
+              <Text style={credentialValue}>{temporaryPassword}</Text>
+            </Section>
+            <Text style={bodyText}>
+              <strong>Important:</strong> Please change your password after your first login for security.
             </Text>
             <Hr style={hr} />
             <Text style={smallText}>
@@ -116,6 +126,27 @@ const codeStyle = {
   fontFamily: 'monospace',
   wordBreak: 'break-all' as const,
   color: '#1A1A2E',
+}
+const credentialsHeading = { color: '#1A1A2E', fontSize: 16, margin: '16px 0 12px 0', fontWeight: 600 }
+const credentialsBox = {
+  backgroundColor: '#F8F4EF',
+  padding: '16px',
+  borderRadius: 4,
+  marginTop: 12,
+  marginBottom: 16,
+  border: '1px solid #E8ECF0',
+}
+const credentialLabel = { color: '#6B6B6B', fontSize: 12, margin: '0', fontWeight: 500 }
+const credentialValue = {
+  color: '#1A1A2E',
+  fontSize: 14,
+  fontFamily: 'monospace',
+  fontWeight: 600,
+  backgroundColor: '#FFFFFF',
+  padding: '8px 12px',
+  borderRadius: 4,
+  margin: '4px 0 0 0',
+  wordBreak: 'break-all' as const,
 }
 const footer = {
   color: '#6B6B6B',

@@ -37,10 +37,13 @@ export async function POST(req: NextRequest) {
     auth: { autoRefreshToken: false, persistSession: false },
   })
 
+  // Create temporary password (8+ chars, mix of upper/lower/numbers)
+  const temporaryPassword = Math.random().toString(36).slice(-12) + 'Aa1'
+
   // Create user without sending email (avoids Supabase rate limit)
   const { data: userData, error: createError } = await admin.auth.admin.createUser({
     email: body.email,
-    password: Math.random().toString(36).slice(-20), // Temporary password
+    password: temporaryPassword,
     user_metadata: { full_name: body.full_name },
     email_confirm: false,
   })
@@ -85,11 +88,12 @@ export async function POST(req: NextRequest) {
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: 'Shanta Sriram CRM <noreply@shantasriram.com>',
       to: body.email,
-      subject: `Join Shanta Sriram CRM - Set Your Password`,
+      subject: `Join Shanta Sriram CRM - Login Credentials Included`,
       react: AgentInvite({
         agentName: body.full_name,
         inviteLink,
         invitedBy: agent.full_name,
+        temporaryPassword,
       }),
     })
 
