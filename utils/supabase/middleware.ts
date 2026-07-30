@@ -43,5 +43,16 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Redirect to password change if user needs to change password
+  if (user && pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    const requiresPasswordChange = user.user_metadata?.requires_password_change === true
+    if (requiresPasswordChange) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/settings/change-password'
+      url.search = ''
+      return NextResponse.redirect(url)
+    }
+  }
+
   return supabaseResponse
 }

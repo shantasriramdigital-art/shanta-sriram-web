@@ -44,7 +44,10 @@ export async function POST(req: NextRequest) {
   const { data: userData, error: createError } = await admin.auth.admin.createUser({
     email: body.email,
     password: temporaryPassword,
-    user_metadata: { full_name: body.full_name },
+    user_metadata: {
+      full_name: body.full_name,
+      requires_password_change: true,
+    },
     email_confirm: false,
   })
   if (createError || !userData?.user) {

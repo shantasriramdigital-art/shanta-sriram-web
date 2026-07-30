@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
   // Update to new password
   const { error: updateError } = await supabase.auth.updateUser({
     password: body.new_password,
+    data: { requires_password_change: false },
   })
 
   if (updateError) {
