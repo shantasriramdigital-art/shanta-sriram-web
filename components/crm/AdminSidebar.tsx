@@ -9,6 +9,7 @@ import {
   IndianRupee,
   BarChart3,
   UserCog,
+  KeyRound,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { UserRole } from '@/types/crm'
@@ -57,6 +58,20 @@ export function AdminSidebar({ role }: { role: UserRole | null }) {
             )
           })}
         </nav>
+        <div className="border-t border-[#E8ECF0] px-3 py-4">
+          <Link
+            href="/settings/change-password"
+            className={cn(
+              'flex items-center gap-3 rounded-md px-3 py-2 text-sm transition',
+              pathname === '/settings/change-password'
+                ? 'bg-[#CD0E12]/8 text-[#CD0E12] font-medium'
+                : 'text-[#4A4A5A] hover:bg-[#F4F7FC] hover:text-[#1A1A2E]'
+            )}
+          >
+            <KeyRound className="h-4 w-4" />
+            Change Password
+          </Link>
+        </div>
       </aside>
 
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 border-t border-[#E8ECF0] bg-white">
